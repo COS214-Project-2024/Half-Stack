@@ -9,8 +9,6 @@ class Plant : public Industrial
 public:
 	std::string type;
 
-	void Build();
-
 	Plant(int num, std::string l);
 
 	virtual void generate() = 0;
@@ -24,6 +22,8 @@ public:
 	PowerPlant(int num, std::string l);
 
 	void generate();
+
+	Building* build();
 };
 
 class WaterPlant : public Plant
@@ -34,6 +34,8 @@ public:
 	WaterPlant(int num, std::string l);
 
 	void generate();
+
+	Building* build();
 };
 
 class MaterialsPlant : public Plant
@@ -44,6 +46,8 @@ public:
 	MaterialsPlant(int num, std::string l);
 
 	void generate();
+
+	Building* build();
 };
 
 #endif
