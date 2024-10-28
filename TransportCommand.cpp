@@ -2,24 +2,20 @@
 
 void OpenBusiness::execute()
 {
-	// TODO - implement CloseBusiness::execute
-	throw "Not yet implemented";
+	TransportDepart->openTransport();
 }
 
 bool OpenBusiness::getStatus()
 {
-	// TODO - implement CloseBusiness::getStatus
-	throw "Not yet implemented";
+	return open;
 }
 
 void CloseBusiness::execute()
 {
-	// TODO - implement CloseBusiness::execute
-	throw "Not yet implemented";
+	TransportDepart->closeTransport();
 }
 
 bool CloseBusiness::getStatus()
 {
-	// TODO - implement CloseBusiness::getStatus
-	throw "Not yet implemented";
+	return close;
 }

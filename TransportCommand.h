@@ -1,35 +1,36 @@
 #ifndef TRANSPORTCOMMAND_H
 #define TRANSPORTCOMMAND_H
 
+#include "TransportDepartment.h"
+
 class TransportCommand
 {
+	public:
+		TransportDepartment* TransportDepart = new TransportDepartment();
+		
+		virtual void execute() = 0;
 
-public:
-	virtual void execute() = 0;
-
-	virtual bool getStatus() = 0;
-};
+		virtual bool getStatus() = 0;
+	};
 
 class OpenBusiness : public TransportCommand
 {
+	public:
+		bool open;
 
-public:
-	bool open;
+		void execute();
 
-	void execute();
-
-	bool getStatus();
+		bool getStatus();
 };
 
 class CloseBusiness : public TransportCommand
 {
+	public:
+		bool close;
 
-public:
-	bool close;
+		void execute();
 
-	void execute();
-
-	bool getStatus();
+		bool getStatus();
 };
 
 

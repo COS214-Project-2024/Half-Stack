@@ -2,48 +2,40 @@
 
 void SupplyWater::execute()
 {
-	// TODO - implement SupplyWater::execute
-	throw "Not yet implemented";
+	UtilitiesDepart->supplyWater();
 }
 
 bool SupplyWater::getStatus()
 {
-	// TODO - implement SupplyWater::getStatus
-	throw "Not yet implemented";
+	return water>0;
 }
 
 void SupplyPower::execute()
 {
-	// TODO - implement SupplyPower::execute
-	throw "Not yet implemented";
+	UtilitiesDepart->supplyEnergy();
 }
 
 bool SupplyPower::getStatus()
 {
-	// TODO - implement SupplyPower::getStatus
-	throw "Not yet implemented";
+	return energy>0;
 }
 
 void ManageWaste::execute()
 {
-	// TODO - implement ManageWaste::execute
-	throw "Not yet implemented";
+	UtilitiesDepart->manageWaste();
 }
 
 bool ManageWaste::getStatus()
 {
-	// TODO - implement SupplyPower::getStatus
-	throw "Not yet implemented";
+	return open;
 }
 
 void ManageSewage::execute()
 {
-	// TODO - implement ManageWaste::execute
-	throw "Not yet implemented";
+	UtilitiesDepart->manageSewage();
 }
 
 bool ManageSewage::getStatus()
 {
-	// TODO - implement SupplyPower::getStatus
-	throw "Not yet implemented";
+	return open;
 }
