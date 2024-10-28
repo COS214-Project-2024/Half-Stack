@@ -2,7 +2,7 @@
 
 std::string Employed::getStatus()
 {
-    return "";
+    return "Employed";
 }
 
 Employment *Employed::toggleStatus()
@@ -12,7 +12,7 @@ Employment *Employed::toggleStatus()
 
 std::string Unemployed::getStatus()
 {
-    return "";
+    return "Unemployed";
 }
 
 Employment *Unemployed::toggleStatus()
