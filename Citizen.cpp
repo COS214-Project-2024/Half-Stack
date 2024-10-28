@@ -21,8 +21,7 @@ void Citizen::startWork()
     }
     else
     {
-        this->employment = this->employment->toggleStatus();            //Get the job to start work.
-        std::cout << this->name << " now has the job and will start work." << std::endl;
+        std::cout << this->name << " does not have a job." << std::endl; 
     }
     
 }
