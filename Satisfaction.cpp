@@ -2,12 +2,18 @@
 
 std::string Satisfaction::getStatus()
 {
-    return "";
+    return this->status;
 }
 
-Satisfaction* Satisfied::raiseStatus()
+Satisfied::Satisfied()
 {
-    return new Satisfied();
+    this->status = "Satisfied";
+}
+
+Satisfaction *Satisfied::raiseStatus()
+{
+    std::cout << "Already at highest satisfaction level." << std::endl;
+    return this;
 }
 
 Satisfaction* Satisfied::lowerStatus()
@@ -15,7 +21,12 @@ Satisfaction* Satisfied::lowerStatus()
     return new Neutral();
 }
 
-Satisfaction* Neutral::raiseStatus()
+Neutral::Neutral()
+{
+    this->status = "Neutral";
+}
+
+Satisfaction *Neutral::raiseStatus()
 {
     return new Satisfied();
 }
@@ -30,7 +41,13 @@ Satisfaction* Unsatisfied::raiseStatus()
     return new Neutral();
 }
 
+Unsatisfied::Unsatisfied()
+{
+    this->status = "Unsatisfied";
+}
+
 Satisfaction* Unsatisfied::lowerStatus()
 {
-    return new Unsatisfied();
+    std::cout << "Already at lowest satisfaction level." << std::endl;
+    return this;
 }
