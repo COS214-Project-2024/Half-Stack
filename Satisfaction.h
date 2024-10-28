@@ -6,7 +6,7 @@
 
 class Satisfaction
 {   
-    private:
+    protected:
         std::string status;
 
     public:
@@ -20,6 +20,7 @@ class Satisfied : public Satisfaction
 {
 
 public:
+        Satisfied();
         Satisfaction* raiseStatus();
         Satisfaction* lowerStatus();
 };
@@ -28,6 +29,7 @@ class Neutral : public Satisfaction
 {
 
 public:
+        Neutral();
         Satisfaction* raiseStatus();
         Satisfaction* lowerStatus();
 };
@@ -36,6 +38,7 @@ class Unsatisfied : public Satisfaction
 {
 
 public:
+        Unsatisfied();
         Satisfaction* raiseStatus();
         Satisfaction* lowerStatus();
 };
