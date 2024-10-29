@@ -13,7 +13,7 @@ protected:
 	LawDepartment(){std::cout << "New Law department created" << std::endl;};
 
 public:
-	LawDepartment* instance();
+	static LawDepartment* instance();
 
 	LawDepartment(const LawDepartment&) = delete;
 
