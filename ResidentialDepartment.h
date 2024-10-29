@@ -8,13 +8,17 @@ class ResidentialDepartment : public Department
 {
 	private:
 
+		ResidentialDepartment();
+		static ResidentialDepartment uniqueInstance;
+
 		std::vector<Building*> residents;
+
 		std::vector<Citizen*> Observingcitizens; //obsever list
     		bool isLoadShedding;
 
 	public:
 
-		ResidentialDepartment();
+		static ResidentialDepartment& instance();
 
 		void addBuilding(Building* b);
 		void removeBuilding(Building* b);
