@@ -9,13 +9,17 @@ class UtilitiesDepartment : public Department
 {
 
 private:
+	UtilitiesDepartment();
+
+	static UtilitiesDepartment uniqueInstance;
+
 	UtilityCommand* commands[4];
 
 public:
 
-	UtilitiesDepartment();
-
 	~UtilitiesDepartment();
+
+	static UtilitiesDepartment& instance();
 
 	void supplyWater();
 
