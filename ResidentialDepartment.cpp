@@ -21,3 +21,23 @@ void ResidentialDepartment::removeBuilding(Building* b)
         }
     }	
 }
+
+int ResidentialDepartment::getTotalBuildings()
+{
+    int counter = 0;
+	for (std::vector<Building*>::iterator i = residents.begin(); i != residents.end(); i++)
+    {
+        counter++;
+    }
+    return counter;
+}
+
+int ResidentialDepartment::getTotalCapacity()
+{
+    int total = 0;
+	for (std::vector<Building*>::iterator i = residents.begin(); i != residents.end(); i++)
+    {
+        total = total + (*i)->capacity;
+    }
+    return total;
+}
