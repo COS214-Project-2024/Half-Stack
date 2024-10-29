@@ -18,11 +18,13 @@ private:
 	std::vector<std::unique_ptr<Citizen>> citizens; 
 	std::vector<std::unique_ptr<Citizen>> employees;
 public:
-	
+	void Build();
 
-	Plant(int num, std::string l);
+	Plant(int capacity,  std::string type, std::string location);
 
-	virtual void generate() = 0;
+	virtual ~Plant() = default; // default destructor 
+
+	virtual void generate() = 0; 
 };
 
 class PowerPlant : public Plant
