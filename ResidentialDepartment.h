@@ -9,7 +9,7 @@ class ResidentialDepartment : public Department
 	private:
 
 		ResidentialDepartment();
-		static ResidentialDepartment uniqueInstance;
+		static ResidentialDepartment* uniqueInstance;
 
 		std::vector<Building*> residents;
 
@@ -18,7 +18,7 @@ class ResidentialDepartment : public Department
 
 	public:
 
-		static ResidentialDepartment& instance();
+		static ResidentialDepartment* instance();
 
 		void addBuilding(Building* b);
 		void removeBuilding(Building* b);
