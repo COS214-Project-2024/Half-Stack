@@ -29,6 +29,7 @@ class Citizen
         Satisfaction* getSatisfaction();
         void setSatisfaction(Satisfaction* s);
         void getJob();
+        int getAge();
 
          void receiveNotification(const std::string& message);
 };
