@@ -13,7 +13,7 @@ private:
 protected:
 	Government(std::string name);
 
-	static Government* instance(std::string);
+	static Government* instance();
 
 	~Government();
 
