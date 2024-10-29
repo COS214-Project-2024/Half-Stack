@@ -77,5 +77,5 @@ void LawDepartment::changeLaw(std::string previous, std::string current)
 
 LawDepartment::~LawDepartment()
 {
-	delete uniqueInstance;
+	
 }
