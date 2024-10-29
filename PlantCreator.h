@@ -6,8 +6,11 @@
 class PlantCreator
 {
 
+private:
+	Plant* plant;
+
 public:
-	virtual Plant* createPlant() = 0;
+	virtual Plant* createPlant(int capacity,  const std::string& location) = 0;
 
 	PlantCreator();
 };
