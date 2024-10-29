@@ -1,6 +1,6 @@
 #include "UtilitiesDepartment.h"
 
-UtilitiesDepartment UtilitiesDepartment::uniqueInstance;
+UtilitiesDepartment* UtilitiesDepartment::uniqueInstance;
 
 UtilitiesDepartment::UtilitiesDepartment()
 {
@@ -10,9 +10,13 @@ UtilitiesDepartment::UtilitiesDepartment()
 	commands[3] = new ManageSewage();
 }
 
-UtilitiesDepartment& UtilitiesDepartment::instance()
+UtilitiesDepartment* UtilitiesDepartment::instance()
 {
-	return uniqueInstance;
+	if (uniqueInstance == NULL)
+    {
+        uniqueInstance = new UtilitiesDepartment();
+    }
+    return uniqueInstance;
 }
 
 UtilitiesDepartment::~UtilitiesDepartment()
