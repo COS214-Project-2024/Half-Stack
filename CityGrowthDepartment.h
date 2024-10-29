@@ -13,7 +13,8 @@ class CityGrowthDepartment : public Department
 private:
 
 	int population;
-	CityGrowthDepartment* uniqueInstance;
+
+	static CityGrowthDepartment* uniqueInstance;
 
 	//std::vector<Citizen*> citizens;
 	ResidentialDepartment* resDepartment;
@@ -36,7 +37,7 @@ public:
 
 	void increaseUtilities();
 
-	CityGrowthDepartment* instance(Government* gov);
+	static CityGrowthDepartment* instance(Government* gov);
 
 protected:
 	CityGrowthDepartment(Government* gov);
