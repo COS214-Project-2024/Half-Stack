@@ -15,7 +15,7 @@ TransportDepartment::~TransportDepartment()
 
 TransportDepartment* TransportDepartment::instance()
 {
-    if(uniqueInstance == NULL)
+    if(uniqueInstance == nullptr)
 	{
 		uniqueInstance = new TransportDepartment();
 	}

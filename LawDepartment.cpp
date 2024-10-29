@@ -42,10 +42,11 @@ void LawDepartment::removeLaw(std::string l)
 
 	for(; it != this->laws.end(); ++it)
 	{
-		if(*it == l)
+		if((*it) == l)
 		{
 			found = true;
 			this->laws.erase(it);
+			break;
 		}
 	}
 
@@ -78,4 +79,9 @@ void LawDepartment::changeLaw(std::string previous, std::string current)
 LawDepartment::~LawDepartment()
 {
 	
+}
+
+std::vector<std::string> LawDepartment::getAllLaws()
+{
+    return this->laws;
 }

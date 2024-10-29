@@ -15,8 +15,6 @@ protected:
 public:
 	static LawDepartment* instance();
 
-	LawDepartment(const LawDepartment&) = delete;
-
 	void addLaw(std::string l);
 
 	void removeLaw(std::string l);
@@ -24,6 +22,8 @@ public:
 	void changeLaw(std::string previous, std::string current);
 
 	~LawDepartment();
+
+	std::vector<std::string> getAllLaws();
 };
 
 #endif
