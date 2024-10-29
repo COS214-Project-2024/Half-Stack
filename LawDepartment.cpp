@@ -1,5 +1,7 @@
 #include "LawDepartment.h"
 
+LawDepartment* LawDepartment::uniqueInstance;
+
 LawDepartment *LawDepartment::instance()
 {
     if(uniqueInstance == nullptr)
