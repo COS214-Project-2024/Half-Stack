@@ -39,4 +39,31 @@ public:
 	Railway();
 };
 
+class Pathway
+{
+
+private:
+	bool path;
+
+public:
+	Pathway();
+
+	void clear();
+	void block();
+	
+	bool getPathStatus();
+};
+
+class Trail : public Transportation, private Pathway
+{
+
+public:
+	Trail();
+
+	void open();
+	void close();
+
+	bool getStatus();
+};
+
 #endif
