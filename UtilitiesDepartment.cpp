@@ -2,7 +2,18 @@
 
 UtilitiesDepartment::UtilitiesDepartment()
 {
-	
+	commands[0] = new SupplyWater();
+	commands[1] = new SupplyPower();
+	commands[2] = new ManageWaste();
+	commands[3] = new ManageSewage();
+}
+
+UtilitiesDepartment::~UtilitiesDepartment()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		delete commands[i];
+	}
 }
 
 void UtilitiesDepartment::performRoutine()
