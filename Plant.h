@@ -32,11 +32,9 @@ class PowerPlant : public Plant
 
 public:
 
-	PowerPlant(int num, std::string l);
+	PowerPlant(int capacity, std::string type, std::string location);
 
 	void generate();
-
-	Building* build();
 };
 
 class WaterPlant : public Plant
@@ -44,11 +42,9 @@ class WaterPlant : public Plant
 
 public:
 
-	WaterPlant(int num, std::string l);
+	WaterPlant(int capacity, std::string type , std::string location);
 
 	void generate();
-
-	Building* build();
 };
 
 class MaterialsPlant : public Plant
@@ -56,11 +52,9 @@ class MaterialsPlant : public Plant
 
 public:
 
-	MaterialsPlant(int num, std::string l);
+	MaterialsPlant(int capacity, std::string type , std::string location);
 
 	void generate();
-
-	Building* build();
 };
 
 #endif
