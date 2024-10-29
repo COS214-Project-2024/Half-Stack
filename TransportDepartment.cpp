@@ -1,5 +1,7 @@
 #include "TransportDepartment.h"
 
+TransportDepartment* TransportDepartment::uniqueInstance;
+
 TransportDepartment::~TransportDepartment()
 {
 	std::vector<std::pair<Transportation*, std::pair<TransportCommand*, TransportCommand*>>>::iterator it = this->transports.begin();
