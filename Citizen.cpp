@@ -59,3 +59,8 @@ void Citizen::getJob()
         std::cout << this->name << " already has a job. " << this->name << "cannot obtain a job if he has one already." << std::endl;
     }
 }
+
+void Citizen::receiveNotification(const std::string& message) 
+{
+    std::cout << "Notification for " << name << ": " << message << std::endl;
+}
