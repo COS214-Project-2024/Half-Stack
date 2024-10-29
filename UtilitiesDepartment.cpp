@@ -5,6 +5,14 @@ UtilitiesDepartment::UtilitiesDepartment()
 	
 }
 
+void UtilitiesDepartment::performRoutine()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		commands[i]->execute();
+	}
+}
+
 void UtilitiesDepartment::supplyWater()
 {
 	std::cout << "The utilities department is supplying water." << std::endl;
