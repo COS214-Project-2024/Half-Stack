@@ -9,23 +9,24 @@ class TransportDepartment : public Department
 {
 
 private:
-	std::vector<Transportation*> transports;
-	TransportCommand* commands[2];
-	TransportDepartment();
-	~TransportDepartment(){};
+	std::vector<std::pair<Transportation*, std::pair<TransportCommand*, TransportCommand*>>> transports;
+	static TransportDepartment* uniqueInstance;
+
+protected:
+	TransportDepartment(){};
 
 public:
-	static TransportDepartment& instance();
+	TransportDepartment* instance();
 
-	TransportDepartment(const TransportDepartment&) = delete;
+	void addTransport(Transportation* newTransport);
 
-	void addTransport(Transportation newTransport);
-
-	void removeTransport(Transportation newTransport);
+	void removeTransport(Transportation* newTransport);
 
 	void openTransport();
 
 	void closeTransport();
+
+	~TransportDepartment();
 };
 
 #endif

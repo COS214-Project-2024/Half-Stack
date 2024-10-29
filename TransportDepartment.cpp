@@ -1,25 +1,45 @@
 #include "TransportDepartment.h"
 
-TransportDepartment &TransportDepartment::instance()
+TransportDepartment::~TransportDepartment()
 {
-    static TransportDepartment instance;
-	instance.commands[0] = new OpenBusiness();
-	instance.commands[1] = new CloseBusiness();
-	return instance;
-}
+	std::vector<std::pair<Transportation*, std::pair<TransportCommand*, TransportCommand*>>>::iterator it = this->transports.begin();
 
-void TransportDepartment::addTransport(Transportation newTransport)
-{
-	this->transports.push_back(&newTransport);
-}
-
-void TransportDepartment::removeTransport(Transportation newTransport) 
-{
-	std::vector<Transportation*>::iterator it = this->transports.begin();
 	for(; it != this->transports.end(); ++it)
 	{
-		if(*it == &newTransport)
+		delete it->second.first;
+		delete it->second.second;
+	}
+
+	delete uniqueInstance;
+}
+
+TransportDepartment* TransportDepartment::instance()
+{
+    if(uniqueInstance == NULL)
+	{
+		uniqueInstance = new TransportDepartment();
+	}
+
+	return uniqueInstance;
+}
+
+void TransportDepartment::addTransport(Transportation* newTransport)
+{
+	TransportCommand* openCom = new OpenBusiness();
+	TransportCommand* closeCom = new CloseBusiness();
+
+	this->transports.push_back(std::make_pair(newTransport, std::make_pair(openCom, closeCom)));
+}
+
+void TransportDepartment::removeTransport(Transportation* newTransport) 
+{
+	std::vector<std::pair<Transportation*, std::pair<TransportCommand*, TransportCommand*>>>::iterator it = this->transports.begin();
+	for(; it != this->transports.end(); ++it)
+	{
+		if(it->first == newTransport)
 		{
+			delete it->second.first;
+			delete it->second.second;
 			this->transports.erase(it);
 		}
 	}
@@ -27,16 +47,20 @@ void TransportDepartment::removeTransport(Transportation newTransport)
 
 void TransportDepartment::openTransport() 
 {
-	for(int j = 0; j < this->transports.size(); j++)
+	std::vector<std::pair<Transportation*, std::pair<TransportCommand*, TransportCommand*>>>::iterator it = this->transports.begin();
+
+	for(; it != this->transports.end(); ++it)
 	{
-		this->transports[j]->open();
+		it->second.first->execute();
 	}
 }
 
 void TransportDepartment::closeTransport() 
 {
-	for(int j = 0; j < this->transports.size(); j++)
+	std::vector<std::pair<Transportation*, std::pair<TransportCommand*, TransportCommand*>>>::iterator it = this->transports.begin();
+
+	for(; it != this->transports.end(); ++it)
 	{
-		this->transports[j]->close();
+		it->second.second->execute();
 	}
 }
