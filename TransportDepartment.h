@@ -16,7 +16,7 @@ protected:
 	TransportDepartment(){};
 
 public:
-	TransportDepartment* instance();
+	static TransportDepartment* instance();
 
 	void addTransport(Transportation* newTransport);
 
