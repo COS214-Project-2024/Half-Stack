@@ -12,7 +12,7 @@ PowerPlant::PowerPlant(int num, std::string l) : Plant(num, l)
 
 void PowerPlant::generate()
 {
-	
+	std::cout << "The power plant is generating power." << std::endl;
 }
 
 Building* PowerPlant::build()
@@ -27,7 +27,7 @@ WaterPlant::WaterPlant(int num, std::string l) : Plant(num, l)
 
 void WaterPlant::generate()
 {
-	
+	std::cout << "The water plant is generating water." << std::endl;
 }
 
 Building* WaterPlant::build()
@@ -42,7 +42,7 @@ MaterialsPlant::MaterialsPlant(int num, std::string l) : Plant(num, l)
 
 void MaterialsPlant::generate()
 {
-	
+	std::cout << "The materials plant is generating materials." << std::endl;
 }
 
 Building* MaterialsPlant::build()
