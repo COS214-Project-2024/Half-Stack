@@ -64,3 +64,8 @@ void Citizen::receiveNotification(const std::string& message)
 {
     std::cout << "Notification for " << name << ": " << message << std::endl;
 }
+
+int Citizen::getAge()
+{
+    return age;
+}
