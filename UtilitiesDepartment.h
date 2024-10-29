@@ -22,6 +22,8 @@ public:
 	void manageWaste();
 
 	void manageSewage();
+
+	void performRoutine();
 };
 
 #endif
