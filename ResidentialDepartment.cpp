@@ -1,15 +1,19 @@
 #include "ResidentialDepartment.h"
 
-ResidentialDepartment ResidentialDepartment::uniqueInstance;
+ResidentialDepartment* ResidentialDepartment::uniqueInstance;
 
 ResidentialDepartment::ResidentialDepartment()
 {
 	
 }
 
-ResidentialDepartment& ResidentialDepartment::instance()
+ResidentialDepartment* ResidentialDepartment::instance()
 {
-	return uniqueInstance;
+	if (uniqueInstance == NULL)
+    {
+        uniqueInstance = new ResidentialDepartment();
+    }
+    return uniqueInstance;
 }
 
 void ResidentialDepartment::addBuilding(Building* b)
