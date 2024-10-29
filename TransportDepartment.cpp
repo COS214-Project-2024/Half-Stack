@@ -11,8 +11,6 @@ TransportDepartment::~TransportDepartment()
 		delete it->second.first;
 		delete it->second.second;
 	}
-
-	delete uniqueInstance;
 }
 
 TransportDepartment* TransportDepartment::instance()
