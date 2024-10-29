@@ -17,7 +17,8 @@ class PowerPlantCreator : public PlantCreator
 
 
 public:
-	Plant* createPlant();
+	  Plant* createPlant(int capacity,  const std::string& location) override;
+
 };
 
 class WaterPlantCreator : public PlantCreator
@@ -25,7 +26,7 @@ class WaterPlantCreator : public PlantCreator
 
 
 public:
-	Plant* createPlant();
+	 Plant* createPlant(int capacity,  const std::string& location) override;
 };
 
 class MaterialsPlantCreator : public PlantCreator
@@ -33,7 +34,8 @@ class MaterialsPlantCreator : public PlantCreator
 
 
 public:
-	Plant* createPlant();
+	Plant* createPlant(int capacity,  const std::string& location) override;
 };
+
 
 #endif
