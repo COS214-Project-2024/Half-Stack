@@ -15,6 +15,8 @@ public:
 
 	UtilitiesDepartment();
 
+	~UtilitiesDepartment();
+
 	void supplyWater();
 
 	void supplyEnergy();
