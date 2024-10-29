@@ -14,14 +14,20 @@ private:
 
 	int population;
 
+	//std::vector<Citizen*> citizens;
 	ResidentialDepartment* resDepartment;
 	TransportDepartment* TransportDep;
 	UtilitiesDepartment* utilityDep;
+	PublicServicesDep* psDep;
+	ResourceManage* resourceManager;
+	Government* gov;
 
 public:
 	void increaseHousing();
 
 	void increasePopulation();
+
+	void increasePopulation(int num);
 
 	void increaseJobs();
 
@@ -29,7 +35,7 @@ public:
 
 	void increaseUtilities();
 
-	CityGrowthDepartment();
+	CityGrowthDepartment(Government* gov);
 };
 
 #endif
