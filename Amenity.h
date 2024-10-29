@@ -6,40 +6,51 @@
 class Amenity : public Residential
 {
 
-public:
+protected:
 	Residential* amenity;
-
-	Amenity();
+	
+public:
+	Amenity(Residential* amen);
 
 	void increaseSatisfaction();
+	void consumeResources();
 };
 
 class Garden : public Amenity
 {
 
 public:
-	Garden();
+	Garden(Residential* amen);
+	void consumeResources() override;
+    void increaseSatisfaction() override;
 };
 
 class Internet : public Amenity
 {
 
 public:
-	Internet();
+	Internet(Residential* amen);
+	void consumeResources() override;
+    void increaseSatisfaction() override;
+	
 };
 
 class Gym : public Amenity
 {
 
 public:
-	Gym();
+	Gym(Residential* amen);
+	void consumeResources() override;
+    void increaseSatisfaction() override;
 };
 
 class Pool : public Amenity
 {
 
 public:
-	Pool();
+	Pool(Residential* amen);
+	void consumeResources() override;
+    void increaseSatisfaction() override;
 };
 
 #endif
