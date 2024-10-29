@@ -6,14 +6,12 @@
 class Government : public Department {
 
 private:
-	std::vector<Department*> departmentList;
+	std::vector<Department*> departments;
 	std::string name;
 	static Government* uniqueInstance;
 
 protected:
 	Government(std::string name);
-
-	Government(Government& g);
 
 public:
 	static Government* instance(std::string name);
