@@ -1,6 +1,7 @@
 #include "CityGrowthDepartment.h"
 
-void CityGrowthDepartment::increaseHousing(char BuildingType) {
+void CityGrowthDepartment::increaseHousing(char BuildingType) 
+{
 	char BuildingType;
 	int currHousingCapacity = resDepartment->getTotalCapacity();
 	if (population > currHousingCapacity)
@@ -59,7 +60,8 @@ void CityGrowthDepartment::increaseHousing(char BuildingType) {
 	}
 }
 
-void CityGrowthDepartment::increasePopulation() {
+void CityGrowthDepartment::increasePopulation() 
+{
 	population += 10;
 	for (int i=0;i<10;i++)
 	{
@@ -70,7 +72,8 @@ void CityGrowthDepartment::increasePopulation() {
 	//increaseUtilities();
 }
 
-void CityGrowthDepartment::increasePopulation(int num) {
+void CityGrowthDepartment::increasePopulation(int num) 
+{
 	population += num;
 	for (int i=0;i<num;i++)
 	{
@@ -81,7 +84,8 @@ void CityGrowthDepartment::increasePopulation(int num) {
 	//increaseUtilities();
 }
 
-void CityGrowthDepartment::increaseJobs() {
+void CityGrowthDepartment::increaseJobs() 
+{
 		int c =psDep->buildCommercial(); //psDepartment needs a buildCommercial() to build each type of commercial buildings
 		int i= psDep->buildIndustrial(); //same with industrial
 
@@ -100,7 +104,8 @@ void CityGrowthDepartment::increaseJobs() {
 	}
 }
 
-void CityGrowthDepartment::increaseTransport() {
+void CityGrowthDepartment::increaseTransport() 
+{
 	int trains = TransportDep->getTotalTrains();
 	int airports = Transport->getTotalAirports();
 	int roads = Transport->getTotalRoads();
@@ -121,7 +126,8 @@ void CityGrowthDepartment::increaseTransport() {
 	}
 }
 
-void CityGrowthDepartment::increaseUtilities() {
+void CityGrowthDepartment::increaseUtilities() 
+{
 	if (resourceManager->getBudget()>500000)
 	{
 		utilityDep->addBuilding(new PowerPlant());
@@ -137,7 +143,8 @@ void CityGrowthDepartment::increaseUtilities() {
 }
 
 
-CityGrowthDepartment::CityGrowthDepartment(Government* gov) {
+CityGrowthDepartment::CityGrowthDepartment(Government* gov) 
+{
 	this->resDepartment = gov->getResDepartment();
 	this->TransportDep = gov->getTransportDep();
 	this->utilityDep = gov->getUtilityDep();
@@ -145,4 +152,14 @@ CityGrowthDepartment::CityGrowthDepartment(Government* gov) {
 	this->resourceManager = gov->getResourceManager();
 	this->gov = gov;
 	population = gov->getTotalCitizens();
+}
+
+CityGrowthDepartment* CityGrowthDepartment::instance(Government* gov)
+{
+	if (uniqueInstance==NULL)
+	{
+		uniqueInstance = new CityGrowthDepartment(gov);
+	}
+
+	return uniqueInstance;
 }
