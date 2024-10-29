@@ -24,7 +24,6 @@ class Citizen
         Citizen(std::string name, int age);
         void payTax(std::string tax);
         void startWork();
-        void goHome();
         Employment* getEmployment();
         void setEmployment(Employment* e);
         Satisfaction* getSatisfaction();
