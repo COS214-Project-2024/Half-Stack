@@ -1,12 +1,12 @@
 #ifndef TRANSPORTCOMMAND_H
 #define TRANSPORTCOMMAND_H
 
-#include "TransportDepartment.h"
+#include "Transportation.h""
 
 class TransportCommand
 {
 	public:
-		TransportDepartment* TransportDepart = new TransportDepartment();
+		Transportation* Transport; //= new Transportation();
 		
 		virtual void execute() = 0;
 

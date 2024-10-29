@@ -6,7 +6,7 @@
 class UtilityCommand
 {
 	public:
-		UtilitiesDepartment* UtilitiesDepart = new UtilitiesDepartment();
+		UtilitiesDepartment* UtilitiesDepart; // = new UtilitiesDepartment();
 
 		virtual void execute() = 0;
 

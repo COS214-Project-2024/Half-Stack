@@ -7,15 +7,15 @@ int TaxCommand::getStatus()
 
 void CollectIncomeTax::execute()
 {
-    PublicDepart->collectTax("incomeTax");
+    citizen->payTax("incomeTax");
 }
 
 void CollectSalesTax::execute()
 {
-    PublicDepart->collectTax("SalesTax");
+    citizen->payTax("SalesTax");
 }
 
 void CollectPropertyTax::execute()
 {
-    PublicDepart->collectTax("PropertyTax");
+    citizen->payTax("PropertyTax");
 }

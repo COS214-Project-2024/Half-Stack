@@ -2,7 +2,7 @@
 
 void OpenBusiness::execute()
 {
-	TransportDepart->openTransport();
+	Transport->open();
 }
 
 bool OpenBusiness::getStatus()
@@ -12,7 +12,7 @@ bool OpenBusiness::getStatus()
 
 void CloseBusiness::execute()
 {
-	TransportDepart->closeTransport();
+	Transport->close();
 }
 
 bool CloseBusiness::getStatus()

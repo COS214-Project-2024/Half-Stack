@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-#include "PublicServicesDepartment.h"
+#include "Citizen.h"
 
 class TaxCommand
 {
@@ -12,7 +12,7 @@ class TaxCommand
         int state;
 
     public:
-        PublicServicesDepartment* PublicDepart = new PublicServicesDepartment();
+        Citizen* citizen;
         virtual void execute() = 0;
         int getStatus();
 };
