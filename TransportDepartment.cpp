@@ -1,6 +1,14 @@
 #include "TransportDepartment.h"
 
-void TransportDepartment::addTransport(Transportation newTransport) 
+TransportDepartment &TransportDepartment::instance()
+{
+    static TransportDepartment instance;
+	instance.commands[0] = new OpenBusiness();
+	instance.commands[1] = new CloseBusiness();
+	return instance;
+}
+
+void TransportDepartment::addTransport(Transportation newTransport)
 {
 	this->transports.push_back(&newTransport);
 }

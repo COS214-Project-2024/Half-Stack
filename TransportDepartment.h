@@ -11,14 +11,17 @@ class TransportDepartment : public Department
 private:
 	std::vector<Transportation*> transports;
 	TransportCommand* commands[2];
+	TransportDepartment();
+	~TransportDepartment(){};
 
 public:
+	static TransportDepartment& instance();
+
+	TransportDepartment(const TransportDepartment&) = delete;
 
 	void addTransport(Transportation newTransport);
 
 	void removeTransport(Transportation newTransport);
-
-	TransportDepartment(){std::cout << "New Transport department created" << std::endl;};
 
 	void openTransport();
 
