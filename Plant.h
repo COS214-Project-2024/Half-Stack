@@ -32,7 +32,7 @@ class PowerPlant : public Plant
 
 public:
 
-	PowerPlant(int capacity, std::string type, std::string location);
+	PowerPlant(int capacity, std::string location);
 
 	void generate();
 };
@@ -42,7 +42,7 @@ class WaterPlant : public Plant
 
 public:
 
-	WaterPlant(int capacity, std::string type , std::string location);
+	WaterPlant(int capacity, std::string location);
 
 	void generate();
 };
@@ -52,7 +52,7 @@ class MaterialsPlant : public Plant
 
 public:
 
-	MaterialsPlant(int capacity, std::string type , std::string location);
+	MaterialsPlant(int capacity, std::string location);
 
 	void generate();
 };
