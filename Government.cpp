@@ -1,5 +1,7 @@
 #include "Government.h"
 
+Government* Government::uniqueInstance;
+
 Government::Government(std::string name) 
 {
 	this->name = name;
