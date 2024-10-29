@@ -25,5 +25,5 @@ Government* Government::instance(std::string name)
 
 Government::~Government()
 {
-	delete uniqueInstance;
+	
 }
