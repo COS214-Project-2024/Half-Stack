@@ -1,5 +1,7 @@
 #include "CityGrowthDepartment.h"
 
+CityGrowthDepartment* CityGrowthDepartment::uniqueInstance;
+
 void CityGrowthDepartment::increaseHousing(char BuildingType) 
 {
 	char BuildingType;
