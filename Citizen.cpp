@@ -27,11 +27,6 @@ void Citizen::startWork()
 }
     
 
-void Citizen::goHome()
-{
-
-}
-
 Employment* Citizen::getEmployment()
 {
     return this->employment;
