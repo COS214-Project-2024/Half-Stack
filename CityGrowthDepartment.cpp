@@ -62,40 +62,64 @@ void CityGrowthDepartment::increaseHousing(char BuildingType)
 	}
 }
 
-void CityGrowthDepartment::increasePopulation() 
+void CityGrowthDepartment::increasePopulation(std::vector<Citizen*> citizens) 
 {
-	population += 10;
+	/*population += 10;
 	for (int i=0;i<10;i++)
 	{
-		gov->addCitizen("citizen",i*3);
-	}
-	//increaseHousing('F');
-	//increaseTransport();
-	//increaseUtilities();
-}
-
-void CityGrowthDepartment::increasePopulation(int num) 
-{
-	population += num;
-	for (int i=0;i<num;i++)
-	{
-		gov->addCitizen("citizen",i*3);
-	}
-	//increaseHousing();
+		gov->addCitizen(new Citizen("citizen",i*3));
+	}*/
+	std::vector<Citizen*>::iterator it = citizens.begin();
+    for(; it != citizens.end(); ++it)
+    {
+        gov->add(*it);
+		population++;
+    }
+	increaseHousing('E');
 	//increaseTransport();
 	//increaseUtilities();
 }
 
 void CityGrowthDepartment::increaseJobs() 
 {
-		int c =psDep->buildCommercial(); //psDepartment needs a buildCommercial() to build each type of commercial buildings
-		int i= psDep->buildIndustrial(); //same with industrial
-
-	int total = c+i;
 	int unemployed = gov->getTotalUnemployed();
-	if (total-unemployed>0)
+
+	while (unemployed > 100)
 	{
-		int openPosts = total-unemployed;
+		psDep->addBuilding(new Office(40,"office"));
+		psDep->addBuilding(new Shop(10,"shop"));
+		psDep->addBuilding(new Warehouse(10,"warehouse"));
+		psDep->addBuilding(new Mall(30,"mall"));
+		psDep->addBuilding(new Factory(20,"factory"));
+		unemployed -=110;
+	}
+	if (unemployed > 50)
+	{
+		psDep->addBuilding(new Office(20,"office"));
+		psDep->addBuilding(new Shop(5,"shop"));
+		psDep->addBuilding(new Warehouse(5,"warehouse"));
+		psDep->addBuilding(new Mall(20,"mall"));
+		psDep->addBuilding(new Factory(10,"factory"));
+		unemployed -=60;
+	}
+	if (unemployed > 20)
+	{
+		psDep->addBuilding(new Shop(10,"shop"));
+		psDep->addBuilding(new Factory(10,"factory"));
+		psDep->addBuilding(new Warehouse(10,"warehouse"));
+		unemployed -=30;
+	}
+	if (unemployed > 0)
+	{
+		psDep->addBuilding(new Shop(10,"shop"));
+		psDep->addBuilding(new Office(10,"office"));
+		unemployed -=20;
+	}
+		
+
+	if (unemployed>0)
+	{
+		int openPosts = unemployed;
 		//char input;
 		//std::cout <<"There are " << openPosts << " jobs empty. Would you like to migrate more people?";
 		//std::cin >> input;
@@ -114,15 +138,15 @@ void CityGrowthDepartment::increaseTransport()
 	int publicTransit =Transport->getTotalPublicTransit();
 	//int trafficJam = trains+roads+publicTransit;
 
-	if (resourceManager->getBudget()>1000000000 && airports<7)
+	if (resourceManager->canBuildAirport()==true && airports<7)
 	{
 		TransportDep->addTransport(new Airport());
 	}
-	if (resourceManager->getBudget()>2000000)
+	if (resourceManager->canBuildTrain()==true)
 	{
 		TransportDep->addTransport(new Train());
 	}
-	if (resourceManager->getBudget()>3500000)
+	if (resourceManager->canBuildRoad()==true)
 	{
 		TransportDep->addRoads();
 	}
@@ -143,6 +167,7 @@ void CityGrowthDepartment::increaseUtilities()
 		utilityDep->addBuilding(new MaterialsPlant());
 	}
 }
+
 
 
 CityGrowthDepartment::CityGrowthDepartment(Government* gov) 
