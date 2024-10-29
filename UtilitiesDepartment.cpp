@@ -1,11 +1,18 @@
 #include "UtilitiesDepartment.h"
 
+UtilitiesDepartment UtilitiesDepartment::uniqueInstance;
+
 UtilitiesDepartment::UtilitiesDepartment()
 {
 	commands[0] = new SupplyWater();
 	commands[1] = new SupplyPower();
 	commands[2] = new ManageWaste();
 	commands[3] = new ManageSewage();
+}
+
+UtilitiesDepartment& UtilitiesDepartment::instance()
+{
+	return uniqueInstance;
 }
 
 UtilitiesDepartment::~UtilitiesDepartment()
