@@ -2,6 +2,7 @@
 #define PLANTCREATOR_H
 
 #include "Plant.h"
+#include <memory>
 
 class PlantCreator
 {
