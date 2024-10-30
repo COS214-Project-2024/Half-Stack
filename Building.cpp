@@ -1,5 +1,14 @@
 #include "Building.h"
 
+/**
+ * @brief Constructs a new Building object.
+ * 
+ * Initializes the building with the specified capacity and location, 
+ * and sets the initial state to `Operational`.
+ * 
+ * @param num The initial capacity of the building.
+ * @param loc The designated location of the building.
+ */
 Building::Building(int num, std::string loc)
 {
 	this->capacity = num;
@@ -7,6 +16,12 @@ Building::Building(int num, std::string loc)
 	this->state = new Operational();
 }
 
+/**
+ * @brief Destroys the Building object and cleans up allocated resources.
+ * 
+ * If `state` and `resourceManager` pointers are not null, deletes them 
+ * to release memory.
+ */
 Building::~Building()
 {
 	if (state != NULL)
@@ -20,11 +35,22 @@ Building::~Building()
 	}
 }
 
+/**
+ * @brief Retrieves the current state of the building as a string.
+ * 
+ * @return A string representing the current status of the building.
+ */
 std::string Building::getState()
 {
 	return state->getStatus();
 }
 
+/**
+ * @brief Advances the state of the building.
+ * 
+ * Deletes the current state and updates to the next state by calling `update()` 
+ * on the existing state.
+ */
 void Building::progress()
 {
 	delete state;
