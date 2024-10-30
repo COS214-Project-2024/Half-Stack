@@ -4,6 +4,11 @@
 
 ResourceManager* ResourceManager::Singleton = nullptr;
 
+/**
+ * @brief Constructor for the ResourceManager class.
+ * 
+ * Initializes resource levels and budget to zero.
+ */
 ResourceManager::ResourceManager()
 { 
 	this->waterLevel = 0;
@@ -14,6 +19,12 @@ ResourceManager::ResourceManager()
 	this->generalMaterials = 0;
 }
 
+/**
+ * @brief Gets the singleton instance of ResourceManager.
+ * 
+ * If the instance does not exist, it creates one. 
+ * @return Pointer to the instance of ResourceManager.
+ */
 ResourceManager* ResourceManager::instance() 
 {
     if (Singleton == nullptr) 
@@ -24,7 +35,17 @@ ResourceManager* ResourceManager::instance()
     return Singleton;
 }
 
-
+/**
+ * @brief Decreases resource levels based on the provided amounts.
+ * 
+ * Checks if there are enough resources before decreasing. 
+ * @param water Amount of water to decrease.
+ * @param energy Amount of energy to decrease.
+ * @param wood Amount of wood to decrease.
+ * @param steel Amount of steel to decrease.
+ * @param materials Amount of general materials to decrease.
+ * @return True if resources were successfully decreased, false otherwise.
+ */
 bool ResourceManager::decreaseResourceLevels(int water, int energy, int wood, int steel, int materials) 
 {
     if ((this->waterLevel - water < 0) || (this->energyLevel - energy < 0) || (this->wood - wood < 0) || (this->steel - steel < 0) || (this->generalMaterials - materials < 0)) //check enough resources
@@ -48,6 +69,13 @@ bool ResourceManager::decreaseResourceLevels(int water, int energy, int wood, in
     return true;
 }
 
+/**
+ * @brief Decreases the budget by the specified amount.
+ * 
+ * Checks if there is enough budget before decreasing. 
+ * @param money Amount of money to decrease.
+ * @return True if the budget was successfully decreased, false otherwise.
+ */
 bool ResourceManager::decreaseBudget(int money)
 {
     if (this->budget - money < 0)
@@ -59,8 +87,19 @@ bool ResourceManager::decreaseBudget(int money)
 	this->budget -= money;
 
 	std::cout << "Updated City Budget: " << this->budget << std::endl;
+
+    return true;
 }
 
+/**
+ * @brief Increases resource levels based on the provided amounts.
+ * 
+ * @param water Amount of water to increase.
+ * @param energy Amount of energy to increase.
+ * @param wood Amount of wood to increase.
+ * @param steel Amount of steel to increase.
+ * @param materials Amount of general materials to increase.
+ */
 void ResourceManager::increaseResourceLevels(int water, int energy, int wood, int steel, int materials)
 {
     this->waterLevel += water;
@@ -76,6 +115,11 @@ void ResourceManager::increaseResourceLevels(int water, int energy, int wood, in
               << ", General Materials: " << this->generalMaterials << std::endl;
 }
 
+/**
+ * @brief Increases the budget by the specified amount.
+ * 
+ * @param money Amount of money to increase.
+ */
 void ResourceManager::increaseBudget(int money)
 {
     this->budget += money;
@@ -83,6 +127,12 @@ void ResourceManager::increaseBudget(int money)
     std::cout << "Updated City Budget: " << this->budget << std::endl;
 }
 
+/**
+ * @brief Destructor for the ResourceManager class.
+ * 
+ * Cleans up resources and nullifies the Singleton pointer if this
+ * instance is being destroyed.
+ */
 ResourceManager::~ResourceManager() 
 {
     // Delete all Building pointers in buildingList
