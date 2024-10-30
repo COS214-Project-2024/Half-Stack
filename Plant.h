@@ -25,8 +25,6 @@ public:
 	virtual ~Plant() = default; // default destructor 
 
 	virtual void generate() = 0; 
-
-	void consumeResources() override;
 };
 
 class PowerPlant : public Plant
