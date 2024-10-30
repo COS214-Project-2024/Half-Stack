@@ -13,6 +13,11 @@ Building::~Building()
 	{
 		delete state;
 	}
+
+	if (this->resourceManager != NULL)
+	{
+		delete resourceManager;
+	}
 }
 
 std::string Building::getState()
