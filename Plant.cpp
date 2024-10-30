@@ -8,6 +8,19 @@ Plant::Plant(int capacity, std::string type, std::string location)
     this->location = location;
     this->occupancy = 0;  //defaults to 0 when created
     // citizen member variable will automatically be empty when an instance of the Plant class  is created.
+
+     if (type == "Power") 
+    {
+        ResourceManager::instance()->decreaseResourceLevels(0, 10, 5, 10, 3); 
+    } 
+    else if (type == "Water") 
+    {
+        ResourceManager::instance()->decreaseResourceLevels(10, 0, 4, 6, 2);   
+    } 
+    else if (type == "Materials") 
+    {
+        ResourceManager::instance()->decreaseResourceLevels(5, 5, 3, 5, 4);   
+    }
 }
 
 PowerPlant::PowerPlant(int capacity, std::string location) : Plant(capacity, "Power", location) 
