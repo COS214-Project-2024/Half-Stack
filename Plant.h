@@ -18,13 +18,17 @@ private:
 	std::vector<std::unique_ptr<Citizen>> citizens; 
 	std::vector<std::unique_ptr<Citizen>> employees;
 public:
-	void Build();
+	
 
 	Plant(int capacity,  std::string type, std::string location);
 
 	virtual ~Plant() = default; // default destructor 
 
 	virtual void generate() = 0; 
+
+	Building* build() override;
+
+	void consumeResources() override;
 };
 
 class PowerPlant : public Plant
