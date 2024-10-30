@@ -25,6 +25,16 @@ TransportDepartment* TransportDepartment::instance()
 
 void TransportDepartment::addTransport(Transportation* newTransport)
 {
+	std::vector<std::pair<Transportation*, std::pair<TransportCommand*, TransportCommand*>>>::iterator it = this->transports.begin();
+	for(; it != this->transports.end(); ++it)
+	{
+		if(it->first == newTransport)
+		{
+			std::cout << "Transport already exists" << std::endl;
+			return;
+		}
+	}
+
 	TransportCommand* openCom = new OpenBusiness();
 	TransportCommand* closeCom = new CloseBusiness();
 
@@ -41,6 +51,7 @@ void TransportDepartment::removeTransport(Transportation* newTransport)
 			delete it->second.first;
 			delete it->second.second;
 			this->transports.erase(it);
+			break;
 		}
 	}
 }
