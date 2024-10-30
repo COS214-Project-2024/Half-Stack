@@ -26,8 +26,6 @@ public:
 
 	virtual void generate() = 0; 
 
-	Building* build() override;
-
 	void consumeResources() override;
 };
 
@@ -39,6 +37,8 @@ public:
 	PowerPlant(int capacity, std::string location);
 
 	void generate();
+
+	Building* build();
 };
 
 class WaterPlant : public Plant
@@ -49,6 +49,8 @@ public:
 	WaterPlant(int capacity, std::string location);
 
 	void generate();
+
+	Building* build();
 };
 
 class MaterialsPlant : public Plant
@@ -59,6 +61,8 @@ public:
 	MaterialsPlant(int capacity, std::string location);
 
 	void generate();
+
+	Building* build();
 };
 
 #endif
