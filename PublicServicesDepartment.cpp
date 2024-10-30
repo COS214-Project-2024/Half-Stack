@@ -26,3 +26,18 @@ PublicServicesDepartment* PublicServicesDepartment::instance()
 
     return Singleton;
 }
+
+PublicServicesDepartment::~PublicServicesDepartment()
+{
+	for (int i = 0; i < 3; ++i) 
+	{
+        delete commands[i];
+        commands[i] = nullptr;
+    }
+
+    // Nullify the Singleton pointer if this is the instance being destroyed
+    if (Singleton == this) 
+	{
+        Singleton = nullptr;
+    }
+}

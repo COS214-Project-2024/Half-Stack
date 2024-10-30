@@ -19,6 +19,8 @@ public:
 	void collectTax(std::string tax);
 
 	static PublicServicesDepartment* instance();
+
+	~PublicServicesDepartment();
 };
 
 #endif
