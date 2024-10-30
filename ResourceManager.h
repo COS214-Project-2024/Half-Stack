@@ -20,8 +20,8 @@ private:
 	int wood;
 	int steel;
 	int generalMaterials;
-	std::vector<Building*> buildingList;
-    std::vector<Department*> departmentList;
+	// std::vector<Building*> buildingList;
+    // std::vector<Department*> departmentList;
 
 	ResourceManager();
 
@@ -39,6 +39,8 @@ public:
     int getWood() const { return wood; }
     int getSteel() const { return steel; }
     int getGeneralMaterials() const { return generalMaterials; }
+
+	~ResourceManager();
 
 
 

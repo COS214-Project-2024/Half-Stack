@@ -83,7 +83,30 @@ void ResourceManager::increaseBudget(int money)
     std::cout << "Updated City Budget: " << this->budget << std::endl;
 }
 
+ResourceManager::~ResourceManager() 
+{
+    // Delete all Building pointers in buildingList
+    // for (Building* building : buildingList) 
+    // {
+    //     delete building;
+    // }
 
+    // buildingList.clear();
+
+    // Delete all Department pointers in departmentList
+    // for (Department* department : departmentList) 
+    // {
+    //     delete department;
+    // }
+
+    // departmentList.clear();
+
+    // Nullify the Singleton pointer if this is the instance being destroyed
+    if (Singleton == this) 
+    {
+        Singleton = nullptr;
+    }
+}
 
 //BELOW ARE FUNCTIONS THAT WERE IMPLEMENTED IN THE OBSERVER PATTERN FOR RESOURCE MANAGER WHICH I DON'T THINK IS NECESSARY
 
