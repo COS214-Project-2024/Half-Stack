@@ -1,16 +1,32 @@
 #include "Residential.h"
 #include <iostream>
 
+/**
+ * @brief Constructs a Residential object with a specified number and location.
+ * 
+ * @param num The capacity or number of residents that the residential building can hold.
+ * @param loc The location of the residential building.
+ */
 Residential::Residential(int num, std::string l) : Building(num, l)
 {
 	
 }
 
+/**
+ * @brief Adds a citizen to the list of residents.
+ * 
+ * @param c Pointer to the citizen to be added.
+ */
 void Residential::addCitizen(Citizen* c)
 {
 	residents.push_back(c);
 }
 
+/**
+ * @brief Removes a citizen from the list of residents.
+ * 
+ * @param c Pointer to the citizen to be removed.
+ */
 void Residential::removeCitizen(Citizen* c)
 {
 	for (std::vector<Citizen*>::iterator i = residents.begin(); i != residents.end(); i++)
@@ -23,6 +39,9 @@ void Residential::removeCitizen(Citizen* c)
     }
 }
 
+/**
+ * @brief Consumes resources necessary for the residential building's operation.
+ */
 void Residential::consumeResources()
 {
     if (this->resourceManager->decreaseResourceLevels(15, 20, 0, 0, 10) == true)
@@ -37,16 +56,32 @@ void Residential::consumeResources()
     }
 }
 
+/**
+ * @brief Constructs an Estate object with a specified number and location.
+ * 
+ * @param num The capacity or number of residents that the estate can hold.
+ * @param loc The location of the estate.
+ */
 Estate::Estate(int num,  std::string l) : Residential(num, l)
 {
 	
 }
 
+/**
+ * @brief Adds a residential building to the estate.
+ * 
+ * @param b Pointer to the residential building to be added.
+ */
 void Estate::addBuilding(Residential* b)
 {
 	buildings.push_back(b);
 }
 
+/**
+ * @brief Removes a residential building from the estate.
+ * 
+ * @param b Pointer to the residential building to be removed.
+ */
 void Estate::removeBuilding(Residential* b)
 {
 	for (std::vector<Residential*>::iterator i = buildings.begin(); i != buildings.end(); i++)
@@ -59,6 +94,11 @@ void Estate::removeBuilding(Residential* b)
     }
 }
 
+/**
+ * @brief Builds a new Estate if resources are sufficient.
+ * 
+ * @return Building* Pointer to the newly created Estate if successful, or nullptr if resources are insufficient.
+ */
 Building* Estate::build()
 {
     if (this->resourceManager->decreaseResourceLevels(40, 100, 150, 200, 250) == true)
