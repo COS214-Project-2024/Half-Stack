@@ -22,6 +22,7 @@ class Citizen
 
     public:
         Citizen(std::string name, int age);
+        ~Citizen();
         void payTax(std::string tax);
         void startWork();
         Employment* getEmployment();
