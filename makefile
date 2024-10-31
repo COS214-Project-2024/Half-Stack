@@ -1,14 +1,21 @@
-main:
-	g++ -g -std=c++11 *cpp -o main
+CFLAGS = -Wall -Wextra -fsanitize=leak -fsanitize=address
 
-run:
-	 ./main
+main: *.o
+	g++ -o main *.o  $(CFLAGS)
+
+*.o: *.cpp
+	g++ -c *.cpp $(CFLAGS)
+
+run: main
+	./main
 
 clean:
-	rm -f *o main
-
-clear:
-	clear
+	rm *.o
 
 valgrind:
 	valgrind --leak-check=full ./main
+
+gcov:
+	g++ --coverage *.cpp -o main
+	./main
+	gcov -f -m -r -j main
