@@ -4,6 +4,7 @@
 #include "Department.h"
 #include "Building.h"
 #include "TaxCommand.h"
+#include "Citizen.h"
 
 /**
  * @class PublicServicesDepartment
@@ -43,6 +44,11 @@ public:
      * @brief Destructor for the PublicServicesDepartment, cleaning up dynamically allocated resources.
      */
 	~PublicServicesDepartment();
+
+	/**
+     * @brief Increases the tax amount and decreases the satisfaction of all citizens.
+     */
+    void increaseTax();
 };
 
 #endif
