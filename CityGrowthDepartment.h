@@ -3,9 +3,14 @@
 #include "Department.h"
 #include "ResidentialDepartment.h"
 #include "TransportDepartment.h"
+#include "PublicServicesDepartment.h"
 #include "UtilitiesDepartment.h"
+#include "ResourceManager.h"
+//#include "Government.h"
 #include "Building.h"
 #include <vector>
+
+class Government;
 
 class CityGrowthDepartment : public Department
 {
@@ -19,12 +24,12 @@ private:
 	ResidentialDepartment* resDepartment;
 	TransportDepartment* TransportDep;
 	UtilitiesDepartment* utilityDep;
-	PublicServicesDep* psDep;
-	ResourceManage* resourceManager;
+	PublicServicesDepartment* psDep;
+	ResourceManager* resourceManager;
 	Government* gov;
 
 public:
-	void increaseHousing();
+	void increaseHousing(char b);
 
 	void increasePopulation(std::vector<Citizen*> citizens);
 
@@ -34,7 +39,9 @@ public:
 
 	void increaseUtilities();
 
-	CityGrowthDepartment* instance(Government* gov);
+	int getPopulation();
+
+	static CityGrowthDepartment* instance(Government* gov);
 
 protected:
 	CityGrowthDepartment(Government* gov);
