@@ -1,4 +1,5 @@
 #include "PublicServicesDepartment.h"
+#include "Government.h"
 
 PublicServicesDepartment* PublicServicesDepartment::Singleton = nullptr;
 
@@ -56,4 +57,25 @@ PublicServicesDepartment::~PublicServicesDepartment()
 	{
         Singleton = nullptr;
     }
+}
+
+/**
+ * @brief Increases the tax amount and reduces satisfaction for all citizens.
+ *
+ * This method increases the tax rate and subsequently decreases each citizen's
+ * satisfaction level by one step, simulating the effect of higher taxes on citizen satisfaction.
+ */
+void PublicServicesDepartment::increaseTax() 
+{
+    Government* government = Government::instance("HalfStack City Builder");  
+    std::vector<Citizen*> allCitizens = government->getCitizens();
+
+    for (size_t i = 0; i < allCitizens.size(); ++i) 
+    {
+	Citizen* citizen = allCitizens[i];	
+        Satisfaction* newStatus = citizen->getSatisfaction()->lowerStatus();
+        citizen->setSatisfaction(newStatus);
+    }
+
+    std::cout << "Tax increased and satisfaction decreased for all citizens." << std::endl;
 }
