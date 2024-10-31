@@ -5,6 +5,14 @@ Residential::Residential(int num, std::string l) : Building(num, l)
 	
 }
 
+Residential::~Residential()
+{
+    for (size_t i = 0; i < residents.size(); ++i) 
+    {
+        delete residents[i]; 
+    }
+}
+
 void Residential::addCitizen(Citizen* c)
 {
 	residents.push_back(c);
@@ -35,6 +43,14 @@ std::vector<Citizen *> Residential::getResidents()
 Estate::Estate(int num,  std::string l) : Residential(num, l)
 {
 	
+}
+
+Estate::~Estate()
+{
+    for (size_t i = 0; i < buildings.size(); ++i) 
+    {
+        delete buildings[i]; 
+    }
 }
 
 void Estate::addBuilding(Residential* b)
