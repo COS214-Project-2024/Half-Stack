@@ -8,6 +8,12 @@ Citizen::Citizen(std::string name, int age)
     this->satisfaction = new Neutral();
 }
 
+Citizen::~Citizen()
+{
+    delete employment; 
+    delete satisfaction; 
+}
+
 void Citizen::payTax(std::string tax)
 {
 
