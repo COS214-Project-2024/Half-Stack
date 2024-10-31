@@ -13,10 +13,6 @@ void CityGrowthDepartment::increaseHousing(char b)
 	if (population > currHousingCapacity)
 	{
 		int homeless= population-currHousingCapacity;
-		//std::cout << homeless << "citizens currently without homes." << std::endl;
-		//std::cout << "Select a residential building to house these citizens (F/H/T/E): ";
-		//std::cin >> BuildingType;
-		//should all buildings be the same?
 		switch (b) {
 			case 'F':
 				if (homeless>5)
@@ -34,7 +30,7 @@ void CityGrowthDepartment::increaseHousing(char b)
 			case 'H':
 				if (homeless>4)
 				{
-					int numBuildings = ceil(homeless/4);
+					int numBuildings = ceil(homeless/4.0);
 					for (int i=0;i<numBuildings;i++)
 					{
 						resDepartment->addBuilding(new House(4,"House")); //should trigger government to place in homes 
@@ -68,18 +64,13 @@ void CityGrowthDepartment::increaseHousing(char b)
 
 void CityGrowthDepartment::increasePopulation(std::vector<Citizen*> citizens) 
 {
-	/*population += 10;
-	for (int i=0;i<10;i++)
-	{
-		gov->addCitizen(new Citizen("citizen",i*3));
-	}*/
 	std::vector<Citizen*>::iterator it = citizens.begin();
     for(; it != citizens.end(); ++it)
     {
         gov->addCitizen(*it);
 		population++;
     }
-	increaseHousing('E');
+	//increaseHousing('E');
 	//increaseTransport();
 	//increaseUtilities();
 }
@@ -170,6 +161,11 @@ void CityGrowthDepartment::increaseUtilities()
 	{
 		//utilityDep->addBuilding(new MaterialsPlant(10,"materialsplant"));
 	}
+}
+
+int CityGrowthDepartment::getPopulation()
+{
+	return population;
 }
 
 
