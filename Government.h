@@ -44,6 +44,7 @@ public:
 	void addCitizen(Citizen* c);
 	bool hasCitizen(Citizen* c);
 	int getTotalCitizens();
+	std::vector<Citizen*> getCitizens() const;
 	int getTotalUnemployed();
 };
 
