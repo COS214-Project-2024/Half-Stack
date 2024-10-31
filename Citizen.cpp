@@ -11,6 +11,7 @@ Citizen::Citizen(std::string name, int age)
 {
     this->name = name;
     this->age = age;
+
     this->employment = new Unemployed();
     this->satisfaction = new Neutral();
 }
@@ -29,6 +30,7 @@ Citizen::~Citizen()
 /**
  * @brief Processes tax payment for the citizen based on the specified tax type.
  * 
+
  * Outputs a message indicating which type of tax was paid by the citizen.
  * If an unrecognized tax type is provided, it outputs "invalid input."
  * 
@@ -38,13 +40,15 @@ Citizen::~Citizen()
  *            - "PropertyTax" for property tax
  * 
  * - Outputs a message in the format:
- *   - "<name> paid income tax." if `tax` is "incomeTax"
- *   - "<name> paid sales tax." if `tax` is "SalesTax"
- *   - "<name> paid property tax." if `tax` is "PropertyTax"
+
+ *   - "<name> paid income tax." if tax is "incomeTax"
+ *   - "<name> paid sales tax." if tax is "SalesTax"
+ *   - "<name> paid property tax." if tax is "PropertyTax"
  *   - "invalid input." for any other value
  */
 void Citizen::payTax(std::string tax)
 {
+
     if (tax == "incomeTax")
     {
         std::cout << this->name << " paid income tax." << std::endl;
@@ -88,6 +92,7 @@ Employment* Citizen::getEmployment()
 {
     return this->employment;
 }
+
 
 /**
  * @brief Sets the employment status of the citizen.
