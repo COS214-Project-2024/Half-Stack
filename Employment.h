@@ -13,6 +13,8 @@ class Employment
         virtual std::string getStatus() = 0;
         virtual Employment* toggleStatus() = 0;
 
+    virtual ~Employment() {};
+
 };
 
 class Employed : public Employment
