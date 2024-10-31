@@ -115,3 +115,8 @@ int Government::getTotalUnemployed()
 
 	return total;
 }
+
+std::vector<Citizen*> Government::getCitizens() const 
+{
+    return citizens;
+}
