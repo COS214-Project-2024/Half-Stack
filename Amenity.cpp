@@ -5,6 +5,11 @@ Amenity::Amenity(Residential* amen) : Residential(0, ""), amenity(amen)
 	
 }
 
+Amenity::~Amenity()
+{
+    delete amenity;
+}
+
 void Amenity::increaseSatisfaction()
 {
 	amenity->increaseSatisfaction();
@@ -17,6 +22,11 @@ void Amenity::consumeResources()
 
 Gym::Gym(Residential *amen) : Amenity(amen)
 {   
+
+}
+
+Gym::~Gym()
+{
 
 }
 
@@ -42,6 +52,11 @@ void Gym::increaseSatisfaction()
 }
 
 Pool::Pool(Residential *amen) : Amenity(amen)
+{
+
+}
+
+Pool::~Pool()
 {
 
 }
@@ -72,6 +87,11 @@ Internet::Internet(Residential *amen) : Amenity(amen)
 
 }
 
+Internet::~Internet()
+{
+    
+}
+
 void Internet::consumeResources()
 {
     Amenity::consumeResources();
@@ -94,6 +114,11 @@ void Internet::increaseSatisfaction()
 }
 
 Garden::Garden(Residential *amen) : Amenity(amen)
+{
+
+}
+
+Garden::~Garden()
 {
 
 }
