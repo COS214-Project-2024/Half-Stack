@@ -14,6 +14,8 @@ class Satisfaction
         std::string getStatus();
         virtual Satisfaction* raiseStatus() = 0;
         virtual Satisfaction* lowerStatus() = 0;
+
+        virtual ~Satisfaction() {};
 };
 
 class Satisfied : public Satisfaction
