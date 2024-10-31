@@ -16,6 +16,8 @@ public:
 
 	Residential(int num,  std::string loc);
 
+	virtual ~Residential();
+
 	void addCitizen(Citizen* c);
 
 	void removeCitizen(Citizen* c);
@@ -36,6 +38,8 @@ private:
 public:
 
 	Estate(int num,  std::string loc);
+	virtual ~Estate();
+
 
 	void addBuilding(Residential* b);
 
