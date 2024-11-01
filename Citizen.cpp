@@ -1,5 +1,6 @@
 #include "Citizen.h"
 
+int Citizen::counter=0;
 /**
  * @brief Constructs a Citizen object with a given name and age.
  * 
@@ -7,9 +8,10 @@
  * @param name The name of the citizen.
  * @param age The age of the citizen.
  */
-Citizen::Citizen(std::string name, int age)
+Citizen::Citizen(int age)
 {
-    this->name = name;
+    counter++;
+    this->ID = counter;
     this->age = age;
 
     this->employment = new Unemployed();
