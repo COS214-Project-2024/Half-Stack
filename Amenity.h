@@ -32,14 +32,14 @@ public:
      * 
      * This function calls the increaseSatisfaction method of the decorated Residential object.
      */
-    void increaseSatisfaction();
+    virtual void increaseSatisfaction();
 
     /**
      * @brief Consumes resources associated with the amenity.
      * 
      * This function calls the consumeResources method of the decorated Residential object.
      */
-    void consumeResources();
+    virtual void consumeResources();
 };
 
 /**
@@ -54,11 +54,6 @@ public:
      * @param amen Pointer to the Residential object to decorate.
      */
     Garden(Residential* amen);
-
-    /**
-     * @brief Destroys the Garden decorator.
-     */
-    virtual ~Garden();
 
     /**
      * @brief Consumes extra water resources for the Garden.
@@ -85,11 +80,6 @@ public:
     Internet(Residential* amen);
 
     /**
-     * @brief Destroys the Internet decorator.
-     */
-    virtual ~Internet();
-
-    /**
      * @brief Consumes extra power resources for the Internet service.
      */
     void consumeResources() override;
@@ -114,11 +104,6 @@ public:
     Gym(Residential* amen);
 
     /**
-     * @brief Destroys the Gym decorator.
-     */
-    virtual ~Gym();
-
-    /**
      * @brief Consumes extra electricity resources for the Gym.
      */
     void consumeResources() override;
@@ -141,11 +126,6 @@ public:
      * @param amen Pointer to the Residential object to decorate.
      */
     Pool(Residential* amen);
-
-    /**
-     * @brief Destroys the Pool decorator.
-     */
-    virtual ~Pool();
 
     /**
      * @brief Consumes extra water resources for the Pool.
