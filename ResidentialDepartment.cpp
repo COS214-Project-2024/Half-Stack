@@ -76,21 +76,37 @@ int ResidentialDepartment::getTotalCapacity()
     return total;
 }
 
+/**
+ * @brief Attaches a Citizen to the list of observers for notifications.
+ * @param c Pointer to the Citizen to be attached.
+ */
 void ResidentialDepartment::attachCitizen(Citizen* c) 
 {
     Observingcitizens.push_back(c);
 }
+
+/**
+ * @brief Detaches a Citizen from the list of observers for notifications.
+ * @param c Pointer to the Citizen to be detached.
+ */
 void ResidentialDepartment::detachCitizen(Citizen* c)
 {
     for (auto it = Observingcitizens.begin(); it != Observingcitizens.end(); ++it) 
-	{
+    {
         if (*it == c) 
-		{
+        {
             Observingcitizens.erase(it);
             return;
         }
     }
 }
+
+/**
+ * @brief Sets the load-shedding status and notifies citizens if there is a change.
+ * @param status Boolean indicating if load-shedding is active.
+ * @param startTime Start time of load-shedding, if active.
+ * @param endTime End time of load-shedding, if active.
+ */
 void ResidentialDepartment::setLoadShedding(bool status, const std::string& startTime, const std::string& endTime) 
 {
     if (isLoadShedding != status) 
@@ -109,16 +125,20 @@ void ResidentialDepartment::setLoadShedding(bool status, const std::string& star
     } 
     else 
     {
-      
         std::cout << "Load-shedding status is already set to " 
                   << (status ? "ON" : "OFF") 
                   << ". No change made." << std::endl;
     }
 }
+
+/**
+ * @brief Sends a notification message to all observing citizens.
+ * @param message The notification message to be sent.
+ */
 void ResidentialDepartment::notifyCitizens(const std::string& message) 
 {
     for (auto* citizen : Observingcitizens) 
-	{
-        citizen->receiveNotification(message);	
+    {
+        citizen->receiveNotification(message);    
     }
 }
