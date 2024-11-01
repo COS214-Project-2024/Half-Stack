@@ -5,31 +5,63 @@
 #include "Department.h"
 #include "UtilityCommand.h"
 
+/**
+ * @class Utilities Department
+ * @brief The utilities department manages the utility services.
+ * (Implements the singleton design pattern.)
+ */
 class UtilitiesDepartment : public Department
 {
+	private:
 
-private:
-	UtilitiesDepartment();
+		/**
+		 * @brief Constructor for the UtilitiesDepartment class.
+		 * (Initialises the necessary commands.)
+		 */
+		UtilitiesDepartment();
+		
+		static UtilitiesDepartment* uniqueInstance;
+		
+		UtilityCommand* commands[4];
 
-	static UtilitiesDepartment* uniqueInstance;
+	public:
 
-	UtilityCommand* commands[4];
+		/**
+		 * @brief Destructor for the UtilitiesDepartment class.
+		 * (Deletes the array of commands.)
+		 */
+		~UtilitiesDepartment();
 
-public:
+		/** 
+		 * @brief Singleton instance of UtilitiesDepartment.
+		 * @return Pointer to the instance of UtilitiesDepartment.
+		 */
+		static UtilitiesDepartment* instance();
 
-	~UtilitiesDepartment();
+		/** 
+		 * @brief Responsible for supply water to the city.
+		 */
+		void supplyWater();
 
-	static UtilitiesDepartment* instance();
+		/** 
+		 * @brief Responsible for supply energy to the city.
+		 */
+		void supplyEnergy();
 
-	void supplyWater();
+		/** 
+		 * @brief Responsible for managing waste of the city.
+		 */
+		void manageWaste();
 
-	void supplyEnergy();
-
-	void manageWaste();
-
-	void manageSewage();
-
-	void performRoutine();
+		/** 
+		 * @brief Responsible for managing sewage of the city.
+		 */
+		void manageSewage();
+		
+		/** 
+		 * @brief Executes all of the commands for the above utility services.
+		 */
+		void performRoutine();
 };
 
 #endif
