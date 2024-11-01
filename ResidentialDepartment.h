@@ -58,13 +58,31 @@ class ResidentialDepartment : public Department
 		 */
 		int getTotalCapacity();
 
-		void attachCitizen(Citizen* c); 
+		  /**
+         * @brief Attaches a Citizen as an observer to receive notifications.
+         * @param c Pointer to the Citizen to attach.
+         */
+        void attachCitizen(Citizen* c); 
 
-   		void detachCitizen(Citizen* c);
+        /**
+         * @brief Detaches a Citizen from receiving notifications.
+         * @param c Pointer to the Citizen to detach.
+         */
+        void detachCitizen(Citizen* c);
 
-		void setLoadShedding(bool status, const std::string& startTime, const std::string& endTime);
+        /**
+         * @brief Sets the load-shedding status and notifies citizens if changed.
+         * @param status Boolean indicating whether load-shedding is active.
+         * @param startTime Start time of load-shedding, if active.
+         * @param endTime End time of load-shedding, if active.
+         */
+        void setLoadShedding(bool status, const std::string& startTime, const std::string& endTime);
 
-    	void notifyCitizens(const std::string& message);
+        /**
+         * @brief Notifies all observing citizens with a specified message.
+         * @param message Notification message to send to all citizens.
+         */
+        void notifyCitizens(const std::string& message);
 };
 
 #endif
