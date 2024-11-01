@@ -26,6 +26,11 @@ public:
      * @return A pointer to the next BuildingState in the lifecycle.
      */
 	virtual BuildingState* update() = 0;
+
+	/**
+     * @brief Destructor for building state.
+     */
+	virtual ~BuildingState() {};
 };
 
 
