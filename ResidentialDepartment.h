@@ -22,6 +22,10 @@ class ResidentialDepartment : public Department
 
 		std::vector<Building*> residents;
 
+		std::vector<Citizen*> Observingcitizens; 
+
+    	bool isLoadShedding;
+
 	public:
 
 		/** 
@@ -53,6 +57,14 @@ class ResidentialDepartment : public Department
 		 * @return Number of possible citizens.
 		 */
 		int getTotalCapacity();
+
+		void attachCitizen(Citizen* c); 
+
+   		void detachCitizen(Citizen* c);
+
+		void setLoadShedding(bool status, const std::string& startTime, const std::string& endTime);
+
+    	void notifyCitizens(const std::string& message);
 };
 
 #endif
