@@ -67,6 +67,17 @@ std::vector<Citizen*> Residential::getResidents()
 }
 
 /**
+ * @brief Destroys the Residential object and releases resources.
+ */
+Residential::~Residential()
+{
+    for (Citizen* c : residents)
+    {
+        delete c;
+    }
+}
+
+/**
  * @brief Constructs an Estate object with a specified number and location.
  * 
  * @param num The capacity or number of residents that the estate can hold.
@@ -119,4 +130,15 @@ Building* Estate::build()
 	{
 		return nullptr;
 	}
+}
+
+/**
+ * @brief Destroys the Estate object and releases resources.
+ */
+Estate::~Estate()
+{
+    for (Residential* b : buildings)
+    {
+        delete b;
+    }
 }
