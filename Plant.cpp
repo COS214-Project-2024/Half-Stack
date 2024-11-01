@@ -1,7 +1,7 @@
 #include "Plant.h"
 #include <iostream>
 
-Plant::Plant(int capacity, std::string type, std::string location) 
+Plant::Plant(int capacity, std::string type, std::string location) : Industrial(capacity,location)
 {
     this->type = type;
     this->capacity = capacity;

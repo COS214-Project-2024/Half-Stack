@@ -8,7 +8,7 @@
 
 class Plant : public Industrial
 {
-private:
+public:
 	std::string type;
 	int capacity;
 	int occupancy;
