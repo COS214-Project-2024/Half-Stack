@@ -50,6 +50,11 @@ public:
      * @return A vector containing pointers to the residents.
      */
     std::vector<Citizen*> getResidents();
+	
+	/**
+     * @brief Destructor for Residential.
+     */
+    virtual ~Residential();
 };
 
 
@@ -93,6 +98,11 @@ public:
      * @return Building* Pointer to the newly created Estate if successful, or nullptr if resources are insufficient.
      */
 	Building* build();
+	
+	/**
+     * @brief Destroys the Estate object and releases resources.
+     */
+    ~Estate();
 };
 
 #endif
