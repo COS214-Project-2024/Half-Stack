@@ -6,6 +6,17 @@
  */
 Amenity::Amenity(Residential* amen) : Residential(0, ""), amenity(amen)
 {
+    if (amenity != NULL)
+    {
+        std::vector<Citizen*> residents = this->amenity->getResidents();
+        for (size_t i = 0; i < residents.size(); i++)
+        {
+            Citizen* citizen = residents[i];
+            Satisfaction* newStatus = citizen->getSatisfaction()->raiseStatus();
+            citizen->setSatisfaction(newStatus);
+        }
+        this->amenity->increaseSatisfaction();
+    }
 }
 
 /**
@@ -13,15 +24,10 @@ Amenity::Amenity(Residential* amen) : Residential(0, ""), amenity(amen)
  */
 Amenity::~Amenity()
 {
-    delete amenity;
-}
-
-/**
- * @brief Increases the satisfaction level of residents.
- */
-void Amenity::increaseSatisfaction()
-{
-    amenity->increaseSatisfaction();
+    if (amenity != NULL)
+    {
+        delete amenity;
+    }
 }
 
 /**
@@ -29,7 +35,10 @@ void Amenity::increaseSatisfaction()
  */
 void Amenity::consumeResources()
 {
-    amenity->consumeResources();
+    if (amenity != NULL)
+    {
+        amenity->consumeResources();
+    }
 }
 
 /**
@@ -41,19 +50,12 @@ Gym::Gym(Residential* amen) : Amenity(amen)
 }
 
 /**
- * @brief Destroys the Gym decorator.
- */
-Gym::~Gym()
-{
-}
-
-/**
  * @brief Consumes extra electricity resources for the Gym.
  */
 void Gym::consumeResources()
 {
-    Amenity::consumeResources();
     std::cout << "Gym consumes extra electricity." << std::endl;
+    Amenity::consumeResources();
 }
 
 /**
@@ -61,15 +63,8 @@ void Gym::consumeResources()
  */
 void Gym::increaseSatisfaction()
 {
-    Amenity::increaseSatisfaction();
     std::cout << "Gym is increasing satisfaction for all residents." << std::endl;
-    std::vector<Citizen*> residents = this->amenity->getResidents();
-    for (size_t i = 0; i < residents.size(); i++)
-    {
-        Citizen* citizen = residents[i];
-        Satisfaction* newStatus = citizen->getSatisfaction()->raiseStatus();
-        citizen->setSatisfaction(newStatus);
-    }
+    Amenity::increaseSatisfaction();
 }
 
 /**
@@ -81,19 +76,12 @@ Pool::Pool(Residential* amen) : Amenity(amen)
 }
 
 /**
- * @brief Destroys the Pool decorator.
- */
-Pool::~Pool()
-{
-}
-
-/**
  * @brief Consumes extra water resources for the Pool.
  */
 void Pool::consumeResources()
 {
-    Amenity::consumeResources();
     std::cout << "Swimming Pool consumes extra water." << std::endl;
+    Amenity::consumeResources();
 }
 
 /**
@@ -101,15 +89,8 @@ void Pool::consumeResources()
  */
 void Pool::increaseSatisfaction()
 {
-    Amenity::increaseSatisfaction();
     std::cout << "Pool is increasing satisfaction for all residents." << std::endl;
-    std::vector<Citizen*> residents = this->amenity->getResidents();
-    for (size_t i = 0; i < residents.size(); i++)
-    {
-        Citizen* citizen = residents[i];
-        Satisfaction* newStatus = citizen->getSatisfaction()->raiseStatus();
-        citizen->setSatisfaction(newStatus);
-    }
+    Amenity::increaseSatisfaction();
 }
 
 /**
@@ -121,19 +102,12 @@ Internet::Internet(Residential* amen) : Amenity(amen)
 }
 
 /**
- * @brief Destroys the Internet decorator.
- */
-Internet::~Internet()
-{
-}
-
-/**
  * @brief Consumes extra power resources for the Internet service.
  */
 void Internet::consumeResources()
 {
-    Amenity::consumeResources();
     std::cout << "Internet consumes extra power." << std::endl;
+    Amenity::consumeResources();
 }
 
 /**
@@ -141,15 +115,8 @@ void Internet::consumeResources()
  */
 void Internet::increaseSatisfaction()
 {
-    Amenity::increaseSatisfaction();
     std::cout << "Internet is increasing satisfaction for all residents." << std::endl;
-    std::vector<Citizen*> residents = this->amenity->getResidents();
-    for (size_t i = 0; i < residents.size(); i++)
-    {
-        Citizen* citizen = residents[i];
-        Satisfaction* newStatus = citizen->getSatisfaction()->raiseStatus();
-        citizen->setSatisfaction(newStatus);
-    }
+    Amenity::increaseSatisfaction();
 }
 
 /**
@@ -161,19 +128,12 @@ Garden::Garden(Residential* amen) : Amenity(amen)
 }
 
 /**
- * @brief Destroys the Garden decorator.
- */
-Garden::~Garden()
-{
-}
-
-/**
  * @brief Consumes extra water resources for the Garden.
  */
 void Garden::consumeResources()
 {
-    Amenity::consumeResources();
     std::cout << "Garden consumes extra water." << std::endl;
+    Amenity::consumeResources();
 }
 
 /**
@@ -181,13 +141,6 @@ void Garden::consumeResources()
  */
 void Garden::increaseSatisfaction()
 {
-    Amenity::increaseSatisfaction();
     std::cout << "Garden is increasing satisfaction for all residents." << std::endl;
-    std::vector<Citizen*> residents = this->amenity->getResidents();
-    for (size_t i = 0; i < residents.size(); i++)
-    {
-        Citizen* citizen = residents[i];
-        Satisfaction* newStatus = citizen->getSatisfaction()->raiseStatus();
-        citizen->setSatisfaction(newStatus);
-    }
+    Amenity::increaseSatisfaction();
 }
