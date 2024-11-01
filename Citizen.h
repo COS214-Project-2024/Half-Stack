@@ -19,12 +19,14 @@ class Building;
 class Citizen
 {
 private:
-    std::string name; ///< The name of the citizen.
+    int ID;
+    //std::string name; ///< The name of the citizen.
     int age; ///< The age of the citizen.
     Employment* employment; ///< Pointer to the employment status of the citizen.
     Satisfaction* satisfaction; ///< Pointer to the satisfaction status of the citizen.
     Building* jobBuilding; ///< Pointer to the building where the citizen works.
     Building* home; ///< Pointer to the building where the citizen lives.
+    static int counter;
 
 public:
     /**
@@ -34,7 +36,7 @@ public:
      * @param name The name of the citizen.
      * @param age The age of the citizen.
      */
-    Citizen(std::string name, int age);
+    Citizen(int age);
 
     /**
      * @brief Destructor for the Citizen class.
