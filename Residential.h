@@ -44,6 +44,12 @@ public:
      * @brief Consumes resources necessary for the residential building's operation.
      */
 	void consumeResources();
+
+    /**
+     * @brief Gets the list of residents in the building.
+     * @return A vector containing pointers to the residents.
+     */
+    std::vector<Citizen*> getResidents();
 };
 
 

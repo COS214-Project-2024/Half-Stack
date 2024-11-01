@@ -6,38 +6,38 @@
 
 /**
  * @class Department
- * @brief The Department class manages a collection of Building objects.
+ * @brief The department interface implements the basic functionality for all departments.
  */
 class Department
 {
+	private:
 
-private:
-	///< A vector of pointers to the buildings managed by this Department.
-	std::vector<Building *> buildings;
+		std::vector<Building*> buildings;
 
-public:
-	/**
-	 * @brief Adds a Building to the Department's collection.
-	 *
-	 * @param building Pointer to the Building to be added.
-	 */
-	void addBuilding(Building *building);
+	public:
 
-	/**
-	 * @brief Removes a Building from the Department's collection.
-	 *
-	 * Searches for the specified Building and removes it from the collection.
-	 *
-	 * @param building Pointer to the Building to be removed.
-	 */
-	void removeBuilding(Building *building);
+		/**
+		 * @brief Constructor for the Department class.
+		 */
+		Department();
 
-	/**
-	 * @brief Updates the Department's buildings.
-	 *
-	 * Iterates through all buildings and calls their consumeResources() method.
-	 */
-	void update();
+		/**
+		 * @brief Adds a building to the vector of department buildings.
+		 * @param b Pointer to the building.
+		 */
+		void addBuilding(Building* b);
+
+		/**
+		 * @brief Removes a building from the vector of department buildings.
+		 * @param b Pointer to the building.
+		 */
+		void removeBuilding(Building* b);
+
+     /**
+      * @brief Updates the department's buildings.
+      * Iterates through all buildings and calls their consumeResources() method.
+      */
+		void update();
 };
 
 #endif

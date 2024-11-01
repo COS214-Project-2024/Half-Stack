@@ -57,6 +57,16 @@ void Residential::consumeResources()
 }
 
 /**
+ * @brief Gets the residents of a building.
+ * 
+ * @return Pointer to a vector of citizens.
+ */
+std::vector<Citizen*> Residential::getResidents()
+{
+    return residents;
+}
+
+/**
  * @brief Constructs an Estate object with a specified number and location.
  * 
  * @param num The capacity or number of residents that the estate can hold.
