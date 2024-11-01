@@ -2,57 +2,48 @@
 #define RESIDENTIAL_H
 
 #include <vector>
+
 #include "Building.h"
 #include "Citizen.h"
 
 /**
  * @class Residential
- * @brief Abstract base class representing a residential building.
- * 
- * A Residential building can house multiple residents and consume resources. 
- * It is an extension of the Building class and must be extended by concrete subclasses.
+ * @brief The Residential class represents a residential building that can house citizens.
  */
 class Residential : public Building
 {
-protected:
-    std::vector<Citizen*> residents; ///< List of residents living in the building.
+
+private:
+	///< Vector of pointers to the citizens residing in the building.
+	std::vector<Citizen*> residents;
 
 public:
-    /**
-     * @brief Constructs a Residential building.
-     * @param num Capacity of the building.
-     * @param loc Location of the building.
-     */
-    Residential(int num, std::string loc);
-
-    /**
-     * @brief Destroys the Residential building and its residents.
-     */
-    virtual ~Residential();
-
-    /**
-     * @brief Adds a Citizen to the building.
-     * @param c Pointer to the Citizen to add.
-     */
-    void addCitizen(Citizen* c);
-
-    /**
-     * @brief Removes a Citizen from the building.
-     * @param c Pointer to the Citizen to remove.
-     */
-    void removeCitizen(Citizen* c);
-
-    /**
-     * @brief Consumes resources for the Residential building.
-     */
-    void consumeResources();
-
-    /**
-     * @brief Pure virtual function to increase satisfaction of residents.
+	/**
+     * @brief Constructs a Residential object with a specified number and location.
      * 
-     * Must be implemented by subclasses.
+     * @param num The capacity or number of residents that the residential building can hold.
+     * @param loc The location of the residential building.
      */
-    virtual void increaseSatisfaction() = 0;
+	Residential(int num,  std::string loc);
+
+	/**
+     * @brief Adds a citizen to the list of residents.
+     * 
+     * @param c Pointer to the citizen to be added.
+     */
+	void addCitizen(Citizen* c);
+
+	/**
+     * @brief Removes a citizen from the list of residents.
+     * 
+     * @param c Pointer to the citizen to be removed.
+     */
+	void removeCitizen(Citizen* c);
+
+	/**
+     * @brief Consumes resources necessary for the residential building's operation.
+     */
+	void consumeResources();
 
     /**
      * @brief Gets the list of residents in the building.
@@ -61,55 +52,47 @@ public:
     std::vector<Citizen*> getResidents();
 };
 
+
 /**
  * @class Estate
- * @brief Concrete class representing an estate that consists of multiple residential buildings.
+ * @brief The Estate class represents a collection of residential buildings, acting as a larger residential entity.
  */
 class Estate : public Residential
 {
+
 private:
-    std::vector<Residential*> buildings; ///< List of residential buildings in the estate.
+	///< Vector of pointers to residential buildings within the estate.
+	std::vector<Residential*> buildings;
 
 public:
-    /**
-     * @brief Constructs an Estate.
-     * @param num Capacity of the estate.
-     * @param loc Location of the estate.
+	/**
+     * @brief Constructs an Estate object with a specified number and location.
+     * 
+     * @param num The capacity or number of residents that the estate can hold.
+     * @param loc The location of the estate.
      */
-    Estate(int num, std::string loc);
+	Estate(int num,  std::string loc);
 
-    /**
-     * @brief Destroys the Estate and its buildings.
+	/**
+     * @brief Adds a residential building to the estate.
+     * 
+     * @param b Pointer to the residential building to be added.
      */
-    virtual ~Estate();
+	void addBuilding(Residential* b);
 
-    /**
-     * @brief Adds a Residential building to the estate.
-     * @param b Pointer to the Residential building to add.
+	/**
+     * @brief Removes a residential building from the estate.
+     * 
+     * @param b Pointer to the residential building to be removed.
      */
-    void addBuilding(Residential* b);
+	void removeBuilding(Residential* b);
 
-    /**
-     * @brief Removes a Residential building from the estate.
-     * @param b Pointer to the Residential building to remove.
+	/**
+     * @brief Builds a new Estate if resources are sufficient.
+     * 
+     * @return Building* Pointer to the newly created Estate if successful, or nullptr if resources are insufficient.
      */
-    void removeBuilding(Residential* b);
-
-    /**
-     * @brief Constructs a new Estate object.
-     * @return A pointer to the new Estate.
-     */
-    Building* build();
-
-    /**
-     * @brief Increases the satisfaction level of residents in the estate.
-     */
-    void increaseSatisfaction();
-
-    /**
-     * @brief Consumes resources for the estate.
-     */
-    void consumeResources();
+	Building* build();
 };
 
 #endif

@@ -32,6 +32,12 @@ class Department
 		 * @param b Pointer to the building.
 		 */
 		void removeBuilding(Building* b);
+
+     /**
+      * @brief Updates the department's buildings.
+      * Iterates through all buildings and calls their consumeResources() method.
+      */
+		void update();
 };
 
 #endif

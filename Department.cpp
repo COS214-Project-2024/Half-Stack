@@ -32,3 +32,21 @@ void Department::removeBuilding(Building* b)
         }
     }
 }
+
+/**
+ * @brief Updates the Department's buildings.
+ * Prints a message indicating the update process and calls the consumeResources()
+ * method for each building in the collection.
+ */
+void Department::update()
+{
+	std::cout << "Department is updating its buildings." << std::endl;
+
+    for (Building* building : buildings) 
+	{
+        if (building) 
+		{
+            building->consumeResources(); 
+        }
+    }
+}

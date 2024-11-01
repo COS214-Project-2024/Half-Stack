@@ -1,41 +1,35 @@
 #include "Residential.h"
+#include <iostream>
 
 /**
- * @brief Constructs a Residential building.
- * @param num Capacity of the building.
- * @param l Location of the building.
+ * @brief Constructs a Residential object with a specified number and location.
+ * 
+ * @param num The capacity or number of residents that the residential building can hold.
+ * @param loc The location of the residential building.
  */
 Residential::Residential(int num, std::string l) : Building(num, l)
 {
+	
 }
 
 /**
- * @brief Destroys the Residential building and cleans up its residents.
- */
-Residential::~Residential()
-{
-    for (size_t i = 0; i < residents.size(); ++i)
-    {
-        delete residents[i];
-    }
-}
-
-/**
- * @brief Adds a Citizen to the building.
- * @param c Pointer to the Citizen to add.
+ * @brief Adds a citizen to the list of residents.
+ * 
+ * @param c Pointer to the citizen to be added.
  */
 void Residential::addCitizen(Citizen* c)
 {
-    residents.push_back(c);
+	residents.push_back(c);
 }
 
 /**
- * @brief Removes a Citizen from the building.
- * @param c Pointer to the Citizen to remove.
+ * @brief Removes a citizen from the list of residents.
+ * 
+ * @param c Pointer to the citizen to be removed.
  */
 void Residential::removeCitizen(Citizen* c)
 {
-    for (std::vector<Citizen*>::iterator i = residents.begin(); i != residents.end(); i++)
+	for (std::vector<Citizen*>::iterator i = residents.begin(); i != residents.end(); i++)
     {
         if (*i == c)
         {
@@ -46,16 +40,26 @@ void Residential::removeCitizen(Citizen* c)
 }
 
 /**
- * @brief Consumes resources for the Residential building.
+ * @brief Consumes resources necessary for the residential building's operation.
  */
 void Residential::consumeResources()
 {
-    std::cout << "Residential building is consuming resources." << std::endl;
+    if (this->resourceManager->decreaseResourceLevels(15, 20, 0, 0, 10) == true)
+    {
+        std::cout << "Residential building is consuming resources." << std::endl;
+    }
+    else
+    {
+        std::cout << "Need more Resources." << std::endl;
+
+        //call upon other functions to produce more resources or buy more?
+    }
 }
 
 /**
- * @brief Gets the list of residents in the building.
- * @return A vector containing pointers to the residents.
+ * @brief Gets the residents of a building.
+ * 
+ * @return Pointer to a vector of citizens.
  */
 std::vector<Citizen*> Residential::getResidents()
 {
@@ -63,41 +67,34 @@ std::vector<Citizen*> Residential::getResidents()
 }
 
 /**
- * @brief Constructs an Estate.
- * @param num Capacity of the estate.
- * @param l Location of the estate.
+ * @brief Constructs an Estate object with a specified number and location.
+ * 
+ * @param num The capacity or number of residents that the estate can hold.
+ * @param loc The location of the estate.
  */
-Estate::Estate(int num, std::string l) : Residential(num, l)
+Estate::Estate(int num,  std::string l) : Residential(num, l)
 {
+	
 }
 
 /**
- * @brief Destroys the Estate and cleans up its buildings.
- */
-Estate::~Estate()
-{
-    for (size_t i = 0; i < buildings.size(); ++i)
-    {
-        delete buildings[i];
-    }
-}
-
-/**
- * @brief Adds a Residential building to the estate.
- * @param b Pointer to the Residential building to add.
+ * @brief Adds a residential building to the estate.
+ * 
+ * @param b Pointer to the residential building to be added.
  */
 void Estate::addBuilding(Residential* b)
 {
-    buildings.push_back(b);
+	buildings.push_back(b);
 }
 
 /**
- * @brief Removes a Residential building from the estate.
- * @param b Pointer to the Residential building to remove.
+ * @brief Removes a residential building from the estate.
+ * 
+ * @param b Pointer to the residential building to be removed.
  */
 void Estate::removeBuilding(Residential* b)
 {
-    for (std::vector<Residential*>::iterator i = buildings.begin(); i != buildings.end(); i++)
+	for (std::vector<Residential*>::iterator i = buildings.begin(); i != buildings.end(); i++)
     {
         if (*i == b)
         {
@@ -108,26 +105,18 @@ void Estate::removeBuilding(Residential* b)
 }
 
 /**
- * @brief Constructs a new Estate object.
- * @return A pointer to the new Estate.
+ * @brief Builds a new Estate if resources are sufficient.
+ * 
+ * @return Building* Pointer to the newly created Estate if successful, or nullptr if resources are insufficient.
  */
 Building* Estate::build()
 {
-    return new Estate(capacity, location);
-}
-
-/**
- * @brief Increases the satisfaction level of residents in the estate.
- */
-void Estate::increaseSatisfaction()
-{
-    std::cout << "Estate has neutral satisfaction for residents." << std::endl;
-}
-
-/**
- * @brief Consumes resources for the estate.
- */
-void Estate::consumeResources()
-{
-    std::cout << "Estate consumes basic resources." << std::endl;
+    if (this->resourceManager->decreaseResourceLevels(40, 100, 150, 200, 250) == true)
+	{
+		return new Estate(capacity, location);
+	}
+	else
+	{
+		return nullptr;
+	}
 }
