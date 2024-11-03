@@ -15,7 +15,7 @@ Amenity::Amenity(Residential* amen) : Residential(0, ""), amenity(amen)
             Satisfaction* newStatus = citizen->getSatisfaction()->raiseStatus();
             citizen->setSatisfaction(newStatus);
         }
-        this->amenity->increaseSatisfaction();
+        //this->increaseSatisfaction();
     }
 }
 
@@ -33,12 +33,13 @@ Amenity::~Amenity()
 /**
  * @brief Consumes resources associated with the amenity.
  */
-void Amenity::consumeResources()
+bool Amenity::consumeResources()
 {
     if (amenity != NULL)
     {
-        amenity->consumeResources();
+        return amenity->consumeResources();
     }
+    return false;
 }
 
 /**
@@ -52,20 +53,19 @@ Gym::Gym(Residential* amen) : Amenity(amen)
 /**
  * @brief Consumes extra electricity resources for the Gym.
  */
-void Gym::consumeResources()
+bool Gym::consumeResources()
 {
     std::cout << "Gym consumes extra electricity." << std::endl;
-    Amenity::consumeResources();
+    bool r= Amenity::consumeResources();
+    consumePower();
+    return r;
 }
 
-/**
- * @brief Increases the satisfaction level of residents due to the Gym.
- */
-void Gym::increaseSatisfaction()
+void Gym::consumePower()
 {
-    std::cout << "Gym is increasing satisfaction for all residents." << std::endl;
-    Amenity::increaseSatisfaction();
+    amenity->increasePowerConsumption(2);
 }
+
 
 /**
  * @brief Constructs a Pool decorator.
@@ -78,20 +78,20 @@ Pool::Pool(Residential* amen) : Amenity(amen)
 /**
  * @brief Consumes extra water resources for the Pool.
  */
-void Pool::consumeResources()
+bool Pool::consumeResources()
 {
     std::cout << "Swimming Pool consumes extra water." << std::endl;
-    Amenity::consumeResources();
+    bool r= Amenity::consumeResources();
+    consumeWater();
+    return r;
 }
 
-/**
- * @brief Increases the satisfaction level of residents due to the Pool.
- */
-void Pool::increaseSatisfaction()
+void Pool::consumeWater()
 {
-    std::cout << "Pool is increasing satisfaction for all residents." << std::endl;
-    Amenity::increaseSatisfaction();
+    amenity->increaseWaterConsumption(5);
 }
+
+
 
 /**
  * @brief Constructs an Internet decorator.
@@ -104,19 +104,17 @@ Internet::Internet(Residential* amen) : Amenity(amen)
 /**
  * @brief Consumes extra power resources for the Internet service.
  */
-void Internet::consumeResources()
+bool Internet::consumeResources()
 {
     std::cout << "Internet consumes extra power." << std::endl;
-    Amenity::consumeResources();
+    bool r=Amenity::consumeResources();
+    consumePower();
+    return r;
 }
 
-/**
- * @brief Increases the satisfaction level of residents due to Internet service.
- */
-void Internet::increaseSatisfaction()
+void Internet::consumePower()
 {
-    std::cout << "Internet is increasing satisfaction for all residents." << std::endl;
-    Amenity::increaseSatisfaction();
+    amenity->increasePowerConsumption(1);
 }
 
 /**
@@ -130,17 +128,15 @@ Garden::Garden(Residential* amen) : Amenity(amen)
 /**
  * @brief Consumes extra water resources for the Garden.
  */
-void Garden::consumeResources()
+bool Garden::consumeResources()
 {
     std::cout << "Garden consumes extra water." << std::endl;
-    Amenity::consumeResources();
+    bool r=Amenity::consumeResources();
+    consumeWater();
+    return r;
 }
 
-/**
- * @brief Increases the satisfaction level of residents due to the Garden.
- */
-void Garden::increaseSatisfaction()
+void Garden::consumeWater()
 {
-    std::cout << "Garden is increasing satisfaction for all residents." << std::endl;
-    Amenity::increaseSatisfaction();
+    amenity->increaseWaterConsumption(2);
 }
