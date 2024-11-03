@@ -39,7 +39,7 @@ class ResidentialDepartment : public Department
 		 * @brief Adds a building to the vector of residential buildings.
 		 * @param b Pointer to the building.
 		 */
-		void addBuilding(Residential* b);
+		bool addBuilding(Residential* b);
 
 		/**
 		 * @brief Removes a building from the vector of residential buildings.

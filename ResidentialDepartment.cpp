@@ -28,7 +28,7 @@ ResidentialDepartment* ResidentialDepartment::instance()
  * @brief Adds a building to the vector of residential buildings.
  * @param b Pointer to the building.
  */
-void ResidentialDepartment::addBuilding(Residential* b)
+bool ResidentialDepartment::addBuilding(Residential* b)
 {
     int num = b->getCapacity();
     ResourceManager* rm = ResourceManager::instance();
@@ -38,6 +38,7 @@ void ResidentialDepartment::addBuilding(Residential* b)
         {
             residents.push_back(b);
             notifyNewHousing();
+            return true;
         }else {
             rm->increaseResourceLevels(10, 10, 50*num, 50*num, 25*num);
             delete b;
@@ -45,6 +46,7 @@ void ResidentialDepartment::addBuilding(Residential* b)
 	}else{
         delete b;
     }
+    return false;
 }
 
 /**

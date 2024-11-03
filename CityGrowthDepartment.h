@@ -29,7 +29,7 @@ private:
 	Government* gov;
 
 public:
-	void increaseHousing(char b);
+	bool increaseHousing(char b);
 
 	void increasePopulation(std::vector<Citizen*> citizens);
 
@@ -38,8 +38,6 @@ public:
 	void increaseJobs();
 
 	void increaseTransport();
-
-	void increaseUtilities();
 
 	int getPopulation();
 

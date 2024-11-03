@@ -123,6 +123,35 @@ void UtilitiesDepartment::addBuilding(Plant* p)
             plants.push_back(p);
         }else {
             rm->increaseResourceLevels(0, 0, 50, 50, 30);
+			delete p;
         }
+	}else {
+		delete p;
 	}
+}
+
+int UtilitiesDepartment::getTotalWaterPlants()
+{
+	int counter=0;
+	for (std::vector<Plant*>::iterator i = plants.begin(); i != plants.end(); i++)
+    {
+		if ((*i)->getType()=="Water")
+		{
+			counter++;
+		}
+	}
+	return counter;
+}
+
+int UtilitiesDepartment::getTotalPowerPlants()
+{
+	int counter=0;
+	for (std::vector<Plant*>::iterator i = plants.begin(); i != plants.end(); i++)
+    {
+		if ((*i)->getType()=="Power")
+		{
+			counter++;
+		}
+	}
+	return counter;
 }

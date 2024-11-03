@@ -12,6 +12,7 @@
 #include "PlantCreator.h"
 #include "Amenity.h"
 #include "Residential.h"
+#include <cmath>
 
 Government* gov;
 ResidentialDepartment* residentialDep;
@@ -27,29 +28,29 @@ std::string cityName;
 
 void printCityOutline()
 {
-    std::cout << "-------------------------------------------------------" <<std::endl;
-    std::cout << "                        HALF STACK                     " <<std::endl;
-    std::cout << "                                                       " <<std::endl;
-    std::cout << "                              |                        " <<std::endl;
-    std::cout << "                            _| |_                      " <<std::endl;
-    std::cout << "                    ______ |     |   ____              " <<std::endl;
-    std::cout << "              _____|__    || === |  | == |__           " <<std::endl;
-    std::cout << "             | ====== | = || === |__| = === |          " <<std::endl;
-    std::cout << "            _| ===  = |== || === |  | ===== |          " <<std::endl;
-    std::cout << "          _| | ====== |=  || === |  | ===== |          " <<std::endl;
-    std::cout << "    _____| = | == === |== || === |  |       |          " <<std::endl;
-    std::cout << "   | === |   | ====== |== || === |  | == == |____      " <<std::endl;
-    std::cout << "   | === |   | = ==== |___|| === |  | ===== |=== |     " <<std::endl;
-    std::cout << "   | === |   | ====== | == | === |  | = === | == |     " <<std::endl;
-    std::cout << "   |     |   | =    = |    | === |  | =     |    |     " <<std::endl;
+    std::cout << "-----------------------------------------------------------------------------------" <<std::endl;
+    std::cout << "                                       HALF STACK                     " <<std::endl;
+    std::cout << "                                                                      " <<std::endl;
+    std::cout << "                                             |                        " <<std::endl;
+    std::cout << "                                           _| |_                      " <<std::endl;
+    std::cout << "                                   ______ |     |   ____              " <<std::endl;
+    std::cout << "                             _____|__    || === |  | == |__           " <<std::endl;
+    std::cout << "                            | ====== | = || === |__| = === |          " <<std::endl;
+    std::cout << "                           _| ===  = |== || === |  | ===== |          " <<std::endl;
+    std::cout << "                         _| | ====== |=  || === |  | ===== |          " <<std::endl;
+    std::cout << "                   _____| = | == === |== || === |  |       |          " <<std::endl;
+    std::cout << "                  | === |   | ====== |== || === |  | == == |____      " <<std::endl;
+    std::cout << "                  | === |   | = ==== |___|| === |  | ===== |=== |     " <<std::endl;
+    std::cout << "                  | === |   | ====== | == | === |  | = === | == |     " <<std::endl;
+    std::cout << "                  |     |   | =    = |    | === |  | =     |    |     " <<std::endl;
 }
 
 void WelcomePlayer()
 {
     printCityOutline();
-    std::cout << "------------------------------------------------------" <<std::endl;
-    std::cout << "       <<< WELCOME TO HALFSTACK CITY BUILDER >>>      " <<std::endl;
-    std::cout << "------------------------------------------------------" <<std::endl;
+    std::cout << "-----------------------------------------------------------------------------------" <<std::endl;
+    std::cout << "                     <<< WELCOME TO HALFSTACK CITY BUILDER >>>                     " <<std::endl;
+    std::cout << "-----------------------------------------------------------------------------------" <<std::endl;
     std::cout << "Start game? (Y/N) ";
     std::cin >> start;
     if (start!='Y')
@@ -77,6 +78,7 @@ void menu()
     std::cout << "             | k. Buy resources         |" <<std::endl;
     std::cout << "             | l. Build plant           |" <<std::endl;
     std::cout << "             | m. City stats            |" <<std::endl;
+    std::cout << "             | n. View menu             |" <<std::endl;
     std::cout << "             |                          |" <<std::endl;
     std::cout << "             | z. END GAME              |" <<std::endl;
     std::cout << "             |__________________________|" <<std::endl;
@@ -86,6 +88,17 @@ void menu()
 
 void addCitizen()
 {
+    int valid = ceil(cityGrowthDep->getPopulation()/20.0);
+	if (utilityDep->getTotalWaterPlants()<valid)
+	{
+		std::cout << "Cannot increase population. Build more water plants to accomodate a higher population." <<std::endl;
+		return;
+	}
+	if (utilityDep->getTotalPowerPlants()<valid)
+	{
+		std::cout << "Cannot increase population. Build more power plants to accomodate a higher population." <<std::endl;
+		return;
+	}
     int age;
     std::cout << "Enter age of citizen: ";
     std::cin >> age;
@@ -102,7 +115,7 @@ void addResidential()
 {
     char type;
      Residential* b=NULL;
-    std::cout << "Residential type (Apartment/House/Townhouse): ";
+    std::cout << "Residential type (Apartment/House/Townhouse): [ type A/H/T]:  ";
     std::cin >> type;
     if (type=='A') 
     {
@@ -351,8 +364,7 @@ int main()
     cityGrowthDep = gov->getCityGrowthDepartment();
     rm = gov->getResourceManager();
 
-    residentialDep->addBuilding( new House(4,"house"));
-    residentialDep->addBuilding(new House(4,"house"));
+    residentialDep->addBuilding(new House(8,"house"));
 
     std::vector<Citizen*> newCitizens;
     Citizen* Keanu = new Citizen(21);
@@ -418,6 +430,9 @@ int main()
                 break;
             case 'm':
                 getStats();
+                break;
+            case 'n':
+                menu();
                 break;
 
             default: break;
