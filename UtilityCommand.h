@@ -3,20 +3,26 @@
 
 #include "UtilitiesDepartment.h"
 
+class UtilitiesDepartment;
+
 /**
  * @brief Abstract base class representing a utility command.
  */
 class UtilityCommand
 {
-    public:
-        UtilitiesDepartment* UtilitiesDepart; 
+	protected:
+		UtilitiesDepartment* UtilitiesDepart; // = new UtilitiesDepartment();
+	public:
 
-        /**
+		UtilityCommand();
+	  /**
          * @brief Executes the utility command.
          * 
          * This is a pure virtual function that must be overridden by derived classes.
-         */
-        virtual void execute() = 0;
+         */	
+		virtual void execute() = 0;
+
+		virtual ~UtilityCommand() {};
 
         /**
          * @brief Gets the current status of the utility command.
@@ -24,6 +30,7 @@ class UtilityCommand
          * @return bool The status of the command.
          */
         virtual bool getStatus() = 0;
+
 };
 
 /**

@@ -69,10 +69,11 @@ Building* City::build()
 /**	
  * @brief Calls consume resources on all buildings in the city.
  */
-void City::consumeResources()
+bool City::consumeResources()
 {
 	for (std::vector<Building*>::iterator i = buildings.begin(); i != buildings.end(); i++)
     {
         (*i)->consumeResources();
     }
+	return true;
 }

@@ -77,25 +77,5 @@ public:
 	 Plant* createPlant(int capacity,  const std::string& location) override;
 };
 
-/**
- * @class MaterialsPlantCreator
- * @brief Concrete factory class for creating MaterialsPlant objects.
- */
-class MaterialsPlantCreator : public PlantCreator
-{
-
-
-public:
-	/**
-     * @brief Creates a MaterialsPlant object.
-     * 
-     * @param capacity The capacity of the materials plant.
-     * @param location The location of the materials plant.
-     * @return Pointer to a newly created MaterialsPlant object.
-     * @throws std::invalid_argument If capacity is <= 0 or location is empty.
-     */
-	Plant* createPlant(int capacity,  const std::string& location) override;
-};
-
 
 #endif

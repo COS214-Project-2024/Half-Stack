@@ -73,7 +73,7 @@ public:
      * @brief Increases the budget by the specified amount.
      * @param money Amount of money to increase.
      */
-	void increaseBudget(int money);
+	void increaseBudget(double money);
 
 	/**
      * @brief Gets the current water level.
@@ -104,6 +104,8 @@ public:
      * @return Current general materials amount.
      */
     int getGeneralMaterials() const { return generalMaterials; }
+
+    double getBudget() const { return budget;}
 
 	/** 
      * @brief Destructor for ResourceManager.

@@ -28,18 +28,13 @@ public:
     virtual ~Amenity();
 
     /**
-     * @brief Increases the satisfaction level of residents.
-     * 
-     * This function calls the increaseSatisfaction method of the decorated Residential object.
-     */
-    virtual void increaseSatisfaction();
-
-    /**
      * @brief Consumes resources associated with the amenity.
      * 
      * This function calls the consumeResources method of the decorated Residential object.
      */
-    virtual void consumeResources();
+    virtual bool consumeResources()=0;
+
+    Building* build() {return NULL;}
 };
 
 /**
@@ -58,12 +53,10 @@ public:
     /**
      * @brief Consumes extra water resources for the Garden.
      */
-    void consumeResources() override;
+    bool consumeResources() override;
 
-    /**
-     * @brief Increases the satisfaction level of residents due to the Garden.
-     */
-    void increaseSatisfaction() override;
+    void consumeWater();
+
 };
 
 /**
@@ -82,12 +75,10 @@ public:
     /**
      * @brief Consumes extra power resources for the Internet service.
      */
-    void consumeResources() override;
+    bool consumeResources() override;
 
-    /**
-     * @brief Increases the satisfaction level of residents due to Internet service.
-     */
-    void increaseSatisfaction() override;
+    void consumePower();
+
 };
 
 /**
@@ -106,12 +97,10 @@ public:
     /**
      * @brief Consumes extra electricity resources for the Gym.
      */
-    void consumeResources() override;
+    bool consumeResources() override;
 
-    /**
-     * @brief Increases the satisfaction level of residents due to the Gym.
-     */
-    void increaseSatisfaction() override;
+    void consumePower();
+
 };
 
 /**
@@ -130,12 +119,10 @@ public:
     /**
      * @brief Consumes extra water resources for the Pool.
      */
-    void consumeResources() override;
+    bool consumeResources() override;
 
-    /**
-     * @brief Increases the satisfaction level of residents due to the Pool.
-     */
-    void increaseSatisfaction() override;
+    void consumeWater();
+
 };
 
 #endif

@@ -8,8 +8,10 @@
  */
 class TransportCommand
 {
-    public:
-        Transportation* Transport;
+	public:
+		//Transportation* Transport; //= new Transportation();
+		
+		virtual void execute(Transportation* Transport ) = 0;
         /**
          * @brief Executes the transport command.
          * 
@@ -25,18 +27,21 @@ class TransportCommand
         virtual bool getStatus() = 0;
 };
 
+
 /**
  * @brief Command for opening a business.
  */
 class OpenBusiness : public TransportCommand
 {
-    public:
+
+	public:
+		bool open;
         /**
          * @brief Executes the command to open a business.
          * 
          * This method implements the logic for opening a business within the transportation system.
          */
-        void execute();
+        void execute(Transportation* Transport );
 
         /**
          * @brief Gets the current status of the open business command.
@@ -57,7 +62,7 @@ class CloseBusiness : public TransportCommand
          * 
          * This method implements the logic for closing a business within the transportation system.
          */
-        void execute();
+		void execute(Transportation* Transport );
 
         /**
          * @brief Gets the current status of the close business command.

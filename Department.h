@@ -3,7 +3,9 @@
 
 #include "Building.h"
 #include <vector>
+#include <iostream>
 
+class Building;
 /**
  * @class Department
  * @brief The department interface implements the basic functionality for all departments.

@@ -1,4 +1,5 @@
 #include "TaxCommand.h"
+#include "Government.h"
 
 /**
  * @brief Retrieves the current status of the tax command.
@@ -17,7 +18,16 @@ int TaxCommand::getStatus()
  */
 void CollectIncomeTax::execute()
 {
-    citizen->payTax("incomeTax");
+    Government* gov = Government::instance(" ");
+    std::vector<Citizen*> citizens = gov->getCitizens();
+    std::vector<Citizen*>::iterator it = citizens.begin();
+    for(; it != citizens.end(); ++it)
+    {
+        if((*it)!=NULL)
+        {
+            (*it)->payTax("IncomeTax");
+        }
+    }
 }
 
 /**
@@ -27,7 +37,16 @@ void CollectIncomeTax::execute()
  */
 void CollectSalesTax::execute()
 {
-    citizen->payTax("SalesTax");
+    Government* gov = Government::instance(" ");
+    std::vector<Citizen*> citizens = gov->getCitizens();
+    std::vector<Citizen*>::iterator it = citizens.begin();
+    for(; it != citizens.end(); ++it)
+    {
+        if((*it)!=NULL)
+        {
+            (*it)->payTax("SalesTax");
+        }
+    }
 }
 
 /**
@@ -37,5 +56,14 @@ void CollectSalesTax::execute()
  */
 void CollectPropertyTax::execute()
 {
-    citizen->payTax("PropertyTax");
+    Government* gov = Government::instance(" ");
+    std::vector<Citizen*> citizens = gov->getCitizens();
+    std::vector<Citizen*>::iterator it = citizens.begin();
+    for(; it != citizens.end(); ++it)
+    {
+        if((*it)!=NULL)
+        {
+            (*it)->payTax("PropertyTax");
+        }
+    }
 }

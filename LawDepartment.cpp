@@ -56,32 +56,12 @@ void LawDepartment::removeLaw(std::string l)
 	}
 }
 
-void LawDepartment::changeLaw(std::string previous, std::string current)
-{
-	std::vector<std::string>::iterator it = this->laws.begin();
-	bool found = false;
-
-	for(; it != this->laws.end(); ++it)
-	{
-		if(*it == previous)
-		{
-			found = true;
-			*it = current;
-		}
-	}
-
-	if(found == false)
-	{
-		std::cout << "Law was not found" << std::endl;
-	}
-}
-
 LawDepartment::~LawDepartment()
 {
 	
 }
 
-std::vector<std::string> LawDepartment::getAllLaws()
+/*std::vector<std::string> LawDepartment::getAllLaws()
 {
     return this->laws;
-}
+}*/

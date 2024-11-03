@@ -5,7 +5,7 @@
  * 
  * This function calls the `open` method on the associated transport service to initiate its operations.
  */
-void OpenBusiness::execute()
+void OpenBusiness::execute(Transportation* Transport)
 {
     Transport->open();
 }
@@ -25,7 +25,7 @@ bool OpenBusiness::getStatus()
  * 
  * This function calls the `close` method on the associated transport service to halt its operations.
  */
-void CloseBusiness::execute()
+void CloseBusiness::execute(Transportation* Transport)
 {
     Transport->close();
 }

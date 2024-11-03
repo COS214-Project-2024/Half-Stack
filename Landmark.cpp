@@ -1,4 +1,5 @@
 #include "Landmark.h"
+#include "ResourceManager.h"
 #include <iostream>
 
 /**
@@ -47,16 +48,48 @@ void Landmark::removeCitizen(Citizen* c)
  * Decreases the resource levels and prints a message indicating whether 
  * resources are available or if more are needed.
  */
-void Landmark::consumeResources()
+bool Landmark::consumeResources()
 {
-    if (this->resourceManager->decreaseResourceLevels(5, 15, 0, 0, 0) == true)
+    ResourceManager* rm = ResourceManager::instance();
+    int num = getNumEmployees();
+    if (rm->decreaseResourceLevels(10*num, 10*num, 0, 0, 0) == true)
     {
-        std::cout << "Landmark building is consuming resources." << std::endl;
+        for (std::vector<Citizen*>::iterator i = employees.begin(); i != employees.end(); i++)
+        {
+            if ((*i)->getNoResources()==true)
+            {
+                (*i)->setNoResources(true);
+                (*i)->setSatisfaction((*i)->getSatisfaction()->raiseStatus());
+            }
+        }
+        return true;
+        //std::cout << "Landmark building is consuming resources." << std::endl;
     }
     else
     {
-        std::cout << "Need more Resources." << std::endl;
+        return false;
+        //std::cout << "Need more Resources." << std::endl;
 
         //call upon other functions to produce more resources or buy more?
     }
+}
+
+int Landmark::getNumEmployees()
+{
+    int count=0;
+    for (std::vector<Citizen*>::iterator i = employees.begin(); i != employees.end(); i++)
+    {
+        count++;
+    }
+    return count;
+}
+
+bool Landmark::isFull()
+{
+    if (getCapacity()==getNumEmployees())
+    {
+        return true;
+    }
+
+    return false;
 }

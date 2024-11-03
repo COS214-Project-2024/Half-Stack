@@ -53,7 +53,7 @@ class City : public Building
 		/**	
 		 * @brief Calls consume resources on all buildings in the city.
 		 */
-		void consumeResources();
+		bool consumeResources();
 };
 
 #endif

@@ -69,31 +69,3 @@ Plant* WaterPlantCreator::createPlant(int capacity, const std::string& location)
 
     return new WaterPlant(capacity, location);
 }
-
-/**
- * @brief Creates a MaterialsPlant object with the specified capacity and location.
- * 
- * This method checks that the capacity is a positive integer and that the
- * location is non-empty. Throws an exception if these conditions are not met.
- * 
- * @param capacity The capacity of the materials plant.
- * @param location The location of the materials plant.
- * @return Pointer to the newly created MaterialsPlant object.
- * @throws std::invalid_argument If capacity is <= 0 or location is empty.
- */
-Plant* MaterialsPlantCreator::createPlant(int capacity, const std::string& location)
-{
-    if (capacity <= 0) 
-    {
-        std::cout << "Error: Capacity must be a positive integer." << std::endl;
-        throw std::invalid_argument("Capacity must be positive.");
-    }
-
-    if (location.empty()) 
-    {
-        std::cout << "Error: Location cannot be empty." << std::endl;
-        throw std::invalid_argument("Location cannot be empty.");
-    }
-
-    return new MaterialsPlant(capacity,  location);
-}

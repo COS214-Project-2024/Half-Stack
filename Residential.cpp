@@ -1,4 +1,5 @@
 #include "Residential.h"
+#include "ResourceManager.h"
 #include <iostream>
 
 /**
@@ -9,7 +10,9 @@
  */
 Residential::Residential(int num, std::string l) : Building(num, l)
 {
-	
+	water=15;
+    energy=20;
+    mats=10;
 }
 
 /**
@@ -19,7 +22,8 @@ Residential::Residential(int num, std::string l) : Building(num, l)
  */
 void Residential::addCitizen(Citizen* c)
 {
-	residents.push_back(c);
+    if (getNumResidents() != getCapacity())
+	    residents.push_back(c);
 }
 
 /**
@@ -42,15 +46,26 @@ void Residential::removeCitizen(Citizen* c)
 /**
  * @brief Consumes resources necessary for the residential building's operation.
  */
-void Residential::consumeResources()
+bool Residential::consumeResources()
 {
-    if (this->resourceManager->decreaseResourceLevels(15, 20, 0, 0, 10) == true)
+    ResourceManager* rm = ResourceManager::instance();
+    if (rm->decreaseResourceLevels(water*getNumResidents(), energy*getNumResidents(), 0, 0,0) == true)
     {
-        std::cout << "Residential building is consuming resources." << std::endl;
+        for (std::vector<Citizen*>::iterator i = residents.begin(); i != residents.end(); i++)
+        {
+            if ((*i)->getNoResources()==true)
+            {
+                (*i)->setNoResources(true);
+                (*i)->getSatisfaction()->raiseStatus();
+            }
+        }
+        //std::cout << "Residential building is consuming resources." << std::endl;
+        return true;
     }
     else
     {
-        std::cout << "Need more Resources." << std::endl;
+        //std::cout << "Need more Resources." << std::endl;
+        return false;
 
         //call upon other functions to produce more resources or buy more?
     }
@@ -65,16 +80,34 @@ std::vector<Citizen*> Residential::getResidents()
 {
     return residents;
 }
-
-/**
- * @brief Destroys the Residential object and releases resources.
- */
-Residential::~Residential()
+int Residential::getNumResidents()
 {
-    for (Citizen* c : residents)
+    int count=0;
+    for (std::vector<Citizen*>::iterator i = residents.begin(); i != residents.end(); i++)
     {
-        delete c;
+        count++;
     }
+    return count;
+}
+
+bool Residential::isFull()
+{
+    if (getCapacity()==getNumResidents())
+    {
+        return true;
+    }
+
+    return false;
+}
+
+void Residential::increaseWaterConsumption(int num)
+{
+    water += num;
+}
+
+void Residential::increasePowerConsumption(int num)
+{
+    energy +=num;
 }
 
 /**
@@ -122,7 +155,8 @@ void Estate::removeBuilding(Residential* b)
  */
 Building* Estate::build()
 {
-    if (this->resourceManager->decreaseResourceLevels(40, 100, 150, 200, 250) == true)
+    ResourceManager* rm = ResourceManager::instance();
+    if (rm->decreaseResourceLevels(40, 100, 150, 200, 250) == true)
 	{
 		return new Estate(capacity, location);
 	}
@@ -130,15 +164,4 @@ Building* Estate::build()
 	{
 		return nullptr;
 	}
-}
-
-/**
- * @brief Destroys the Estate object and releases resources.
- */
-Estate::~Estate()
-{
-    for (Residential* b : buildings)
-    {
-        delete b;
-    }
 }

@@ -5,10 +5,11 @@
 #include <vector>
 
 #include "BuildingState.h"
-#include "Citizen.h"
+//#include "Citizen.h"
 #include "ResourceManager.h"
 
-class Citizen;
+class ResourceManager;
+//class Citizen;
 
 /**
  * @class Building
@@ -64,12 +65,18 @@ public:
      * This is a pure virtual function, requiring implementation in derived classes.
      * It defines how resources are consumed by the specific type of building.
      */
-	virtual void consumeResources() = 0;
+	virtual bool consumeResources() = 0;
 
 	/**
      * @brief Destroys the Building object and cleans up resources.
      */
-	~Building();
+	virtual ~Building();
+
+     virtual int getCapacity();
+
+     virtual bool isFull(){ return false;}
+
+     std::string getType();
 };
 
 #endif

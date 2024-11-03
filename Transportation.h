@@ -13,6 +13,7 @@ class Transportation
 
 private:
 	bool isOpen;
+	std::string type;
 
 public:
 
@@ -35,12 +36,17 @@ public:
 	 */
 	virtual bool getStatus();
 
-	Transportation();
+	Transportation(std::string t);
+
+	virtual ~Transportation(){};
+
+	std::string getType();
 };
 
 class Airport : public Transportation
 {
-
+	//private:
+		//static int counter;
 public:
 	Airport();
 };

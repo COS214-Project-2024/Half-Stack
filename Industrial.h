@@ -49,9 +49,12 @@ public:
      * Decreases the resource levels and prints a message indicating whether 
      * resources are available or if more are needed.
      */
-	void consumeResources();
+	bool consumeResources();
 
 	//produce resources function for plants and factories?
+     int getNumEmployees();
+
+     bool isFull();
 };
 
 #endif

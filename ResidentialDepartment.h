@@ -3,6 +3,7 @@
 
 #include "Building.h"
 #include "Department.h"
+#include "Citizen.h"
 
 /**
  * @class Residential Department
@@ -20,7 +21,7 @@ class ResidentialDepartment : public Department
 
 		static ResidentialDepartment* uniqueInstance;
 
-		std::vector<Building*> residents;
+		std::vector<Residential*> residents;
 
 		std::vector<Citizen*> Observingcitizens; 
 
@@ -38,13 +39,13 @@ class ResidentialDepartment : public Department
 		 * @brief Adds a building to the vector of residential buildings.
 		 * @param b Pointer to the building.
 		 */
-		void addBuilding(Building* b);
+		void addBuilding(Residential* b);
 
 		/**
 		 * @brief Removes a building from the vector of residential buildings.
 		 * @param b Pointer to the building.
 		 */
-		void removeBuilding(Building* b);
+		void removeBuilding(Residential* b);
 
 		/**
 		 * @brief Calculates the number of residential buildings.
@@ -83,6 +84,16 @@ class ResidentialDepartment : public Department
          * @param message Notification message to send to all citizens.
          */
         void notifyCitizens(const std::string& message);
+
+		void notifyNewHousing();
+
+		void houseNewCitizens();
+
+		int emptyRooms();
+
+		void consumeDailyResources();
+
+		~ResidentialDepartment();
 };
 
 #endif

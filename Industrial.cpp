@@ -1,4 +1,5 @@
 #include "Industrial.h"
+#include "ResourceManager.h"
 #include <iostream>
 
 /**
@@ -47,16 +48,48 @@ void Industrial::removeCitizen(Citizen* c)
  * Decreases the resource levels and prints a message indicating whether 
  * resources are available or if more are needed.
  */
-void Industrial::consumeResources()
+bool Industrial::consumeResources()
 {
-    if (this->resourceManager->decreaseResourceLevels(40, 60, 20, 20, 20) == true)
+    ResourceManager* rm = ResourceManager::instance();
+    int num = getNumEmployees();
+    if (rm->decreaseResourceLevels(10*num, 10*num, 0, 0, 0) == true)
     {
-        std::cout << "Industrial building is consuming resources." << std::endl;
+        for (std::vector<Citizen*>::iterator i = employees.begin(); i != employees.end(); i++)
+        {
+            if ((*i)->getNoResources()==true)
+            {
+                (*i)->setNoResources(true);
+                (*i)->setSatisfaction((*i)->getSatisfaction()->raiseStatus());
+            }
+        }
+        return true;
+        //std::cout << "Industrial building is consuming resources." << std::endl;
     }
     else
     {
-        std::cout << "Need more Resources." << std::endl;
+        return false;
+        //std::cout << "Need more Resources." << std::endl;
 
         //call upon other functions to produce more resources or buy more?
     }
+}
+
+int Industrial::getNumEmployees()
+{
+    int count=0;
+    for (std::vector<Citizen*>::iterator i = employees.begin(); i != employees.end(); i++)
+    {
+        count++;
+    }
+    return count;
+}
+
+bool Industrial::isFull()
+{
+    if (getCapacity()==getNumEmployees())
+    {
+        return true;
+    }
+
+    return false;
 }

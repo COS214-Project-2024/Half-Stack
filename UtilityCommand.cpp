@@ -1,5 +1,10 @@
 #include "UtilityCommand.h"
+//#include "Government.h"
 
+UtilityCommand::UtilityCommand()
+{
+    //Government* gov = Government::instance(" "); 
+}
 /**
  * @brief Executes the command to supply water through the utilities department.
  * 
@@ -7,6 +12,10 @@
  */
 void SupplyWater::execute()
 {
+    if (UtilitiesDepart==NULL)
+    {
+        UtilitiesDepart = UtilitiesDepartment::instance();
+    }
     UtilitiesDepart->supplyWater();
 }
 
@@ -27,6 +36,10 @@ bool SupplyWater::getStatus()
  */
 void SupplyPower::execute()
 {
+    if (UtilitiesDepart==NULL)
+    {
+        UtilitiesDepart = UtilitiesDepartment::instance();
+    }
     UtilitiesDepart->supplyEnergy();
 }
 
@@ -47,6 +60,10 @@ bool SupplyPower::getStatus()
  */
 void ManageWaste::execute()
 {
+    if (UtilitiesDepart==NULL)
+    {
+        UtilitiesDepart = UtilitiesDepartment::instance();
+    }
     UtilitiesDepart->manageWaste();
 }
 
@@ -67,6 +84,10 @@ bool ManageWaste::getStatus()
  */
 void ManageSewage::execute()
 {
+    if (UtilitiesDepart==NULL)
+    {
+        UtilitiesDepart = UtilitiesDepartment::instance();
+    }
     UtilitiesDepart->manageSewage();
 }
 

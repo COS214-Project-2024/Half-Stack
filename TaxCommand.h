@@ -15,7 +15,7 @@ class TaxCommand
         int state; 
 
     public:
-        Citizen* citizen;
+        //Citizen* citizen;
 
         /**
          * @brief Executes the tax command.
@@ -30,6 +30,8 @@ class TaxCommand
          * @return int The status of the command.
          */
         int getStatus();
+
+        virtual ~TaxCommand() {};
 };
 
 /**

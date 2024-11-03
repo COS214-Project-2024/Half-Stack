@@ -33,6 +33,8 @@ public:
 
 	void increasePopulation(std::vector<Citizen*> citizens);
 
+	void increasePopulation();
+
 	void increaseJobs();
 
 	void increaseTransport();
@@ -41,7 +43,11 @@ public:
 
 	int getPopulation();
 
+	void updatePopulation();
+
 	static CityGrowthDepartment* instance(Government* gov);
+
+	~CityGrowthDepartment();
 
 protected:
 	CityGrowthDepartment(Government* gov);
