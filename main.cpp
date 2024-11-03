@@ -29,20 +29,20 @@ std::string cityName;
 void printCityOutline()
 {
     std::cout << "-----------------------------------------------------------------------------------" <<std::endl;
-    std::cout << "                                       HALF STACK                     " <<std::endl;
-    std::cout << "                                                                      " <<std::endl;
-    std::cout << "                                             |                        " <<std::endl;
-    std::cout << "                                           _| |_                      " <<std::endl;
-    std::cout << "                                   ______ |     |   ____              " <<std::endl;
-    std::cout << "                             _____|__    || === |  | == |__           " <<std::endl;
-    std::cout << "                            | ====== | = || === |__| = === |          " <<std::endl;
-    std::cout << "                           _| ===  = |== || === |  | ===== |          " <<std::endl;
-    std::cout << "                         _| | ====== |=  || === |  | ===== |          " <<std::endl;
-    std::cout << "                   _____| = | == === |== || === |  |       |          " <<std::endl;
-    std::cout << "                  | === |   | ====== |== || === |  | == == |____      " <<std::endl;
-    std::cout << "                  | === |   | = ==== |___|| === |  | ===== |=== |     " <<std::endl;
-    std::cout << "                  | === |   | ====== | == | === |  | = === | == |     " <<std::endl;
-    std::cout << "                  |     |   | =    = |    | === |  | =     |    |     " <<std::endl;
+    std::cout << "                                       HALF STACK                                  " <<std::endl;
+    std::cout << "                                                                                   " <<std::endl;
+    std::cout << "                                             |                                     " <<std::endl;
+    std::cout << "                                           _| |_                                   " <<std::endl;
+    std::cout << "                                   ______ |     |   ____                           " <<std::endl;
+    std::cout << "                             _____|__    || === |  | == |__                        " <<std::endl;
+    std::cout << "                            | ====== | = || === |__| = === |                       " <<std::endl;
+    std::cout << "                           _| ===  = |== || === |  | ===== |                       " <<std::endl;
+    std::cout << "                         _| | ====== |=  || === |  | ===== |                       " <<std::endl;
+    std::cout << "                   _____| = | == === |== || === |  |       |                       " <<std::endl;
+    std::cout << "                  | === |   | ====== |== || === |  | == == |____                   " <<std::endl;
+    std::cout << "                  | === |   | = ==== |___|| === |  | ===== |=== |                  " <<std::endl;
+    std::cout << "                  | === |   | ====== | == | === |  | = === | == |                  " <<std::endl;
+    std::cout << "                  |     |   | =    = |    | === |  | =     |    |                  " <<std::endl;
 }
 
 void WelcomePlayer()
@@ -231,6 +231,7 @@ void addBuilding()
     std::cout << "             | l. Landmark            |" <<std::endl;
     std::cout << "             | r. Residential         |" <<std::endl;
     std::cout << "             |________________________|" <<std::endl;
+    std::cout << "Select a type: " <<std::endl;
     std::cin >> type;
     switch (type)
     {
@@ -254,7 +255,7 @@ void addBuilding()
 void houseHomeless()
 {
     char type;
-    std::cout << "Residential type (A/H/T): ";
+    std::cout << "Residential type -Apartment,House,Townhouse (A/H/T): ";
     std::cin >> type;
     cityGrowthDep->increaseHousing(type);
     std::cout << "There are " << residentialDep->emptyRooms() << " rooms available, and "<< gov->getHomeless() << " citizens without homes." <<std::endl;
@@ -332,11 +333,14 @@ void startDay()
     utilityDep->performRoutine();
     residentialDep->consumeDailyResources();
     publicDep->consumeDailyResources();
+    transportDep->openTransport();
     //publicDep->collectTax("Income");
     //publicDep->collectTax("Sales");
     //publicDep->collectTax("Property");
-    transportDep->openTransport();
+    double moneyMade = gov->getTotalNeutral() + (gov->getTotalSatisfied()*2);
+    rm->increaseBudget(moneyMade);
     std::cout << "City budget increased: " << rm->getBudget() <<std::endl;
+    transportDep->closeTransport();
 }
 
 void incTransport()
