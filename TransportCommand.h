@@ -11,20 +11,20 @@ class TransportCommand
 	public:
 		//Transportation* Transport; //= new Transportation();
 		
-		virtual void execute(Transportation* Transport ) = 0;
         /**
          * @brief Executes the transport command.
          * 
          * This is a pure virtual function that must be overridden by derived classes.
          */
-        virtual void execute() = 0;
-
+	virtual void execute(Transportation* Transport ) = 0;
         /**
          * @brief Gets the current status of the transport command.
          * 
          * @return bool The status of the command.
          */
         virtual bool getStatus() = 0;
+
+	virtual ~TransportCommand() {};
 };
 
 
@@ -35,7 +35,7 @@ class OpenBusiness : public TransportCommand
 {
 
 	public:
-		bool open;
+	bool open;
         /**
          * @brief Executes the command to open a business.
          * 
@@ -57,12 +57,13 @@ class OpenBusiness : public TransportCommand
 class CloseBusiness : public TransportCommand
 {
     public:
+	bool close;
         /**
          * @brief Executes the command to close a business.
          * 
          * This method implements the logic for closing a business within the transportation system.
          */
-		void execute(Transportation* Transport );
+	void execute(Transportation* Transport );
 
         /**
          * @brief Gets the current status of the close business command.
