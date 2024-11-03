@@ -70,6 +70,9 @@ class UtilitiesDepartment : public Department
 		void performRoutine();
 
 		void addBuilding(Plant* b);
+
+		int getTotalWaterPlants();
+		int getTotalPowerPlants();
 };
 
 #endif

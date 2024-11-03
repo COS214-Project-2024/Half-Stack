@@ -79,7 +79,7 @@ Government::~Government()
 void Government::addCitizen(Citizen* c)
 {
 	int homeless= getHomeless();
-	if (homeless> ceil(0.05*cgDep->getPopulation()))
+	if (homeless> 20)
 	{
 		std::cout << "Too many homeless citizens. Cannot increase population. " << std::endl;
 		delete c;
@@ -232,5 +232,6 @@ void Government::getCityStats()
 	std::cout << "Residential Buildings: " <<resDep->getTotalBuildings() << " [capacity: " << resDep->getTotalCapacity() << "]" <<std::endl;
 	std::cout << "Job Buildings: " <<psDep->getTotalBuildings() << " [capacity: " << psDep->getTotalCapacity() << "]" <<std::endl;
 	std::cout << "Airports: " <<transportDep->getTotalAirports() <<", Roads: " <<transportDep->getTotalRoads() <<", Railways: "<<transportDep->getTotalRailways() <<std::endl;
+	std::cout << "WaterPlants: " <<utilityDep->getTotalWaterPlants() <<", PowerPlants: " <<utilityDep->getTotalPowerPlants() <<std::endl;
 	std::cout << "------------------------------------------------------------------------" <<std::endl;
 }
