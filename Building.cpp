@@ -9,11 +9,12 @@
  * @param num The initial capacity of the building.
  * @param loc The designated location of the building.
  */
-Building::Building(int num, std::string loc)
+Building::Building(int num, std::string l)
 {
 	this->capacity = num;
-	this->location = loc;
+	this->location = l;
 	this->state = new Operational();
+	resourceManager = ResourceManager::instance();
 }
 
 /**
@@ -27,11 +28,6 @@ Building::~Building()
 	if (state != NULL)
 	{
 		delete state;
-	}
-
-	if (this->resourceManager != NULL)
-	{
-		delete resourceManager;
 	}
 }
 
@@ -55,4 +51,14 @@ void Building::progress()
 {
 	delete state;
 	state = state->update();
+}
+
+int Building::getCapacity()
+{
+	return capacity;
+}
+
+std::string Building::getType()
+{
+	return location;
 }

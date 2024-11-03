@@ -12,9 +12,11 @@ class TaxCommand
         int state;
 
     public:
-        Citizen* citizen;
+        //Citizen* citizen;
         virtual void execute() = 0;
         int getStatus();
+
+        virtual ~TaxCommand() {};
 };
 
 class CollectIncomeTax : public TaxCommand

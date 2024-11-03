@@ -44,6 +44,8 @@ public:
      * @brief Pure virtual function to generate resources specific to the plant type.
      */
 	virtual void generate() = 0; 
+
+     std::string getType();
 };
 
 
@@ -108,34 +110,5 @@ public:
 	Building* build();
 };
 
-/**
- * @brief Class representing a Materials Plant.
- *
- * MaterialsPlant generates construction materials and consumes resources.
- */
-class MaterialsPlant : public Plant
-{
-
-public:
-	/**
-     * @brief Constructs a MaterialsPlant with the specified capacity and location.
-     * 
-     * @param capacity The maximum capacity of the Materials Plant.
-     * @param location The location where the Materials Plant is built.
-     */
-	MaterialsPlant(int capacity, std::string location);
-
-	/**
-     * @brief Generates materials resources.
-     */
-	void generate();
-
-	 /**
-     * @brief Builds and returns a new MaterialsPlant.
-     * 
-     * @return Pointer to a new MaterialsPlant object.
-     */
-	Building* build();
-};
 
 #endif

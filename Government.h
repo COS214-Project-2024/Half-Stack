@@ -13,7 +13,7 @@
 class Government : public Department {
 
 private:
-	std::vector<Department*> departments;
+	//std::vector<Department*> departments;
 	std::string name;
 	static Government* uniqueInstance;
 	std::vector<Citizen*> citizens;
@@ -41,11 +41,21 @@ public:
 	ResourceManager* getResourceManager();
 
 	~Government();
+
 	void addCitizen(Citizen* c);
 	bool hasCitizen(Citizen* c);
 	int getTotalCitizens();
 	std::vector<Citizen*> getCitizens() const;
+
 	int getTotalUnemployed();
+	int getTotalEmployed();
+	int getHomeless();
+
+	int getTotalNeutral();
+	int getTotalSatisfied();
+	int getTotalUnsatisfied();
+
+	void getCityStats();
 };
 
 #endif

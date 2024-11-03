@@ -6,8 +6,6 @@
 void payIncomeTax::pay()
 {
     Government* gov = Government::instance("gov");
-    //Government* gov;
-
     ResourceManager* rm = gov->getResourceManager();
     PublicServicesDepartment* ps = gov->getPublicServicesDepartment();
     rm->increaseBudget(ps->getIncomeTax());
@@ -16,7 +14,6 @@ void payIncomeTax::pay()
 void paySalesTax::pay()
 {
     Government* gov = Government::instance("gov");
-    //Government* gov;
     ResourceManager* rm = gov->getResourceManager();
     PublicServicesDepartment* ps = gov->getPublicServicesDepartment();
     rm->increaseBudget(ps->getSalesTax());
@@ -25,7 +22,6 @@ void paySalesTax::pay()
 void payPropertyTax::pay()
 {
     Government* gov = Government::instance("gov");
-    //Government* gov;
     ResourceManager* rm = gov->getResourceManager();
     PublicServicesDepartment* ps = gov->getPublicServicesDepartment();
     rm->increaseBudget(ps->getPropertyTax());

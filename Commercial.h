@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "Building.h"
+#include "Citizen.h"
 
 /**
  * @class Commercial
@@ -48,7 +49,13 @@ public:
      * If sufficient resources are available, the building will consume them;
      * otherwise, a message will indicate that more resources are needed.
      */
-	void consumeResources();
+	bool consumeResources();
+
+     int getNumEmployees();
+
+     bool isFull();
+
+     ~Commercial();
 };
 
 #endif

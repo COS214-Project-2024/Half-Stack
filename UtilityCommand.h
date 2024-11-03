@@ -3,14 +3,21 @@
 
 #include "UtilitiesDepartment.h"
 
+class UtilitiesDepartment;
+
 class UtilityCommand
 {
-	public:
+	protected:
 		UtilitiesDepartment* UtilitiesDepart; // = new UtilitiesDepartment();
+	public:
 
+		UtilityCommand();
+		
 		virtual void execute() = 0;
 
 		virtual bool getStatus() = 0;
+
+		virtual ~UtilityCommand() {};
 };
 
 class SupplyWater : public UtilityCommand

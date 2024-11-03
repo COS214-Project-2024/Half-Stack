@@ -6,11 +6,13 @@
 class TransportCommand
 {
 	public:
-		Transportation* Transport; //= new Transportation();
+		//Transportation* Transport; //= new Transportation();
 		
-		virtual void execute() = 0;
+		virtual void execute(Transportation* Transport ) = 0;
 
 		virtual bool getStatus() = 0;
+
+		virtual ~TransportCommand() {};
 	};
 
 class OpenBusiness : public TransportCommand
@@ -18,7 +20,7 @@ class OpenBusiness : public TransportCommand
 	public:
 		bool open;
 
-		void execute();
+		void execute(Transportation* Transport );
 
 		bool getStatus();
 };
@@ -28,7 +30,7 @@ class CloseBusiness : public TransportCommand
 	public:
 		bool close;
 
-		void execute();
+		void execute(Transportation* Transport );
 
 		bool getStatus();
 };

@@ -1,9 +1,13 @@
 #ifndef UTILITIESDEPARTMENT_H
 #define UTILITIESDEPARTMENT_H
 
+#include <iostream>
 #include "Building.h"
 #include "Department.h"
 #include "UtilityCommand.h"
+#include "Plant.h"
+
+class UtilityCommand;
 
 /**
  * @class Utilities Department
@@ -23,6 +27,8 @@ class UtilitiesDepartment : public Department
 		static UtilitiesDepartment* uniqueInstance;
 		
 		UtilityCommand* commands[4];
+
+		 std::vector<Plant*> plants;
 
 	public:
 
@@ -62,6 +68,8 @@ class UtilitiesDepartment : public Department
 		 * @brief Executes all of the commands for the above utility services.
 		 */
 		void performRoutine();
+
+		void addBuilding(Plant* b);
 };
 
 #endif

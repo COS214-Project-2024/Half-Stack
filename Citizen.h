@@ -6,8 +6,12 @@
 #include "Building.h"
 #include "Employment.h"
 #include "Satisfaction.h"
+#include "payTaxStrategy.h"
+#include "Residential.h"
 
 class Building;
+class payTaxStrategy;
+class Residential;
 
 /**
  * @class Citizen
@@ -27,6 +31,9 @@ private:
     Building* jobBuilding; ///< Pointer to the building where the citizen works.
     Building* home; ///< Pointer to the building where the citizen lives.
     static int counter;
+    bool noResources;
+
+    payTaxStrategy* tax;
 
 public:
     /**
@@ -90,7 +97,7 @@ public:
      * If the citizen is unemployed, they become employed and a message is output.
      * If the citizen is already employed, an error message is output.
      */
-    void getJob();
+    void setJob(Building* b);
 
     /**
      * @brief Receives and displays a notification for the citizen.
@@ -103,6 +110,14 @@ public:
      * @return int The age of the citizen.
      */
     int getAge();
+
+    Building* getHome();
+
+    void moveIn(Residential* housing);
+
+    bool getNoResources();
+
+    void setNoResources(bool s);
 };
 
 #endif

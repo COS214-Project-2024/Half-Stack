@@ -1,5 +1,7 @@
 #ifndef LAWDEPARTMENT_H
 #define LAWDEPARTMENT_H
+
+#include <iostream>
 #include "Department.h"
 #include "Building.h"
 
@@ -10,7 +12,7 @@ private:
 	static LawDepartment* uniqueInstance;
 
 protected:
-	LawDepartment(){std::cout << "New Law department created" << std::endl;};
+	LawDepartment(){/*std::cout << "New Law department created" << std::endl;*/};
 
 public:
 	static LawDepartment* instance();
@@ -19,11 +21,9 @@ public:
 
 	void removeLaw(std::string l);
 
-	void changeLaw(std::string previous, std::string current);
-
 	~LawDepartment();
 
-	std::vector<std::string> getAllLaws();
+	//std::vector<std::string> getAllLaws();
 };
 
 #endif

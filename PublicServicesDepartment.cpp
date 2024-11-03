@@ -11,6 +11,10 @@ PublicServicesDepartment::PublicServicesDepartment()
 	this->commands[0] = new CollectIncomeTax();
 	this->commands[1] = new CollectPropertyTax();
 	this->commands[2] = new CollectSalesTax();
+
+	incomeTax =45;
+	salesTax=15;
+	propertyTax=18;
 }
 
 /**
@@ -20,9 +24,17 @@ PublicServicesDepartment::PublicServicesDepartment()
  */
 void PublicServicesDepartment::collectTax(std::string tax) 
 {
-	for (int i = 0; i < 3; i++)
+	if (tax=="Income")
 	{
 		this->commands[0]->execute();
+	}
+	if (tax=="Sales")
+	{
+		this->commands[2]->execute();
+	}
+	if (tax=="Property")
+	{
+		this->commands[1]->execute();
 	}
 }
 
@@ -55,8 +67,17 @@ PublicServicesDepartment::~PublicServicesDepartment()
     // Nullify the Singleton pointer if this is the instance being destroyed
     if (Singleton == this) 
 	{
+		delete Singleton;
         Singleton = nullptr;
     }
+
+	for (std::vector<Building*>::iterator i = jobBuildings.begin(); i != jobBuildings.end(); i++)
+            {
+                if ((*i)!=NULL)
+                {
+                    delete *i;
+                }
+            }
 }
 
 /**
@@ -67,15 +88,106 @@ PublicServicesDepartment::~PublicServicesDepartment()
  */
 void PublicServicesDepartment::increaseTax() 
 {
-    Government* government = Government::instance("HalfStack City Builder");  
+    Government* government = Government::instance(" ");  
     std::vector<Citizen*> allCitizens = government->getCitizens();
 
     for (size_t i = 0; i < allCitizens.size(); ++i) 
     {
-	Citizen* citizen = allCitizens[i];	
+	    Citizen* citizen = allCitizens[i];	
         Satisfaction* newStatus = citizen->getSatisfaction()->lowerStatus();
         citizen->setSatisfaction(newStatus);
     }
-
+	incomeTax +=1;
+	propertyTax +=1;
+	salesTax += 1;
     std::cout << "Tax increased and satisfaction decreased for all citizens." << std::endl;
+}
+
+double PublicServicesDepartment::getIncomeTax()
+{
+	return incomeTax;
+}
+double PublicServicesDepartment::getPropertyTax()
+{
+	return propertyTax;
+}
+double PublicServicesDepartment::getSalesTax()
+{
+	return salesTax;
+}
+
+void PublicServicesDepartment::addBuilding(Building* b)
+{
+	int num = b->getCapacity();
+    ResourceManager* rm = ResourceManager::instance();
+    if (rm->decreaseResourceLevels(10, 10, 20*num, 20*num, 5*num) == true)
+	{
+		if (rm->decreaseBudget(50*num)==true)
+        {
+            jobBuildings.push_back(b);
+            employCitizens();
+        }else {
+            rm->increaseResourceLevels(10, 10, 20*num, 20*num, 5*num);
+            delete b;
+        }
+	}else{
+        delete b;
+    }
+}
+
+void PublicServicesDepartment::employCitizens()
+{
+	 std::vector<Citizen*> citizens = Government::instance(" ")->getCitizens();
+    std::vector<Citizen*>::iterator it = citizens.begin();
+    for(; it != citizens.end(); ++it)
+    {
+        if((*it)->getEmployment()->getStatus()=="Unemployed")
+        {
+            for (std::vector<Building*>::iterator i = jobBuildings.begin(); i != jobBuildings.end(); i++)
+            {
+                if ((*i)->isFull()==false)
+                {
+                    (*it)->setJob(*i);
+                    //(*i)->addCitizen(*it);
+                    //attachCitizen(*it);
+                }
+            }
+        }
+    }
+}
+
+void PublicServicesDepartment::consumeDailyResources()
+{
+    bool consumed = true;
+    for (std::vector<Building*>::iterator i = jobBuildings.begin(); i != jobBuildings.end(); i++)
+    {
+        if ((*i)->consumeResources()==false)
+        {
+            consumed=false;
+        }
+    }
+    if (consumed==false)
+    {
+        std::cout << "Some job buildings have no water and power. Please replenish power and water." <<std::endl;
+    }
+}
+
+int PublicServicesDepartment::getTotalBuildings()
+{
+    int counter = 0;
+	for (std::vector<Building*>::iterator i = jobBuildings.begin(); i != jobBuildings.end(); i++)
+    {
+        counter++;
+    }
+    return counter;
+}
+
+int PublicServicesDepartment::getTotalCapacity()
+{
+    int total = 0;
+	for (std::vector<Building*>::iterator i = jobBuildings.begin(); i != jobBuildings.end(); i++)
+    {
+        total = total + (*i)->capacity;
+    }
+    return total;
 }

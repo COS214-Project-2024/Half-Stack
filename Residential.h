@@ -6,16 +6,19 @@
 #include "Building.h"
 #include "Citizen.h"
 
+class Citizen;
 /**
  * @class Residential
  * @brief The Residential class represents a residential building that can house citizens.
  */
 class Residential : public Building
 {
-
 private:
 	///< Vector of pointers to the citizens residing in the building.
 	std::vector<Citizen*> residents;
+     int water;
+     int energy;
+     int mats;
 
 public:
 	/**
@@ -43,18 +46,23 @@ public:
 	/**
      * @brief Consumes resources necessary for the residential building's operation.
      */
-	void consumeResources();
+	bool consumeResources();
 
     /**
      * @brief Gets the list of residents in the building.
      * @return A vector containing pointers to the residents.
      */
-    std::vector<Citizen*> getResidents();
-	
-	/**
-     * @brief Destructor for Residential.
-     */
-    virtual ~Residential();
+     std::vector<Citizen*> getResidents();
+
+    int getNumResidents();
+
+    bool isFull();
+
+    void increaseWaterConsumption(int num);
+
+     void increasePowerConsumption(int num);
+
+     virtual ~Residential(){};
 };
 
 
@@ -98,11 +106,6 @@ public:
      * @return Building* Pointer to the newly created Estate if successful, or nullptr if resources are insufficient.
      */
 	Building* build();
-	
-	/**
-     * @brief Destroys the Estate object and releases resources.
-     */
-    ~Estate();
 };
 
 #endif

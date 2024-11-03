@@ -13,7 +13,7 @@ private:
 	static TransportDepartment* uniqueInstance;
 
 protected:
-	TransportDepartment(){};
+	TransportDepartment();
 
 public:
 	static TransportDepartment* instance();
@@ -25,6 +25,10 @@ public:
 	void openTransport();
 
 	void closeTransport();
+
+	int getTotalAirports();
+	int getTotalRoads();
+	int getTotalRailways();
 
 	~TransportDepartment();
 };

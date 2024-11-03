@@ -5,6 +5,7 @@
 #include <string>
 
 #include "Building.h"
+#include "Citizen.h"
 
 /**
  * @class Landmark
@@ -49,7 +50,11 @@ public:
      * Decreases the resource levels and prints a message indicating whether 
      * resources are available or if more are needed.
      */
-	void consumeResources();
+	bool consumeResources();
+
+     int getNumEmployees();
+
+     bool isFull();
 };
 
 #endif

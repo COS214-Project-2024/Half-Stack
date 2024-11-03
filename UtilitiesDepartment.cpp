@@ -1,4 +1,5 @@
 #include "UtilitiesDepartment.h"
+#include "Government.h"
 
 UtilitiesDepartment* UtilitiesDepartment::uniqueInstance;
 
@@ -8,6 +9,7 @@ UtilitiesDepartment* UtilitiesDepartment::uniqueInstance;
  */
 UtilitiesDepartment::UtilitiesDepartment()
 {
+	//if (commands==NULL)
 	commands[0] = new SupplyWater();
 	commands[1] = new SupplyPower();
 	commands[2] = new ManageWaste();
@@ -37,6 +39,14 @@ UtilitiesDepartment::~UtilitiesDepartment()
 	{
 		delete commands[i];
 	}
+
+	for (std::vector<Plant*>::iterator i = plants.begin(); i != plants.end(); i++)
+    {
+		if ((*i)!=NULL)
+		{
+			delete *i;
+		}
+	}
 }
 
 /** 
@@ -55,6 +65,13 @@ void UtilitiesDepartment::performRoutine()
  */
 void UtilitiesDepartment::supplyWater()
 {
+	for (std::vector<Plant*>::iterator i = plants.begin(); i != plants.end(); i++)
+    {
+		if ((*i)->getType()=="Water")
+		{
+			(*i)->generate();
+		}
+	}
 	std::cout << "The utilities department is supplying water." << std::endl;
 }
 
@@ -63,6 +80,13 @@ void UtilitiesDepartment::supplyWater()
  */
 void UtilitiesDepartment::supplyEnergy()
 {
+	for (std::vector<Plant*>::iterator i = plants.begin(); i != plants.end(); i++)
+    {
+		if ((*i)->getType()=="Power")
+		{
+			(*i)->generate();
+		}
+	}
 	std::cout << "The utilities department is supplying power." << std::endl;
 }
 
@@ -71,6 +95,12 @@ void UtilitiesDepartment::supplyEnergy()
  */
 void UtilitiesDepartment::manageWaste()
 {
+	std::vector<Citizen*> citizens = Government::instance(" ")->getCitizens();
+    std::vector<Citizen*>::iterator it = citizens.begin();
+    for(; it != citizens.end(); ++it)
+    {
+    	(*it)->setSatisfaction((*it)->getSatisfaction()->raiseStatus());
+    }
 	std::cout << "The utilities department is managing waste." << std::endl;
 }
 
@@ -80,4 +110,19 @@ void UtilitiesDepartment::manageWaste()
 void UtilitiesDepartment::manageSewage()
 {
 	std::cout << "The utilities department is managing sewage." << std::endl;
+}
+
+void UtilitiesDepartment::addBuilding(Plant* p)
+{
+	//int num = b->getCapacity();
+    ResourceManager* rm = ResourceManager::instance();
+    if (rm->decreaseResourceLevels(0, 0, 50, 50, 30) == true)
+	{
+		if (rm->decreaseBudget(200)==true)
+        {
+            plants.push_back(p);
+        }else {
+            rm->increaseResourceLevels(0, 0, 50, 50, 30);
+        }
+	}
 }

@@ -1,4 +1,5 @@
 #include "Commercial.h"
+#include "ResourceManager.h"
 #include <iostream>
 
 /**
@@ -49,16 +50,59 @@ void Commercial::removeCitizen(Citizen* c)
  * If sufficient resources are available, the building will consume them;
  * otherwise, a message will indicate that more resources are needed.
  */
-void Commercial::consumeResources()
+bool Commercial::consumeResources()
 {
-    if (this->resourceManager->decreaseResourceLevels(30, 50, 0, 0, 0) == true)
+    ResourceManager* rm = ResourceManager::instance();
+    int num = getNumEmployees();
+    if (rm->decreaseResourceLevels(10*num, 10*num, 0, 0, 0) == true)
     {
-        std::cout << "Commercial building is consuming resources." << std::endl;
+        for (std::vector<Citizen*>::iterator i = employees.begin(); i != employees.end(); i++)
+        {
+            if ((*i)->getNoResources()==true)
+            {
+                (*i)->setNoResources(true);
+                (*i)->setSatisfaction((*i)->getSatisfaction()->raiseStatus());
+            }
+        }
+        return true;
+        //std::cout << "Commercial building is consuming resources." << std::endl;
     }
     else
     {
-        std::cout << "Need more Resources." << std::endl;
+        return false;
+        //std::cout << "Need more Resources." << std::endl;
 
         //call upon other functions to produce more resources or buy more?
     }
 }
+
+int Commercial::getNumEmployees()
+{
+    int count=0;
+    for (std::vector<Citizen*>::iterator i = employees.begin(); i != employees.end(); i++)
+    {
+        count++;
+    }
+    return count;
+}
+
+bool Commercial::isFull()
+{
+    if (getCapacity()==getNumEmployees())
+    {
+        return true;
+    }
+
+    return false;
+}
+
+Commercial::~Commercial()
+ {
+    for (std::vector<Citizen*>::iterator i = employees.begin(); i != employees.end(); i++)
+    {
+        if ((*i)!=NULL)
+        {
+            delete (*i);
+        }
+    }
+ }

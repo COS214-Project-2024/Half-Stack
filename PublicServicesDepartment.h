@@ -20,6 +20,12 @@ private:
 	///< Array of pointers to TaxCommand objects for different tax types.
 	TaxCommand* commands[3];
 
+     double incomeTax;
+     double propertyTax;
+     double salesTax;
+
+     std::vector<Building*> jobBuildings;
+     
 public:
 	/**
      * @brief Constructs a PublicServicesDepartment and initializes the tax command objects.
@@ -49,6 +55,20 @@ public:
      * @brief Increases the tax amount and decreases the satisfaction of all citizens.
      */
     void increaseTax();
+
+    double getIncomeTax();
+    double getPropertyTax();
+    double getSalesTax();
+
+    void addBuilding(Building* b);
+
+    void employCitizens();
+
+    void consumeDailyResources();
+
+    int getTotalBuildings();
+
+    int getTotalCapacity();
 };
 
 #endif

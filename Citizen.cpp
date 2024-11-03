@@ -16,6 +16,9 @@ Citizen::Citizen(int age)
 
     this->employment = new Unemployed();
     this->satisfaction = new Neutral();
+    home = NULL;
+    tax=NULL;
+    noResources=false;
 }
 
 /**
@@ -27,6 +30,7 @@ Citizen::~Citizen()
 {
     delete employment;
     delete satisfaction;
+    delete tax;
 }
 
 /**
@@ -50,22 +54,28 @@ Citizen::~Citizen()
  */
 void Citizen::payTax(std::string tax)
 {
+    if (age<18)
+    {
+        return;
+    }
+    if (employment->getStatus()=="Unemployed")
+    {
+        return;
+    }
+    if (this->tax!=NULL)
+    {
+        delete this->tax;
+    }
+    if (tax=="IncomeTax")
+        this->tax = new payIncomeTax();
+    if (tax=="SalesTax")
+        this->tax = new paySalesTax();
+    if (tax=="PropertyTax")
+        this->tax = new payPropertyTax();
 
-    if (tax == "incomeTax")
+    if (this->tax!=NULL)
     {
-        std::cout << this->name << " paid income tax." << std::endl;
-    }
-    else if (tax == "SalesTax")
-    {
-        std::cout << this->name << " paid sales tax." << std::endl;
-    }
-    else if (tax == "PropertyTax")
-    {
-        std::cout << this->name << " paid property tax." << std::endl;
-    }
-    else
-    {
-        std::cout << "invalid input." << std::endl;
+        this->tax->pay();
     }
 }
 
@@ -78,11 +88,11 @@ void Citizen::startWork()
 {
     if (this->employment->getStatus() == "Employed")
     {
-        std::cout << this->name << " is starting work." << std::endl;
+        std::cout << this->ID << " is starting work." << std::endl;
     }
     else
     {
-        std::cout << this->name << " does not have a job." << std::endl;
+        std::cout << this->ID << " does not have a job." << std::endl;
     }
 }
 
@@ -102,6 +112,10 @@ Employment* Citizen::getEmployment()
  */
 void Citizen::setEmployment(Employment* e)
 {
+    if (employment!=NULL)
+    {
+        delete employment;
+    }
     this->employment = e;
 }
 
@@ -120,6 +134,10 @@ Satisfaction* Citizen::getSatisfaction()
  */
 void Citizen::setSatisfaction(Satisfaction* s)
 {
+    if (satisfaction!=NULL)
+    {
+        delete satisfaction;
+    }
     this->satisfaction = s;
 }
 
@@ -129,16 +147,18 @@ void Citizen::setSatisfaction(Satisfaction* s)
  * If the citizen is unemployed, they become employed and a message is output.
  * If the citizen is already employed, an error message is output.
  */
-void Citizen::getJob()
+void Citizen::setJob(Building* b)
 {
     if (this->employment->getStatus() == "Unemployed")
     {
-        std::cout << this->name << " obtained a job." << std::endl;
-        this->employment = employment->toggleStatus();
+        //std::cout << this->ID << " obtained a job." << std::endl;
+
+        setEmployment(employment->toggleStatus());
+        jobBuilding = b;
     }
     else
     {
-        std::cout << this->name << " already has a job. " << this->name
+        std::cout << this->ID << " already has a job. " << this->ID
                   << " cannot obtain a job if they already have one." << std::endl;
     }
 }
@@ -149,7 +169,21 @@ void Citizen::getJob()
  */
 void Citizen::receiveNotification(const std::string& message)
 {
-    std::cout << "Notification for " << name << ": " << message << std::endl;
+    if (message=="No power and water")
+    {
+        setSatisfaction(satisfaction->lowerStatus());
+        noResources=true;
+        return;
+    }
+
+    if (message=="Load-shedding has ended.")
+    {
+        setSatisfaction(satisfaction->raiseStatus());
+        return;
+    }
+
+    setSatisfaction(satisfaction->lowerStatus());
+    //std::cout << "Notification for " << this->ID << ": " << message << std::endl;
 }
 
 /**
@@ -159,4 +193,24 @@ void Citizen::receiveNotification(const std::string& message)
 int Citizen::getAge()
 {
     return age;
+}
+
+Building* Citizen::getHome()
+{
+    return home;
+}
+
+void Citizen::moveIn(Residential* housing)
+{
+    home = housing;
+}
+
+bool Citizen::getNoResources()
+{
+    return noResources;
+}
+
+void Citizen::setNoResources(bool s)
+{
+    noResources=s;
 }

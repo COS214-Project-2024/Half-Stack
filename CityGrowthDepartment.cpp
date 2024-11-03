@@ -8,23 +8,20 @@ CityGrowthDepartment* CityGrowthDepartment::uniqueInstance;
 
 void CityGrowthDepartment::increaseHousing(char b) 
 {
-	//char BuildingType;
-	int currHousingCapacity = resDepartment->getTotalCapacity();
-	if (population > currHousingCapacity)
+	int homeless= gov->getHomeless();
+	if (homeless > 0)
 	{
-		int homeless= population-currHousingCapacity;
 		switch (b) {
-			case 'F':
+			case 'A':
 				if (homeless>5)
 				{
-					int numBuildings = ceil(homeless/5);
+					int numBuildings = ceil(homeless/5.0);
 					for (int i=0;i<numBuildings;i++)
 					{
-						resDepartment->addBuilding(new Flat(5,"flat")); //should trigger government to place in homes 
+						resDepartment->addBuilding(new Apartment(5,"apartment")); //should trigger government to place in homes 
 					}
 				}else{
-					resDepartment->addBuilding(new Flat(homeless,"flat"));
-					//r//esDepartment->houseHomelessCitizens();
+					resDepartment->addBuilding(new Apartment(homeless,"apartment"));
 				}
 				break;
 			case 'H':
@@ -34,17 +31,15 @@ void CityGrowthDepartment::increaseHousing(char b)
 					for (int i=0;i<numBuildings;i++)
 					{
 						resDepartment->addBuilding(new House(4,"House")); //should trigger government to place in homes 
-						//resDepartment->houseHomelessCitizens();
 					}
 				}else{
 					resDepartment->addBuilding(new House(homeless,"House"));
-					//resDepartment->houseHomelessCitizens();
 				}
 				break;
 			case 'T':
 				if (homeless>10)
 				{
-					int numBuildings = ceil(homeless/10);
+					int numBuildings = ceil(homeless/10.0);
 					for (int i=0;i<numBuildings;i++)
 					{
 						resDepartment->addBuilding(new TownHouse(10,"TownHouse"));
@@ -57,22 +52,55 @@ void CityGrowthDepartment::increaseHousing(char b)
 				resDepartment->addBuilding(new Estate(homeless,"Estate"));
 				break;
 		}
-
+	
 
 	}
 }
 
 void CityGrowthDepartment::increasePopulation(std::vector<Citizen*> citizens) 
 {
+	int homeless= gov->getHomeless();
+	if (homeless > ceil(0.05*population))
+	{
+		std::cout << "Too many homeless citizens. Cannot increase population. " << std::endl;
+		return;
+	}
+	int count=0;
 	std::vector<Citizen*>::iterator it = citizens.begin();
     for(; it != citizens.end(); ++it)
     {
-        gov->addCitizen(*it);
-		population++;
+		gov->addCitizen(*it);
+		//population++;
+		count++;
+		//resDepartment->houseNewCitizens();
     }
-	//increaseHousing('E');
-	//increaseTransport();
-	//increaseUtilities();
+	std::cout << "Population increased by " << count <<std::endl;
+	//resDepartment->houseNewCitizens();
+}
+
+void CityGrowthDepartment::increasePopulation()
+{
+	int homeless= gov->getHomeless();
+	if (homeless> ceil(0.05*population))
+	{
+		//std::cout << "Too many homeless citizens. Cannot increase population. " << std::endl;
+		//return;
+		increaseHousing('H');
+	}
+	//int growth = ceil(0.1*population);
+	for (int i=0; i<10 ;i++)
+	{
+		homeless= gov->getHomeless();
+		if (homeless> ceil(0.05*population))
+		{
+			increaseHousing('H');
+		}
+		//Citizen* addCitizen = new Citizen(i+18);
+		gov->addCitizen(new Citizen(i+18));
+		//population++;
+	}
+	std::cout << "Population increased by 10." <<std::endl;
+	//resDepartment->houseNewCitizens();
 }
 
 void CityGrowthDepartment::increaseJobs() 
@@ -111,39 +139,38 @@ void CityGrowthDepartment::increaseJobs()
 		unemployed -=20;
 	}
 		
-
-	if (unemployed>0)
-	{
-		//int openPosts = unemployed;
-		//char input;
-		//std::cout <<"There are " << openPosts << " jobs empty. Would you like to migrate more people?";
-		//std::cin >> input;
-		//if (input=='y')
-		{
-			//increasePopulation(openPosts);
-		}
-	}
 }
 
 void CityGrowthDepartment::increaseTransport() 
 {
-	//int trains = TransportDep->getTotalTrains();
+	int trains = TransportDep->getTotalRailways();
 	int airports = TransportDep->getTotalAirports();
-	//int roads = TransportDep->getTotalRoads();
-	//int publicTransit =TransportDep->getTotalPublicTransit();
-	//int trafficJam = trains+roads+publicTransit;
+	int roads = TransportDep->getTotalRoads();
 
-	if (airports<7)
+	int a = ceil(population/500.0);
+	if (airports<7 && airports<a && a!=0)
 	{
 		TransportDep->addTransport(new Airport());
 	}
-	//if (resourceManager->canBuildTrain()==true)
-	{
-		TransportDep->addTransport(new Railway());
-	}
-	//if (resourceManager->canBuildRoad()==true)
+
+	int totalBuildings = resDepartment->getTotalBuildings()+psDep->getTotalBuildings();
+	int r = ceil(totalBuildings/3.0) ;//should be a road for every building
+	bool enough=true;
+	while (roads<r &&r!=0 &&enough==true)
 	{
 		TransportDep->addTransport(new Road());
+		if (roads==TransportDep->getTotalRoads())
+		{
+			enough==false;
+		}
+		roads = TransportDep->getTotalRoads();
+	}
+	
+
+	int t = ceil(population/50.0); //should be a road for every building
+	if (trains<t && t!=0)
+	{
+		TransportDep->addTransport(new Railway());
 	}
 }
 
@@ -189,4 +216,14 @@ CityGrowthDepartment* CityGrowthDepartment::instance(Government* gov)
 	}
 
 	return uniqueInstance;
+}
+
+CityGrowthDepartment::~CityGrowthDepartment()
+{
+	delete uniqueInstance;
+}
+
+void CityGrowthDepartment::updatePopulation()
+{
+	population++;
 }

@@ -1,26 +1,33 @@
 #include "Transportation.h"
+#include "TransportDepartment.h"
+//int Airport::counter=0;
 
-Transportation::Transportation()
+Transportation::Transportation(std::string t)
+{
+    type=t;
+}
+
+std::string Transportation::getType()
+{
+    return type;
+}
+
+Airport::Airport(): Transportation("Airport")
+{
+    
+}
+
+Road::Road(): Transportation("Road")
 {
 
 }
 
-Airport::Airport()
+Railway::Railway(): Transportation("Railway")
 {
 
 }
 
-Road::Road()
-{
-
-}
-
-Railway::Railway()
-{
-
-}
-
-Trail::Trail()
+Trail::Trail(): Transportation("Trail")
 {
 
 }

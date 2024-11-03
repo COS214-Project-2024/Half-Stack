@@ -1,7 +1,8 @@
 #include "ResidentialDepartment.h"
+#include "Government.h"
+#include "ResourceManager.h"
 
 ResidentialDepartment* ResidentialDepartment::uniqueInstance;
-
 /**
  * @brief Constructor for the ResidentialDepartment class.
  */
@@ -27,18 +28,32 @@ ResidentialDepartment* ResidentialDepartment::instance()
  * @brief Adds a building to the vector of residential buildings.
  * @param b Pointer to the building.
  */
-void ResidentialDepartment::addBuilding(Building* b)
+void ResidentialDepartment::addBuilding(Residential* b)
 {
-    residents.push_back(b);
+    int num = b->getCapacity();
+    ResourceManager* rm = ResourceManager::instance();
+    if (rm->decreaseResourceLevels(10, 10, 50*num, 50*num, 25*num) == true)
+	{
+        if (rm->decreaseBudget(50*num)==true)
+        {
+            residents.push_back(b);
+            notifyNewHousing();
+        }else {
+            rm->increaseResourceLevels(10, 10, 50*num, 50*num, 25*num);
+            delete b;
+        }
+	}else{
+        delete b;
+    }
 }
 
 /**
  * @brief Removes a building from the vector of residential buildings.
  * @param b Pointer to the building.
  */
-void ResidentialDepartment::removeBuilding(Building* b)
+void ResidentialDepartment::removeBuilding(Residential* b)
 {
-	for (std::vector<Building*>::iterator i = residents.begin(); i != residents.end(); i++)
+	for (std::vector<Residential*>::iterator i = residents.begin(); i != residents.end(); i++)
     {
         if (*i == b)
         {
@@ -55,7 +70,7 @@ void ResidentialDepartment::removeBuilding(Building* b)
 int ResidentialDepartment::getTotalBuildings()
 {
     int counter = 0;
-	for (std::vector<Building*>::iterator i = residents.begin(); i != residents.end(); i++)
+	for (std::vector<Residential*>::iterator i = residents.begin(); i != residents.end(); i++)
     {
         counter++;
     }
@@ -69,7 +84,7 @@ int ResidentialDepartment::getTotalBuildings()
 int ResidentialDepartment::getTotalCapacity()
 {
     int total = 0;
-	for (std::vector<Building*>::iterator i = residents.begin(); i != residents.end(); i++)
+	for (std::vector<Residential*>::iterator i = residents.begin(); i != residents.end(); i++)
     {
         total = total + (*i)->capacity;
     }
@@ -142,3 +157,91 @@ void ResidentialDepartment::notifyCitizens(const std::string& message)
         citizen->receiveNotification(message);    
     }
 }
+
+void ResidentialDepartment::notifyNewHousing()
+{
+    std::vector<Citizen*> citizens = Government::instance(" ")->getCitizens();
+    std::vector<Citizen*>::iterator it = citizens.begin();
+    for (std::vector<Residential*>::iterator i = residents.begin(); i != residents.end(); i++)
+    {
+
+        if ((*i)->isFull()==false)
+        {
+            for(; it != citizens.end(); ++it)
+            {
+                if((*it)->getHome()==NULL && (*i)->isFull()==false)
+                {
+                    (*it)->moveIn(*i);
+                    (*i)->addCitizen(*it);
+                    attachCitizen(*it);
+                }
+            }
+        }
+    }
+}
+
+void ResidentialDepartment::houseNewCitizens()
+{
+    std::vector<Citizen*> citizens = Government::instance(" ")->getCitizens();
+    std::vector<Citizen*>::iterator it = citizens.begin();
+    for (std::vector<Residential*>::iterator i = residents.begin(); i != residents.end(); i++)
+    {
+
+        if ((*i)->isFull()==false)
+        {
+            for(; it != citizens.end(); ++it)
+            {
+                if((*it)->getHome()==NULL && (*i)->isFull()==false)
+                {
+                    (*it)->moveIn(*i);
+                    (*i)->addCitizen(*it);
+                    attachCitizen(*it);
+                }
+            }
+        }
+    }
+}
+
+int ResidentialDepartment::emptyRooms()
+{
+    int counter=0;
+    for (std::vector<Residential*>::iterator i = residents.begin(); i != residents.end(); i++)
+            {
+                if ((*i)->isFull()==false)
+                {
+                    int empty = (*i)->getCapacity()-(*i)->getNumResidents();
+                    counter += empty;
+                }
+            }
+    return counter;
+}
+
+ResidentialDepartment::~ResidentialDepartment()
+{
+     for (std::vector<Residential*>::iterator i = residents.begin(); i != residents.end(); i++)
+    {
+        if ((*i)!=NULL)
+        {
+            delete *i;    
+        }
+    }
+}
+
+void ResidentialDepartment::consumeDailyResources()
+{
+    bool consumed = true;
+
+    for (std::vector<Residential*>::iterator i = residents.begin(); i != residents.end(); i++)
+    {
+        if ((*i)->consumeResources()==false)
+        {
+            consumed=false;
+        }
+    }
+    if (consumed==false)
+    {
+        notifyCitizens("No power and water");
+        std::cout << "Some residential buildings have no water and power. Please replenish power and water." <<std::endl;
+    }
+}
+
