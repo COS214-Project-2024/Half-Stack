@@ -72,12 +72,30 @@ public:
      */
 	virtual ~Building();
 
+     /**
+     * @brief pure virtual function to add a citizen to the building
+     */
      virtual void addCitizen(Citizen* c)=0;
 
+     /**
+     * @brief gets total capacity of building
+     * 
+     * @return capacity of building
+     */
      virtual int getCapacity();
 
+     /**
+     * @brief determines if building is at full capacity
+     * 
+     * @return true if no more citizens can be added, false if more citizens can be added
+     */
      virtual bool isFull(){ return false;}
 
+     /**
+     * @brief return location
+     * 
+     * @return location
+     */
      std::string getType();
 };
 
