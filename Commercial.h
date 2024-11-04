@@ -1,61 +1,121 @@
-#ifndef COMMERCIAL_H
-#define COMMERCIAL_H
-
-#include <string>
-#include <vector>
-
-#include "Building.h"
-#include "Citizen.h"
+#include "Commercial.h"
+#include "ResourceManager.h"
+#include <iostream>
 
 /**
- * @class Commercial
- * @brief The Commercial class represents a commercial building,
- *        which is a type of Building that can have employees and
- *        consume resources.
+ * @brief Constructs a new Commercial object.
+ * 
+ * Initializes a Commercial building with the specified capacity and location.
+ * 
+ * @param num The initial capacity of the Commercial building.
+ * @param l The location of the Commercial building.
  */
-class Commercial : public Building
+Commercial::Commercial(int num, std::string l) : Building(num, l)
 {
+	
+}
 
-private:
-	///< A vector of pointers to the employees in the commercial building.
-	std::vector<Citizen*> employees;
+/**
+ * @brief Adds a Citizen to the employees of the Commercial building.
+ * 
+ * @param c Pointer to the Citizen to be added.
+ */
+void Commercial::addCitizen(Citizen* c)
+{
+	employees.push_back(c);
+}
 
-public:
-	/**
-     * @brief Constructs a new Commercial object.
-     * 
-     * @param num The initial capacity of the Commercial building.
-     * @param loc The location of the Commercial building.
-     */
-	Commercial(int num, std::string loc);
+/**
+ * @brief Removes a Citizen from the employees of the Commercial building.
+ * 
+ * Searches for the specified Citizen and removes them from the employee list.
+ * 
+ * @param c Pointer to the Citizen to be removed.
+ */
+void Commercial::removeCitizen(Citizen* c)
+{
+	for (std::vector<Citizen*>::iterator i = employees.begin(); i != employees.end(); i++)
+    {
+        if (*i == c)
+        {
+            i = employees.erase(i);
+            return;
+        }
+    }
+}
 
-	/**
-     * @brief Adds a Citizen to the employees of the Commercial building.
-     * 
-     * @param c Pointer to the Citizen to be added.
-     */
-	void addCitizen(Citizen* c);
+/**
+ * @brief Consumes resources required for the operation of the Commercial building.
+ * 
+ * If sufficient resources are available, the building will consume them;
+ * otherwise, a message will indicate that more resources are needed.
+ */
+bool Commercial::consumeResources()
+{
+    ResourceManager* rm = ResourceManager::instance();
+    int num = getNumEmployees();
+    if (rm->decreaseResourceLevels(10*num, 10*num, 0, 0, 0) == true)
+    {
+        for (std::vector<Citizen*>::iterator i = employees.begin(); i != employees.end(); i++)
+        {
+            if ((*i)->getNoResources()==true)
+            {
+                (*i)->setNoResources(true);
+                (*i)->setSatisfaction((*i)->getSatisfaction()->raiseStatus());
+            }
+        }
+        return true;
+        //std::cout << "Commercial building is consuming resources." << std::endl;
+    }
+    else
+    {
+        return false;
+        //std::cout << "Need more Resources." << std::endl;
 
-	/**
-     * @brief Removes a Citizen from the employees of the Commercial building.
-     * 
-     * @param c Pointer to the Citizen to be removed.
-     */
-	void removeCitizen(Citizen* c);
+        //call upon other functions to produce more resources or buy more?
+    }
+}
 
-	/**
-     * @brief Consumes resources required for the operation of the Commercial building.
-     * 
-     * If sufficient resources are available, the building will consume them;
-     * otherwise, a message will indicate that more resources are needed.
-     */
-	bool consumeResources();
+/**
+ * @brief determines amount of employees in building
+ * @return the amount of employees in the building
+ */
+int Commercial::getNumEmployees()
+{
+    int count=0;
+    for (std::vector<Citizen*>::iterator i = employees.begin(); i != employees.end(); i++)
+    {
+        count++;
+    }
+    return count;
+}
 
-     int getNumEmployees();
 
-     bool isFull();
+/**
+ * @brief determines if building is at full capacity
+ * 
+ * @return true if no more citizens can be added, false if more citizens can be added
+ */
+bool Commercial::isFull()
+{
+    if (getCapacity()==getNumEmployees())
+    {
+        return true;
+    }
 
-     ~Commercial();
-};
+    return false;
+}
 
-#endif
+/**
+ * @brief destructor
+ */
+Commercial::~Commercial()
+ {
+    for (std::vector<Citizen*>::iterator i = employees.begin(); i != employees.end(); i++)
+    {
+        if ((*i)!=NULL)
+        {
+            delete (*i);
+        }
+    }
+ }
