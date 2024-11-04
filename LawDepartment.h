@@ -48,7 +48,12 @@ public:
 	 */
 	~LawDepartment();
 
-	// std::vector<std::string> getAllLaws();
+	/**
+	 * @brief This functions gets and list(vector) that holds all the laws and returns it to the user
+	 *
+	 * @return The vector that holds all the laws that the user set up to this point
+	 */
+	std::vector<std::string> getAllLaws();
 };
 
 #endif
