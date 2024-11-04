@@ -103,6 +103,26 @@ void PublicServicesDepartment::increaseTax()
     std::cout << "Tax increased and satisfaction decreased for all citizens." << std::endl;
 }
 
+/**
+ * @brief Decreases the tax amount and Increases the satisfaction of all citizens.
+ */
+void PublicServicesDepartment::decreaseTax() 
+{
+    Government* government = Government::instance(" ");  
+    std::vector<Citizen*> allCitizens = government->getCitizens();
+
+    for (size_t i = 0; i < allCitizens.size(); ++i) 
+    {
+	    Citizen* citizen = allCitizens[i];	
+        Satisfaction* newStatus = citizen->getSatisfaction()->raiseStatus();
+        citizen->setSatisfaction(newStatus);
+    }
+	incomeTax -=1;
+	propertyTax -=1;
+	salesTax -= 1;
+    std::cout << "Tax decreased and satisfaction increased for all citizens." << std::endl;
+}
+
 
  /**
  * @brief gets the incomeTax variable value
