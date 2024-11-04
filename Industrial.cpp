@@ -74,6 +74,10 @@ bool Industrial::consumeResources()
     }
 }
 
+/**
+ * @brief determines amount of employees in building
+ * @return the amount of employees in the building
+ */
 int Industrial::getNumEmployees()
 {
     int count=0;
