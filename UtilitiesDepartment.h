@@ -69,9 +69,21 @@ class UtilitiesDepartment : public Department
 		 */
 		void performRoutine();
 
+		/**
+		 * @brief Adds a plant to the vector of residential buildings.
+		 * @param b Pointer to the plant building.
+		 */
 		void addBuilding(Plant* b);
 
+		/**
+		* @brief loop through plant vector and determine amount of water plants
+		* @return amount of water plants
+		*/
 		int getTotalWaterPlants();
+		/**
+		* @brief loop through plant vector and determine amount of power plants
+		* @return amount of power plants
+		*/
 		int getTotalPowerPlants();
 };
 

@@ -38,6 +38,7 @@ bool ResidentialDepartment::addBuilding(Residential* b)
         {
             residents.push_back(b);
             notifyNewHousing();
+            std::cout << "Residential building successfully built." <<std::endl;
             return true;
         }else {
             rm->increaseResourceLevels(10, 10, 50*num, 50*num, 25*num);
@@ -160,6 +161,10 @@ void ResidentialDepartment::notifyCitizens(const std::string& message)
     }
 }
 
+/**
+ * @brief goes through the government's citizens vector and the buildings vector to find citizens without homes
+ * and assigns them a home if the building is not at max capacity if a new building was added
+ */
 void ResidentialDepartment::notifyNewHousing()
 {
     std::vector<Citizen*> citizens = Government::instance(" ")->getCitizens();
@@ -182,6 +187,10 @@ void ResidentialDepartment::notifyNewHousing()
     }
 }
 
+/**
+ * @brief goes through the government's citizens vector and the buildings vector to find citizens without homes
+ * and assigns them a home if the building is not at max capacity if a new citizen was added
+ */
 void ResidentialDepartment::houseNewCitizens()
 {
     std::vector<Citizen*> citizens = Government::instance(" ")->getCitizens();
@@ -204,6 +213,11 @@ void ResidentialDepartment::houseNewCitizens()
     }
 }
 
+
+/**
+ * @brief goes through the buildings vector and determines the amount of available rooms for new citizens
+ * @return Number of rooms not used.
+ */
 int ResidentialDepartment::emptyRooms()
 {
     int counter=0;
@@ -218,6 +232,9 @@ int ResidentialDepartment::emptyRooms()
     return counter;
 }
 
+/**
+ * @brief destructor
+ */
 ResidentialDepartment::~ResidentialDepartment()
 {
      for (std::vector<Residential*>::iterator i = residents.begin(); i != residents.end(); i++)
@@ -229,6 +246,9 @@ ResidentialDepartment::~ResidentialDepartment()
     }
 }
 
+/**
+ * @brief goes through the buildings vector and calls the consumeResources function on each
+ */
 void ResidentialDepartment::consumeDailyResources()
 {
     bool consumed = true;

@@ -103,19 +103,40 @@ void PublicServicesDepartment::increaseTax()
     std::cout << "Tax increased and satisfaction decreased for all citizens." << std::endl;
 }
 
+
+ /**
+ * @brief gets the incomeTax variable value
+ * 
+ * @return value of IncomeTax variable
+ */
 double PublicServicesDepartment::getIncomeTax()
 {
 	return incomeTax;
 }
+ /**
+ * @brief gets the propertyTax variable value
+ * 
+ * @return value of PropertyTax variable
+ */
 double PublicServicesDepartment::getPropertyTax()
 {
 	return propertyTax;
 }
+/**
+ * @brief gets the salesTax variable value
+ * 
+ * @return value of salesTax variable
+ */
 double PublicServicesDepartment::getSalesTax()
 {
 	return salesTax;
 }
 
+ /**
+ * @brief adds a building to the vector attribute
+ * 
+ * @param b the building to be added.
+ */
 void PublicServicesDepartment::addBuilding(Building* b)
 {
 	int num = b->getCapacity();
@@ -136,6 +157,10 @@ void PublicServicesDepartment::addBuilding(Building* b)
     }
 }
 
+/**
+ * @brief goes through the government's citizens vector and the buildings vector to find citizens without jobs
+ * and assign them a job if they are over 18 and the building is not at max capaity
+ */
 void PublicServicesDepartment::employCitizens()
 {
 	std::vector<Citizen*> citizens = Government::instance(" ")->getCitizens();
@@ -156,6 +181,9 @@ void PublicServicesDepartment::employCitizens()
     }
 }
 
+/**
+ * @brief goes through the buildings vector and calls the consumeResources function on each
+ */
 void PublicServicesDepartment::consumeDailyResources()
 {
     bool consumed = true;
@@ -172,6 +200,11 @@ void PublicServicesDepartment::consumeDailyResources()
     }
 }
 
+/**
+ * @brief loops through the buildings vector to determine the amount of buildings
+ * 
+ * @return total amount of buildings
+ */
 int PublicServicesDepartment::getTotalBuildings()
 {
     int counter = 0;
@@ -182,6 +215,11 @@ int PublicServicesDepartment::getTotalBuildings()
     return counter;
 }
 
+/**
+ * @brief loops through the buildings vector to determine the capacity of buildings
+ * 
+ * @return total capacity of buildings
+ */
 int PublicServicesDepartment::getTotalCapacity()
 {
     int total = 0;
