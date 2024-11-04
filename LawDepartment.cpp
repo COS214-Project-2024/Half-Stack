@@ -23,7 +23,7 @@ LawDepartment *LawDepartment::instance()
  * If it does already exist, display a message to the user indicating that the law already exists
  * Otherwise, add the law
  * 
- * @param l The law that the user sends in
+ * @param l The law that the user sends in. A string variable describing the law
 */
 void LawDepartment::addLaw(std::string l)
 {
@@ -49,13 +49,13 @@ void LawDepartment::addLaw(std::string l)
 }
 
 /**
- * @brief Adds a new law to the vector of laws. 
- * 
- * First we must see if the law exists before removing it. 
- * If it does not exist, display a message to the user indicating that the law does not exist
- * Otherwise, remove the law
- * 
- * @param l The law that the user sends in
+* @brief Removes a law from the vector of laws.
+*
+* First we must see if the law exists before removing it.
+* If it does not exist, display a message to the user indicating that the law does not exist
+* Otherwise, remove the law
+*
+* @param l The law that the user sends in
 */
 void LawDepartment::removeLaw(std::string l) 
 {

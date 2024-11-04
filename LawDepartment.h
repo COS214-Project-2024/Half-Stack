@@ -33,7 +33,7 @@ public:
 	void addLaw(std::string l);
 
 	/**
-	 * @brief Adds a new law to the vector of laws.
+	 * @brief Removes a law from the vector of laws.
 	 *
 	 * First we must see if the law exists before removing it.
 	 * If it does not exist, display a message to the user indicating that the law does not exist
