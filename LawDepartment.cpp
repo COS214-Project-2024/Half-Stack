@@ -79,7 +79,7 @@ void LawDepartment::removeLaw(std::string l)
 }
 
 /**
- * @brief Cleans up any dynamically allocated memory. Sets the instance to null, effectively cleaning up memory
+ * @brief Cleans up any dynamically allocated memory. Deletes the instance, effectively cleaning up memory
  */
 LawDepartment::~LawDepartment()
 {
