@@ -45,10 +45,20 @@ void Commercial::removeCitizen(Citizen* c)
 }
 
 /**
- * @brief Consumes resources required for the operation of the Commercial building.
+ * @brief Consumes resources required for the Commercial building based on the number of employees.
  * 
- * If sufficient resources are available, the building will consume them;
- * otherwise, a message will indicate that more resources are needed.
+ * This function attempts to decrease the resource levels in the ResourceManager instance based on the 
+ * number of employees in the building. If the resources are successfully decreased, it iterates over 
+ * the list of employees and updates their resource status and satisfaction levels if they lack resources.
+ * 
+ * @return true if resources were successfully consumed; false if resources are insufficient.
+ * 
+ * The function decreases water and energy resources based on a factor of 10 per employee. 
+ * If resources are available, it sets the `NoResources` flag to true for each employee lacking resources 
+ * and raises their satisfaction status.
+ * 
+ * If the resources are insufficient, the function returns false, and alternative methods to acquire resources 
+ * (such as production or purchasing) could be implemented as additional logic.
  */
 bool Commercial::consumeResources()
 {
