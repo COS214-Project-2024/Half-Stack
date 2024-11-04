@@ -1,5 +1,4 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-//#include "vcpkg/buildtrees/doctest/src/v2.4.11-2c5d2f15c5.clean.tmp/doctest-2.4.11/doctest/doctest.h"
 #include "doctest.h"
 #include "LawDepartment.h"
 
