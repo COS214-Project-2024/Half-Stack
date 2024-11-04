@@ -2,6 +2,8 @@
 
 LawDepartment* LawDepartment::uniqueInstance;
 
+/// @brief Sets the law department singleton instance to ensure that only one instance is created
+/// @return Returns the instance. Now we can use the LawDepartment functionality through this instance
 LawDepartment *LawDepartment::instance()
 {
     if(uniqueInstance == nullptr)
@@ -12,6 +14,15 @@ LawDepartment *LawDepartment::instance()
 	return uniqueInstance;
 }
 
+/**
+ * @brief Adds a new law to the vector of laws. 
+ * 
+ * First we must see if the law does not already exist before adding it. 
+ * If it does already exist, display a message to the user indicating that the law already exists
+ * Otherwise, add the law
+ * 
+ * @param l The law that the user sends in
+*/
 void LawDepartment::addLaw(std::string l)
 {
 	std::vector<std::string>::iterator it = this->laws.begin();
@@ -35,6 +46,15 @@ void LawDepartment::addLaw(std::string l)
 	}
 }
 
+/**
+ * @brief Adds a new law to the vector of laws. 
+ * 
+ * First we must see if the law exists before removing it. 
+ * If it does not exist, display a message to the user indicating that the law does not exist
+ * Otherwise, remove the law
+ * 
+ * @param l The law that the user sends in
+*/
 void LawDepartment::removeLaw(std::string l) 
 {
 	std::vector<std::string>::iterator it = this->laws.begin();
@@ -56,9 +76,12 @@ void LawDepartment::removeLaw(std::string l)
 	}
 }
 
+/**
+ * @brief Cleans up any dynamically allocated memory. Sets the instance to null, effectively cleaning up memory
+ */
 LawDepartment::~LawDepartment()
 {
-	
+	uniqueInstance = nullptr;
 }
 
 /*std::vector<std::string> LawDepartment::getAllLaws()
