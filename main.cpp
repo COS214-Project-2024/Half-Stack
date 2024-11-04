@@ -58,7 +58,9 @@ void WelcomePlayer()
         return;
     }
     std::cout << "Enter a name for your city: " ;
+    //std::getline(std::cin, cityName);
     std::cin >> cityName;
+    //std::cin.clear();
 }
 
 void menu()
@@ -72,7 +74,7 @@ void menu()
     std::cout << "             | e. Build building        |" <<std::endl;
     std::cout << "             | f. House all homeless    |" <<std::endl;
     std::cout << "             | g. Collect tax           |" <<std::endl;
-    std::cout << "             | h. Increase tax          |" <<std::endl;
+    std::cout << "             | h. Increase/Decrease tax |" <<std::endl;
     std::cout << "             | i. Increase jobs         |" <<std::endl;
     std::cout << "             | j. Handle Law            |" <<std::endl;
     std::cout << "             | k. Buy resources         |" <<std::endl;
@@ -271,7 +273,18 @@ void collectTax()
 
 void increaseTax()
 {
-    publicDep->increaseTax();
+    char choice;
+    std::cout << "a. Increase"<<std::endl;
+    std::cout << "b. Decrease" <<std::endl;
+    std::cin >> choice;
+    if (choice=='a')
+    {
+        publicDep->increaseTax();
+    }
+    if (choice=='b')
+    {
+        publicDep->decreaseTax();
+    }
 }
 
 void increaseJobs()

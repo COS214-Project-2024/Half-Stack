@@ -56,6 +56,11 @@ public:
      */
     void increaseTax();
 
+    /**
+     * @brief Decreases the tax amount and Increases the satisfaction of all citizens.
+     */
+    void decreaseTax();
+
      /**
      * @brief gets the incomeTax variable value
      * 
