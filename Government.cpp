@@ -313,7 +313,7 @@ int Government::getTotalNeutral()
 	return total;
 }
 
-/**  
+/**
  * @brief Calculates the total number of citizens who's satisfactions are satisfied that arecurrently in the list
  * 
  * @return
