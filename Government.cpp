@@ -355,24 +355,9 @@ int Government::getTotalUnsatisfied()
 }
 
 /**
- * @brief Displays to the user the current numbers of the various types of citizens, resource numbers and building types that currently exists
+ * @brief Displays the current numbers of the various types of citizens, resource numbers and building types that currently exists within the system
  * 
- * Outputs to the user the following in the sequence:
- * Population: Total number of citizens
- * Homeless: Total homeless citizens
- * Employed: Total employed citizens
- * , Unemployed: Total unemployed citizens
- * Satisfied: Total Satisfied citizens, Neutral: Total neutral citizens, Unsatisfied: Total unsatisfied citizens
- * Budget: Gets the budget from the resource manager
- * Water: Gets the water level from resource manager
- * , Energy: Gets the energy level from resource manager
- * , Wood: Gets the number of wood from resource manager
- * , Steel: Gets the number of steel from resource manager
- * , General Materials: Gets the number of general materials from resource manager
- * Residental Buildings: Total number of buildings from Residential Department [capacity: total capacity for the residential buildings]
- * Job Buildings: Total number of job buildings from Public services Department [capacity: total capacity for the job buildings]
- * Airports: Total airports, Roads : Total roads, Railways: Total railways
- * WaterPlants: Total waterplants, PowerPlants: Total powerplants
+ * A general overview of the numbers and statistics of your city
  */
 void Government::getCityStats()
 {
