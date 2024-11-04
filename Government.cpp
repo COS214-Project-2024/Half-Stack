@@ -119,8 +119,7 @@ Government* Government::instance(std::string name)
 /**
  * @brief Destructs and deallocates any dynamic memory created by the Government class
  * 
- * Clears and deletes all citizens in the Citizen vector
- * Deletes the instance, effectively cleaning up memory
+ * Clears and deletes all citizens in the Citizen vector. Deletes the instance, effectively cleaning up memory
  */
 Government::~Government()
 {
@@ -179,7 +178,7 @@ void Government::addCitizen(Citizen* c)
 /** 
  * @brief Checks whether or not the citizen already exists within the list of citizens
  * 
- * iterates through thr vector and checks whether the citizen already exists
+ * iterates through the vector and checks whether the citizen already exists
  * 
  * @param c Pointer to the citizen object we want to test existance
  * 
@@ -206,7 +205,7 @@ bool Government::hasCitizen(Citizen* c)
  * @brief Calculates the total number of citizens currently in the list
  * 
  * @return
- * The cumulutive number of citizens within the list
+ * The cumulative number of citizens within the list
 */ 
 int Government::getTotalCitizens()
 {
@@ -224,7 +223,7 @@ int Government::getTotalCitizens()
  * @brief Calculates the total number of citizens that are unemployed that are currently in the list
  * 
  * @return
- * The cumulutive number of unemployed citizens within the list
+ * The cumulative number of unemployed citizens within the list
 */ 
 int Government::getTotalUnemployed()
 {
@@ -245,7 +244,7 @@ int Government::getTotalUnemployed()
  * @brief Calculates the total number of employed citizens currently in the list
  * 
  * @return
- * The cumulutive number of employed citizens within the list
+ * The cumulative number of employed citizens within the list
 */ 
 int Government::getTotalEmployed()
 {
@@ -276,7 +275,7 @@ std::vector<Citizen*> Government::getCitizens() const
  * @brief Calculates the total number of homeless citizens currently in the list
  * 
  * @return
- * The cumulutive number of homeless citizens within the list
+ * The cumulative number of homeless citizens within the list
 */ 
 int Government::getHomeless()
 {
@@ -296,7 +295,7 @@ int Government::getHomeless()
  * @brief Calculates the total number of citizens who's satisfactions are neutral that arecurrently in the list
  * 
  * @return
- * The cumulutive number of neutral citizens within the list
+ * The cumulative number of neutral citizens within the list
 */ 
 int Government::getTotalNeutral()
 {
@@ -317,7 +316,7 @@ int Government::getTotalNeutral()
  * @brief Calculates the total number of citizens who's satisfactions are satisfied that arecurrently in the list
  * 
  * @return
- * The cumulutive number of satisfied citizens within the list
+ * The cumulative number of satisfied citizens within the list
 */ 
 int Government::getTotalSatisfied()
 {
@@ -338,7 +337,7 @@ int Government::getTotalSatisfied()
  * @brief Calculates the total number of citizens who's satisfactions are unsatisfied that arecurrently in the list
  * 
  * @return
- * The cumulutive number of unsatisfied citizens within the list
+ * The cumulative number of unsatisfied citizens within the list
 */ 
 int Government::getTotalUnsatisfied()
 {
