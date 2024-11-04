@@ -7,6 +7,7 @@
 #include "Citizen.h"
 
 class Citizen;
+
 /**
  * @class Residential
  * @brief The Residential class represents a residential building that can house citizens.
@@ -106,6 +107,11 @@ public:
      * @return Building* Pointer to the newly created Estate if successful, or nullptr if resources are insufficient.
      */
 	Building* build();
+
+     /**
+     * @brief destructor for estate
+     */
+     ~Estate();
 };
 
 #endif
