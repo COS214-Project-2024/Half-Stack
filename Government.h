@@ -42,56 +42,64 @@ public:
 	/**
 	 * @brief Sets the Government singleton instance to ensure that only one instance is created
 	 *
-	 * @return Returns the instance. Now we can use the Government functionality through this instance
+	 * @return Government*
+	 * Returns the instance. Now we can use the Government functionality through this instance
 	 */
 	static Government *instance(std::string name);
 
 	/**
 	 * @brief Gets the Residential Department instance
 	 *
-	 * @return The Residential Department instance that the class holds
+	 * @return ResidentialDepartment*
+	 * The Residential Department instance that the class holds
 	 */
 	ResidentialDepartment *getResidentialDepartment();
 
 	/**
 	 * @brief Gets the Transport Department instance
 	 *
-	 * @return The Transport Department instance that the class holds
+	 * @return TransportDepartment*
+	 * The Transport Department instance that the class holds
 	 */
 	TransportDepartment *getTransportDepartment();
 
 	/**
 	 * @brief Gets the Utilities Department instance
 	 *
-	 * @return The Utilities Department instance that the class holds
+	 * @return UtilitiesDepartment*
+	 * The Utilities Department instance that the class holds
 	 */
 	UtilitiesDepartment *getUtilitiesDepartment();
 
 	/**
 	 * @brief Gets the Public Services Department instance
 	 *
-	 * @return The Public Services Department instance that the class holds
+	 * @return PublicServicesDepartment*
+	 * The Public Services Department instance that the class holds
 	 */
 	PublicServicesDepartment *getPublicServicesDepartment();
 
 	/**
 	 * @brief Gets the Law Department instance
 	 *
-	 * @return The Law Department instance that the class holds
+	 * @return LawDepartment*
+	 * The Law Department instance that the class holds
 	 */
 	LawDepartment *getLawDepartment();
 
 	/**
 	 * @brief Gets the City Growth Department instance
 	 *
-	 * @return The City Growth Department instance that the class holds
+	 * @return CityGrowthDepartment*
+	 * The City Growth Department instance that the class holds
 	 */
 	CityGrowthDepartment *getCityGrowthDepartment();
 
 	/**
 	 * @brief Gets the Resource Manager instance
 	 *
-	 * @return The Resource Manager instance that the class holds
+	 * @return ResourceManager*
+	 * The Resource Manager instance that the class holds
 	 */
 	ResourceManager *getResourceManager();
 
@@ -143,7 +151,7 @@ public:
 	/**
 	 * @brief Calculates the total number of citizens currently in the list
 	 *
-	 * @return
+	 * @return int
 	 * The cumulative number of citizens within the list
 	 */
 	int getTotalCitizens();
@@ -151,14 +159,16 @@ public:
 	/**
 	 * @brief Gets the list of citizens currently registered in the system
 	 *
-	 * @return The vector that holds the citizens registered
+	 * @return vector<Citizen*> 
+	 * 
+	 * The vector that holds the citizens registered
 	 */
 	std::vector<Citizen *> getCitizens() const;
 
 	/**
 	 * @brief Calculates the total number of citizens that are unemployed that are currently in the list
 	 *
-	 * @return
+	 * @return int
 	 * The cumulative number of unemployed citizens within the list
 	 */
 	int getTotalUnemployed();
@@ -166,7 +176,7 @@ public:
 	/**
 	 * @brief Calculates the total number of employed citizens currently in the list
 	 *
-	 * @return
+	 * @return int
 	 * The cumulative number of employed citizens within the list
 	 */
 	int getTotalEmployed();
@@ -174,7 +184,7 @@ public:
 	/**
 	 * @brief Calculates the total number of homeless citizens currently in the list
 	 *
-	 * @return
+	 * @return int
 	 * The cumulative number of homeless citizens within the list
 	 */
 	int getHomeless();
@@ -182,7 +192,7 @@ public:
 	/**
 	 * @brief Calculates the total number of citizens who's satisfactions are neutral that arecurrently in the list
 	 *
-	 * @return
+	 * @return int
 	 * The cumulative number of neutral citizens within the list
 	 */
 	int getTotalNeutral();
@@ -190,7 +200,7 @@ public:
 	/**
 	 * @brief Calculates the total number of citizens who's satisfactions are satisfied that arecurrently in the list
 	 *
-	 * @return
+	 * @return int
 	 * The cumulative number of satisfied citizens within the list
 	 */
 	int getTotalSatisfied();
@@ -198,7 +208,7 @@ public:
 	/**
 	 * @brief Calculates the total number of citizens who's satisfactions are unsatisfied that arecurrently in the list
 	 *
-	 * @return
+	 * @return int
 	 * The cumulative number of unsatisfied citizens within the list
 	 */
 	int getTotalUnsatisfied();

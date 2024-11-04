@@ -34,7 +34,8 @@ Government::Government(std::string name)
 /**
  * @brief Gets the Residential Department instance
  * 
- * @return The Residential Department instance that the class holds
+ * @return ResidentialDepartment*
+ * The Residential Department instance that the class holds
  */
 ResidentialDepartment* Government::getResidentialDepartment()
 {
@@ -44,7 +45,8 @@ ResidentialDepartment* Government::getResidentialDepartment()
 /**
  * @brief Gets the Transport Department instance
  * 
- * @return The Transport Department instance that the class holds
+ * @return TransportDepartment* 
+ * The Transport Department instance that the class holds
  */
 TransportDepartment* Government::getTransportDepartment()
 {
@@ -54,7 +56,8 @@ TransportDepartment* Government::getTransportDepartment()
 /**
  * @brief Gets the Utilities Department instance
  * 
- * @return The Utilities Department instance that the class holds
+ * @return UtilitiesDepartment*
+ * The Utilities Department instance that the class holds
  */
 UtilitiesDepartment* Government::getUtilitiesDepartment()
 {
@@ -64,7 +67,8 @@ UtilitiesDepartment* Government::getUtilitiesDepartment()
 /**
  * @brief Gets the Public Services Department instance
  * 
- * @return The Public Services Department instance that the class holds
+ * @return PublicServicesDepartment*
+ * The Public Services Department instance that the class holds
  */
 PublicServicesDepartment* Government::getPublicServicesDepartment()
 {
@@ -74,7 +78,8 @@ PublicServicesDepartment* Government::getPublicServicesDepartment()
 /**
  * @brief Gets the Law Department instance
  * 
- * @return The Law Department instance that the class holds
+ * @return LawDepartment*
+ * The Law Department instance that the class holds
  */
 LawDepartment* Government::getLawDepartment()
 {
@@ -84,7 +89,8 @@ LawDepartment* Government::getLawDepartment()
 /**
  * @brief Gets the City Growth Department instance
  * 
- * @return The City Growth Department instance that the class holds
+ * @return CityGrowthDepartment*
+ * The City Growth Department instance that the class holds
  */
 CityGrowthDepartment* Government::getCityGrowthDepartment()
 {
@@ -94,7 +100,8 @@ CityGrowthDepartment* Government::getCityGrowthDepartment()
 /**
  * @brief Gets the Resource Manager instance
  * 
- * @return The Resource Manager instance that the class holds
+ * @return ResourceManager*
+ * The Resource Manager instance that the class holds
  */
 ResourceManager* Government::getResourceManager()
 {
@@ -104,7 +111,8 @@ ResourceManager* Government::getResourceManager()
 /**
  * @brief Sets the Government singleton instance to ensure that only one instance is created
  * 
- * @return Returns the instance. Now we can use the Government functionality through this instance
+ * @return Government**
+ * Returns the instance. Now we can use the Government functionality through this instance
  */
 Government* Government::instance(std::string name) 
 {
@@ -204,7 +212,7 @@ bool Government::hasCitizen(Citizen* c)
 /**  
  * @brief Calculates the total number of citizens currently in the list
  * 
- * @return
+ * @return int
  * The cumulative number of citizens within the list
 */ 
 int Government::getTotalCitizens()
@@ -222,7 +230,7 @@ int Government::getTotalCitizens()
 /**  
  * @brief Calculates the total number of citizens that are unemployed that are currently in the list
  * 
- * @return
+ * @return int
  * The cumulative number of unemployed citizens within the list
 */ 
 int Government::getTotalUnemployed()
@@ -243,7 +251,7 @@ int Government::getTotalUnemployed()
 /**  
  * @brief Calculates the total number of employed citizens currently in the list
  * 
- * @return
+ * @return int
  * The cumulative number of employed citizens within the list
 */ 
 int Government::getTotalEmployed()
@@ -264,7 +272,8 @@ int Government::getTotalEmployed()
 /**
  * @brief Gets the list of citizens currently registered in the system
  * 
- * @return The vector that holds the citizens registered
+ * @return vector<Citizen*> 
+ * The vector that holds the citizens registered
  */
 std::vector<Citizen*> Government::getCitizens() const 
 {
@@ -274,7 +283,7 @@ std::vector<Citizen*> Government::getCitizens() const
 /**  
  * @brief Calculates the total number of homeless citizens currently in the list
  * 
- * @return
+ * @return int
  * The cumulative number of homeless citizens within the list
 */ 
 int Government::getHomeless()
@@ -294,7 +303,7 @@ int Government::getHomeless()
 /**  
  * @brief Calculates the total number of citizens who's satisfactions are neutral that arecurrently in the list
  * 
- * @return
+ * @return int
  * The cumulative number of neutral citizens within the list
 */ 
 int Government::getTotalNeutral()
@@ -315,7 +324,7 @@ int Government::getTotalNeutral()
 /**
  * @brief Calculates the total number of citizens who's satisfactions are satisfied that arecurrently in the list
  * 
- * @return
+ * @return int
  * The cumulative number of satisfied citizens within the list
 */ 
 int Government::getTotalSatisfied()
@@ -336,7 +345,7 @@ int Government::getTotalSatisfied()
 /**  
  * @brief Calculates the total number of citizens who's satisfactions are unsatisfied that arecurrently in the list
  * 
- * @return
+ * @return int
  * The cumulative number of unsatisfied citizens within the list
 */ 
 int Government::getTotalUnsatisfied()
