@@ -281,22 +281,21 @@ void increaseJobs()
 
 void handleLaw()
 {
-    std::string newLaw;
-    std::string remLaw;
+    std::string law;
     char type;
     std::cout << "Add or Remove law? (A/R): ";
     std::cin >> type;
-    switch (type)
+    if (type=='A')
     {
-        case 'A':
-            std::getline(std::cin,newLaw);
-            lawDep->addLaw(newLaw);
-            break;
-        case 'R':
-            std::getline(std::cin,remLaw);
-            lawDep->removeLaw(remLaw);
-            break;
-        default: break;
+            std::cout << "Law: ";
+            std::cin >> law;
+            lawDep->addLaw(law);
+    }
+    if (type=='R')
+    {
+        std::cout << "Law: ";
+        std::cin >> law;
+        lawDep->removeLaw(law);
     }
 }
 
@@ -305,7 +304,7 @@ void buyResources()
     int wood;int mats;
     std::cout << "How much wood and steel each: ";
     std::cin >> wood;
-    std::cout << "How much mats: ";
+    std::cout << "How much materials: ";
     std::cin >> mats;
     if (rm->decreaseBudget(wood+wood+mats)==true)
         rm->increaseResourceLevels(100,100,wood,wood,mats);
@@ -326,6 +325,12 @@ void buildPlant()
     {
         utilityDep->addBuilding(powerPlant.createPlant(1,"powerplant"));
     }
+    std::cout << "City Budget: " << rm->getBudget() << std::endl;
+    std::cout << "Water: " << rm->getWaterLevel()
+              << ", Energy: " << rm->getEnergyLevel() 
+              << ", Wood: " << rm->getWood()
+              << ", Steel: " << rm->getSteel()
+              << ", General Materials: " <<  rm->getGeneralMaterials() << std::endl;
 }
 
 void startDay()
@@ -334,13 +339,20 @@ void startDay()
     residentialDep->consumeDailyResources();
     publicDep->consumeDailyResources();
     transportDep->openTransport();
-    //publicDep->collectTax("Income");
-    //publicDep->collectTax("Sales");
-    //publicDep->collectTax("Property");
+    if (rm->getEnergyLevel() < 100)
+    {
+        residentialDep->setLoadShedding(true,"3:00","5:00");
+        residentialDep->setLoadShedding(false,"3:00","5:00");
+    }
     double moneyMade = gov->getTotalNeutral() + (gov->getTotalSatisfied()*2);
     rm->increaseBudget(moneyMade);
-    std::cout << "City budget increased: " << rm->getBudget() <<std::endl;
-    transportDep->closeTransport();
+     transportDep->closeTransport();
+    std::cout << "City budget at end of day: " << rm->getBudget() <<std::endl;
+     std::cout << "Water: " << rm->getWaterLevel()
+              << ", Energy: " << rm->getEnergyLevel() 
+              << ", Wood: " << rm->getWood()
+              << ", Steel: " << rm->getSteel()
+              << ", General Materials: " <<  rm->getGeneralMaterials() << std::endl;
 }
 
 void incTransport()
