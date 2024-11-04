@@ -121,6 +121,7 @@ void UtilitiesDepartment::addBuilding(Plant* p)
 		if (rm->decreaseBudget(200)==true)
         {
             plants.push_back(p);
+			std::cout << "Plants successfully bulit." <<std::endl;
         }else {
             rm->increaseResourceLevels(0, 0, 50, 50, 30);
 			delete p;
