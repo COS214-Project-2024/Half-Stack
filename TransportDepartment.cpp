@@ -3,6 +3,9 @@
 
 TransportDepartment* TransportDepartment::uniqueInstance;
 
+/**
+ * @brief Cleans up any dynamically allocated memory. Cleans up the allocated commands per the transport businesses. Sets the unique instance, effectively cleaning up the memeory
+ */ 
 TransportDepartment::~TransportDepartment()
 {
 	std::vector<std::pair<Transportation*, std::pair<TransportCommand*, TransportCommand*>>>::iterator it = this->transports.begin();
@@ -12,13 +15,22 @@ TransportDepartment::~TransportDepartment()
 		delete it->second.first;
 		delete it->second.second;
 	}
+
+	uniqueInstance = nullptr;
 }
 
+/**
+ * @brief Default constructor. Only needed for instance creation
+ */
 TransportDepartment::TransportDepartment()
 {
 
 };
 
+/** 
+* @brief Sets the Transport department singleton instance to ensure that only one instance is created
+* @return Returns the instance. Now we can use the Transport Department functionality through this instance
+*/
 TransportDepartment* TransportDepartment::instance()
 {
     if(uniqueInstance == nullptr)
@@ -29,6 +41,24 @@ TransportDepartment* TransportDepartment::instance()
 	return uniqueInstance;
 }
 
+
+/**
+ * @brief Adds a new transport business to the vector of transports, if it meets resource and budget requirements
+ * 
+ * This checks if the transport facility does not already exists in the system and if the necessary resource and budget are availible based on the type of transport(Airport, Road, Railway). It handles the resource deductions, budget checks(to see if it is feasible), and rollbacks if the transport cannot be added. If successful, the commands for openTransport and closeTransport are assigned. After all checks have passed, add the transport to the list.
+ * 
+ * @param newTransport Pointer to a Transportation object which represents the transport to be added.
+ * 
+ * 	-If the `newTransport` is an Airport:
+ *		-Checks we're not exceeding the maximum number of airports allowed for this city. 
+		-Attempts to deduct the needed resources and budget specs needed for adding a transport. Rolls back if the addition was unsuccessful.
+ *	-If the `newTransport` is an Road or a Railway:
+		-Attempts to deduct the needed resources and budget specs needed for adding a transport. Rolls back if the addition was unsuccessful.
+
+ *If we had a successful addition, `newTransport` is paired with open and close business commands and is now stored in the list
+
+ @note If we have any fails, `newTransport` is deleted to prevent memeory leaks.
+*/
 void TransportDepartment::addTransport(Transportation* newTransport)
 {
 	if (newTransport->getType()=="Airport")
@@ -103,6 +133,17 @@ void TransportDepartment::addTransport(Transportation* newTransport)
 	this->transports.push_back(std::make_pair(newTransport, std::make_pair(openCom, closeCom)));
 }
 
+/**
+* @brief Removes a law from the list of transports.
+*
+* First we must see if the transport exists before removing it.
+* If it does not exist, display a message to the user indicating that the transport does not exist
+* Otherwise, remove the transport
+* We first delete the commands(open and close business), ensuring we will not have memeory leaks. 
+* Thereafter, we remove the transport
+*
+* @param l The transport that the user sends in
+*/
 void TransportDepartment::removeTransport(Transportation* newTransport) 
 {
 	std::vector<std::pair<Transportation*, std::pair<TransportCommand*, TransportCommand*>>>::iterator it = this->transports.begin();
@@ -118,6 +159,11 @@ void TransportDepartment::removeTransport(Transportation* newTransport)
 	}
 }
 
+/** 
+ * @brief Calls the command(openTransport) for every transport inside the list of transports
+ * 
+ * Iterates through the vector and calls the execute function stored in the command
+*/ 
 void TransportDepartment::openTransport() 
 {
 	std::vector<std::pair<Transportation*, std::pair<TransportCommand*, TransportCommand*>>>::iterator it = this->transports.begin();
@@ -128,6 +174,11 @@ void TransportDepartment::openTransport()
 	}
 }
 
+/** 
+ * @brief Calls the command(closeTransport) for every transport inside the list of transports
+ * 
+ * Iterates through the vector and calls the execute function that calls the command
+*/ 
 void TransportDepartment::closeTransport() 
 {
 	std::vector<std::pair<Transportation*, std::pair<TransportCommand*, TransportCommand*>>>::iterator it = this->transports.begin();
@@ -138,6 +189,11 @@ void TransportDepartment::closeTransport()
 	}
 }
 
+/** 
+ * @brief Gets the amount of airports currently set within the city
+ * 
+ * @return The amount of airports currently in this city
+*/
 int TransportDepartment::getTotalAirports()
 {
 	int counter=0;
@@ -152,6 +208,11 @@ int TransportDepartment::getTotalAirports()
 	return counter;
 }
 
+/** 
+ * @brief Gets the amount of roads currently set within the city
+ * 
+ * @return The amount of raods currently in this city
+*/
 int TransportDepartment::getTotalRoads()
 {
 	int counter=0;
@@ -166,6 +227,11 @@ int TransportDepartment::getTotalRoads()
 	return counter;
 }
 
+/** 
+ * @brief Gets the amount of railways currently set within the city
+ * 
+ * @return The amount of railways currently in this city
+*/
 int TransportDepartment::getTotalRailways()
 {
 	int counter=0;
