@@ -4,7 +4,7 @@
 TransportDepartment* TransportDepartment::uniqueInstance;
 
 /**
- * @brief Cleans up any dynamically allocated memory. Cleans up the allocated commands per the transport businesses. Sets the unique instance, effectively cleaning up the memeory
+ * @brief Cleans up any dynamically allocated memory. Cleans up the allocated commands per the transport businesses. Deletes the unique instance, effectively cleaning up the memeory
  */ 
 TransportDepartment::~TransportDepartment()
 {
@@ -16,7 +16,7 @@ TransportDepartment::~TransportDepartment()
 		delete it->second.second;
 	}
 
-	uniqueInstance = nullptr;
+	delete uniqueInstance;
 }
 
 /**
