@@ -51,10 +51,19 @@ public:
      */
 	bool consumeResources();
 
-	//produce resources function for plants and factories?
+	/**
+     * @brief determines amount of employees in building
+     * @return the amount of employees in the building
+     */
      int getNumEmployees();
 
+      /**
+     * @brief determines if building is at full capacity
+     * 
+     * @return true if no more citizens can be added, false if more citizens can be added
+     */
      bool isFull();
+
 };
 
 #endif
