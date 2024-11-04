@@ -12,9 +12,11 @@ int TaxCommand::getStatus()
 }
 
 /**
- * @brief Executes the income tax collection command for the assigned citizen.
+ * @brief Executes the income tax collection command for all citizens in the government.
  * 
- * This function triggers the citizen's tax payment for income tax.
+ * This function retrieves all citizens from the `Government` singleton instance and 
+ * triggers the `payTax` function with "IncomeTax" for each citizen. Only non-null 
+ * citizen pointers are processed. 
  */
 void CollectIncomeTax::execute()
 {
@@ -23,7 +25,7 @@ void CollectIncomeTax::execute()
     std::vector<Citizen*>::iterator it = citizens.begin();
     for(; it != citizens.end(); ++it)
     {
-        if((*it)!=NULL)
+        if((*it) != NULL)
         {
             (*it)->payTax("IncomeTax");
         }
@@ -31,9 +33,11 @@ void CollectIncomeTax::execute()
 }
 
 /**
- * @brief Executes the sales tax collection command for the assigned citizen.
+ * @brief Executes the sales tax collection command for all citizens in the government.
  * 
- * This function triggers the citizen's tax payment for sales tax.
+ * This function retrieves all citizens from the `Government` singleton instance and 
+ * triggers the `payTax` function with "SalesTax" for each citizen. Only non-null 
+ * citizen pointers are processed.
  */
 void CollectSalesTax::execute()
 {
@@ -42,7 +46,7 @@ void CollectSalesTax::execute()
     std::vector<Citizen*>::iterator it = citizens.begin();
     for(; it != citizens.end(); ++it)
     {
-        if((*it)!=NULL)
+        if((*it) != NULL)
         {
             (*it)->payTax("SalesTax");
         }
@@ -50,9 +54,11 @@ void CollectSalesTax::execute()
 }
 
 /**
- * @brief Executes the property tax collection command for the assigned citizen.
+ * @brief Executes the property tax collection command for all citizens in the government.
  * 
- * This function triggers the citizen's tax payment for property tax.
+ * This function retrieves all citizens from the `Government` singleton instance and 
+ * triggers the `payTax` function with "PropertyTax" for each citizen. Only non-null 
+ * citizen pointers are processed.
  */
 void CollectPropertyTax::execute()
 {
@@ -61,9 +67,10 @@ void CollectPropertyTax::execute()
     std::vector<Citizen*>::iterator it = citizens.begin();
     for(; it != citizens.end(); ++it)
     {
-        if((*it)!=NULL)
+        if((*it) != NULL)
         {
             (*it)->payTax("PropertyTax");
         }
     }
 }
+
