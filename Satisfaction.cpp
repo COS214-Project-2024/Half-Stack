@@ -23,6 +23,7 @@ Satisfied::Satisfied()
  */
 Satisfaction* Satisfied::raiseStatus()
 {
+    //std::cout << "Already at highest satisfaction level." << std::endl;
     return this;
 }
 
@@ -84,5 +85,6 @@ Satisfaction* Unsatisfied::raiseStatus()
  */
 Satisfaction* Unsatisfied::lowerStatus()
 {
+    //std::cout << "Already at lowest satisfaction level." << std::endl;
     return this;
 }
