@@ -53,10 +53,24 @@ public:
     ~Citizen();
 
     /**
-     * @brief Processes tax payment for the citizen based on the specified tax type.
+     * @brief Processes tax payment for the citizen based on the specified tax type, provided they are of legal age and employed.
      * 
-     * Outputs a message indicating the type of tax paid or an error if the tax type is unrecognized.
-     * @param tax A string representing the type of tax ("incomeTax", "SalesTax", "PropertyTax").
+     * This function checks if the citizen meets the age and employment requirements to pay tax. 
+     * If eligible, it dynamically allocates and invokes the appropriate tax payment action. Outputs a 
+     * message indicating the type of tax paid, or "invalid input" if the tax type is unrecognized.
+     * 
+     * @param tax A string representing the type of tax. Expected values are:
+     *            - "IncomeTax" for income tax
+     *            - "SalesTax" for sales tax
+     *            - "PropertyTax" for property tax
+     * 
+     * The function performs the following:
+     *   - If the citizen is under 18 years old or unemployed, the function returns without processing.
+     *   - If the `tax` parameter matches a recognized tax type, it allocates and assigns the appropriate 
+     *     tax payment action class, deletes any previously allocated tax class, and then calls the `pay()` method.
+     *   - Outputs a message in the format "<name> paid <tax type> tax." (e.g., "John Doe paid income tax.").
+     * 
+     * @note If an unrecognized tax type is provided, "invalid input" is output, and no action is taken.
      */
     void payTax(std::string tax);
 
