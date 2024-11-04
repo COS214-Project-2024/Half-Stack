@@ -24,7 +24,7 @@ Citizen::Citizen(int age)
 /**
  * @brief Destructor for the Citizen class.
  * 
- * Cleans up dynamically allocated resources for employment, satisfaction and tax.
+ * Cleans up dynamically allocated resources for employment and satisfaction.
  */
 Citizen::~Citizen()
 {
@@ -34,30 +34,23 @@ Citizen::~Citizen()
 }
 
 /**
- * @brief Processes tax payment for the citizen based on the specified tax type, provided they are of legal age and employed.
+ * @brief Processes tax payment for the citizen based on the specified tax type.
  * 
- * This function determines if the citizen is eligible to pay tax based on age and employment status. 
- * If eligible, it dynamically allocates and invokes the appropriate tax payment action. Outputs a 
- * message indicating the type of tax paid, or "invalid input" if the tax type is unrecognized.
+
+ * Outputs a message indicating which type of tax was paid by the citizen.
+ * If an unrecognized tax type is provided, it outputs "invalid input."
  * 
  * @param tax A string representing the type of tax. Expected values are:
- *            - "IncomeTax" for income tax
+ *            - "incomeTax" for income tax
  *            - "SalesTax" for sales tax
  *            - "PropertyTax" for property tax
  * 
- * If `tax` matches one of the specified values:
- *   - Allocates and assigns the appropriate tax payment class.
- *   - Calls the pay() method of the assigned tax class, outputting a message in the format:
- *     - "<name> paid income tax." if tax is "IncomeTax"
- *     - "<name> paid sales tax." if tax is "SalesTax"
- *     - "<name> paid property tax." if tax is "PropertyTax"
- * 
- * If an unrecognized tax type is provided, no action is taken and "invalid input" is output.
- * 
- * Note:
- *   - The function returns immediately without processing if the citizen is under 18 years old
- *     or has an employment status of "Unemployed".
- *   - If a previous tax payment action is allocated, it is deleted to prevent memory leaks.
+ * - Outputs a message in the format:
+
+ *   - "<name> paid income tax." if tax is "incomeTax"
+ *   - "<name> paid sales tax." if tax is "SalesTax"
+ *   - "<name> paid property tax." if tax is "PropertyTax"
+ *   - "invalid input." for any other value
  */
 void Citizen::payTax(std::string tax)
 {
@@ -159,7 +152,6 @@ void Citizen::setJob(Building* b)
     if (this->employment->getStatus() == "Unemployed")
     {
         //std::cout << this->ID << " obtained a job." << std::endl;
-
         setEmployment(employment->toggleStatus());
         jobBuilding = b;
     }
@@ -202,21 +194,37 @@ int Citizen::getAge()
     return age;
 }
 
+ /**
+  * @brief Gets the home of the citizen.
+ * @return Building* The home of the citizen.
+ */
 Building* Citizen::getHome()
 {
     return home;
 }
 
+ /**
+ * @brief sets the home of the citizen
+ * @param housing the building to set the home to
+ */
 void Citizen::moveIn(Residential* housing)
 {
     home = housing;
 }
 
+/**
+ * @brief gets value of noResources variable
+ * @return noResources variable value
+ */
 bool Citizen::getNoResources()
 {
     return noResources;
 }
 
+/**
+ * @brief sets value of noResources variable
+ * @param s bool value to set noResources to
+ */
 void Citizen::setNoResources(bool s)
 {
     noResources=s;
