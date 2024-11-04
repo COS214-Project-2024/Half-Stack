@@ -51,8 +51,10 @@ Gym::Gym(Residential* amen) : Amenity(amen)
 }
 
 /**
- * @brief Consumes extra electricity resources for the Gym.
- */
+* @brief Consumes extra power resources for the Garden.
+* 
+* @return if amenity successfully consumed resources
+*/
 bool Gym::consumeResources()
 {
     std::cout << "Gym consumes extra electricity." << std::endl;
@@ -61,6 +63,9 @@ bool Gym::consumeResources()
     return r;
 }
 
+/**
+* @brief Consumes extra power resources for the Garden.
+*/
 void Gym::consumePower()
 {
     amenity->increasePowerConsumption(2);
@@ -76,8 +81,10 @@ Pool::Pool(Residential* amen) : Amenity(amen)
 }
 
 /**
- * @brief Consumes extra water resources for the Pool.
- */
+* @brief Consumes extra water resources for the Garden.
+* 
+* @return if amenity successfully consumed resources
+*/
 bool Pool::consumeResources()
 {
     std::cout << "Swimming Pool consumes extra water." << std::endl;
@@ -86,6 +93,9 @@ bool Pool::consumeResources()
     return r;
 }
 
+/**
+* @brief Consumes extra water resources for the Garden.
+*/
 void Pool::consumeWater()
 {
     amenity->increaseWaterConsumption(5);
@@ -102,8 +112,10 @@ Internet::Internet(Residential* amen) : Amenity(amen)
 }
 
 /**
- * @brief Consumes extra power resources for the Internet service.
- */
+* @brief Consumes extra power resources for the Garden.
+* 
+* @return if amenity successfully consumed resources
+*/
 bool Internet::consumeResources()
 {
     std::cout << "Internet consumes extra power." << std::endl;
@@ -112,6 +124,9 @@ bool Internet::consumeResources()
     return r;
 }
 
+/**
+* @brief Consumes extra power resources for the Garden.
+*/
 void Internet::consumePower()
 {
     amenity->increasePowerConsumption(1);
@@ -126,8 +141,10 @@ Garden::Garden(Residential* amen) : Amenity(amen)
 }
 
 /**
- * @brief Consumes extra water resources for the Garden.
- */
+* @brief Consumes extra water resources for the Garden.
+* 
+* @return if amenity successfully consumed resources
+*/
 bool Garden::consumeResources()
 {
     std::cout << "Garden consumes extra water." << std::endl;
@@ -136,6 +153,9 @@ bool Garden::consumeResources()
     return r;
 }
 
+/**
+* @brief Consumes extra water resources for the Garden.
+*/
 void Garden::consumeWater()
 {
     amenity->increaseWaterConsumption(2);
