@@ -48,29 +48,15 @@ public:
     /**
      * @brief Destructor for the Citizen class.
      * 
-     * Cleans up dynamically allocated resources for employment, satisfaction and tax.
+     * Cleans up dynamically allocated resources for employment and satisfaction.
      */
     ~Citizen();
 
     /**
-     * @brief Processes tax payment for the citizen based on the specified tax type, provided they are of legal age and employed.
+     * @brief Processes tax payment for the citizen based on the specified tax type.
      * 
-     * This function checks if the citizen meets the age and employment requirements to pay tax. 
-     * If eligible, it dynamically allocates and invokes the appropriate tax payment action. Outputs a 
-     * message indicating the type of tax paid, or "invalid input" if the tax type is unrecognized.
-     * 
-     * @param tax A string representing the type of tax. Expected values are:
-     *            - "IncomeTax" for income tax
-     *            - "SalesTax" for sales tax
-     *            - "PropertyTax" for property tax
-     * 
-     * The function performs the following:
-     *   - If the citizen is under 18 years old or unemployed, the function returns without processing.
-     *   - If the `tax` parameter matches a recognized tax type, it allocates and assigns the appropriate 
-     *     tax payment action class, deletes any previously allocated tax class, and then calls the `pay()` method.
-     *   - Outputs a message in the format "<name> paid <tax type> tax." (e.g., "John Doe paid income tax.").
-     * 
-     * @note If an unrecognized tax type is provided, "invalid input" is output, and no action is taken.
+     * Outputs a message indicating the type of tax paid or an error if the tax type is unrecognized.
+     * @param tax A string representing the type of tax ("incomeTax", "SalesTax", "PropertyTax").
      */
     void payTax(std::string tax);
 
@@ -125,12 +111,28 @@ public:
      */
     int getAge();
 
+     /**
+     * @brief Gets the home of the citizen.
+     * @return Building* The home of the citizen.
+     */
     Building* getHome();
 
+    /**
+     * @brief sets the home of the citizen
+     * @param housing the building to set the home to
+     */
     void moveIn(Residential* housing);
 
+    /**
+     * @brief gets value of noResources variable
+     * @return noResources variable value
+     */
     bool getNoResources();
 
+    /**
+     * @brief sets value of noResources variable
+      * @param s bool value to set noResources to
+     */
     void setNoResources(bool s);
 };
 
