@@ -60,11 +60,11 @@ bool ResourceManager::decreaseResourceLevels(int water, int energy, int wood, in
     this->steel -= steel;
     this->generalMaterials -= materials;
 
-    std::cout << "Updated City resource levels - Water: " << this->waterLevel
+    /*std::cout << "Updated City resource levels - Water: " << this->waterLevel
               << ", Energy: " << this->energyLevel
               << ", Wood: " << this->wood
               << ", Steel: " << this->steel
-              << ", General Materials: " << this->generalMaterials << std::endl;
+              << ", General Materials: " << this->generalMaterials << std::endl;*/
 
     return true;
 }
@@ -86,7 +86,7 @@ bool ResourceManager::decreaseBudget(int money)
 
 	this->budget -= money;
 
-	std::cout << "Updated City Budget: " << this->budget << std::endl;
+	//std::cout << "Updated City Budget: " << this->budget << std::endl;
 
     return true;
 }
@@ -116,11 +116,11 @@ void ResourceManager::increaseResourceLevels(int water, int energy, int wood, in
     this->steel += steel;
     this->generalMaterials += materials;
 
-    std::cout << "Updated City resource levels - Water: " << this->waterLevel
+   /* std::cout << "Updated City resource levels - Water: " << this->waterLevel
               << ", Energy: " << this->energyLevel
               << ", Wood: " << this->wood
               << ", Steel: " << this->steel
-              << ", General Materials: " << this->generalMaterials << std::endl;
+              << ", General Materials: " << this->generalMaterials << std::endl;*/
 
 }
 
