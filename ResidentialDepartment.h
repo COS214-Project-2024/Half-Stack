@@ -85,14 +85,32 @@ class ResidentialDepartment : public Department
          */
         void notifyCitizens(const std::string& message);
 
+		/**
+ 		 * @brief goes through the government's citizens vector and the buildings vector to find citizens without homes
+		 * and assigns them a home if the building is not at max capacity  if a new building was added
+ 		 */
 		void notifyNewHousing();
 
+		/**
+		 * @brief goes through the government's citizens vector and the buildings vector to find citizens without homes
+		 * and assigns them a home if the building is not at max capacity if a new citizen was added
+		 */
 		void houseNewCitizens();
 
+		/**
+		* @brief goes through the buildings vector and determines the amount of available rooms for new citizens
+		* @return Number of rooms not used.
+		*/
 		int emptyRooms();
 
+		/**
+		* @brief goes through the buildings vector and calls the consumeResources function on each
+		*/
 		void consumeDailyResources();
 
+		/**
+		* @brief destructor
+		*/
 		~ResidentialDepartment();
 };
 
