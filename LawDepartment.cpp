@@ -2,8 +2,10 @@
 
 LawDepartment* LawDepartment::uniqueInstance;
 
-/// @brief Sets the law department singleton instance to ensure that only one instance is created
-/// @return Returns the instance. Now we can use the LawDepartment functionality through this instance
+/** 
+* @brief Sets the law department singleton instance to ensure that only one instance is created
+* @return Returns the instance. Now we can use the LawDepartment functionality through this instance
+*/
 LawDepartment *LawDepartment::instance()
 {
     if(uniqueInstance == nullptr)
