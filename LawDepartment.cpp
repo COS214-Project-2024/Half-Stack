@@ -83,7 +83,7 @@ void LawDepartment::removeLaw(std::string l)
  */
 LawDepartment::~LawDepartment()
 {
-	uniqueInstance = nullptr;
+	delete uniqueInstance;
 }
 
 /**
