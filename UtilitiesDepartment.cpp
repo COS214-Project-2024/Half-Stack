@@ -112,6 +112,10 @@ void UtilitiesDepartment::manageSewage()
 	std::cout << "The utilities department is managing sewage." << std::endl;
 }
 
+/**
+ * @brief Adds a plant to the vector of residential buildings.
+ * @param b Pointer to the plant building.
+ */
 void UtilitiesDepartment::addBuilding(Plant* p)
 {
 	//int num = b->getCapacity();
@@ -131,6 +135,10 @@ void UtilitiesDepartment::addBuilding(Plant* p)
 	}
 }
 
+/**
+ * @brief loop through plant vector and determine amount of water plants
+ * @return amount of water plants
+ */
 int UtilitiesDepartment::getTotalWaterPlants()
 {
 	int counter=0;
@@ -144,6 +152,10 @@ int UtilitiesDepartment::getTotalWaterPlants()
 	return counter;
 }
 
+/**
+ * @brief loop through plant vector and determine amount of power plants
+ * @return amount of power plants
+ */
 int UtilitiesDepartment::getTotalPowerPlants()
 {
 	int counter=0;
