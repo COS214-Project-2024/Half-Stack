@@ -86,3 +86,4 @@ Satisfaction* Unsatisfied::lowerStatus()
 {
     return this;
 }
+
