@@ -6,6 +6,11 @@
 
 CityGrowthDepartment* CityGrowthDepartment::uniqueInstance;
 
+/**
+ * @brief Increases housing capacity based on the specified building type.
+ * @param b Character representing the building type ('A' for Apartment, 'H' for House, 'T' for TownHouse, 'E' for Estate).
+ * @return if housing was actually added to the residential department
+ */
 bool CityGrowthDepartment::increaseHousing(char b) 
 {
 	int homeless= gov->getHomeless();
@@ -63,6 +68,10 @@ bool CityGrowthDepartment::increaseHousing(char b)
 	return true;
 }
 
+/**
+ * @brief Increases the population by adding a vector of new citizens.
+ * @param citizens Vector of Citizen pointers to be added to the population.
+ */
 void CityGrowthDepartment::increasePopulation(std::vector<Citizen*> citizens) 
 {
 	int homeless= gov->getHomeless();
@@ -84,6 +93,9 @@ void CityGrowthDepartment::increasePopulation(std::vector<Citizen*> citizens)
 	//resDepartment->houseNewCitizens();
 }
 
+/**
+ * @brief Increases the population by a fixed amount (10 citizens).
+ */
 void CityGrowthDepartment::increasePopulation()
 {
 	int valid = ceil(population/20.0);
@@ -127,6 +139,9 @@ void CityGrowthDepartment::increasePopulation()
 	//resDepartment->houseNewCitizens();
 }
 
+/**
+ * @brief Increases the number of available jobs by constructing new buildings.
+ */
 void CityGrowthDepartment::increaseJobs() 
 {
 	int unemployed = gov->getTotalUnemployed();
@@ -165,6 +180,9 @@ void CityGrowthDepartment::increaseJobs()
 		
 }
 
+/**
+ * @brief Expands the transport infrastructure by adding new transport facilities.
+ */
 void CityGrowthDepartment::increaseTransport() 
 {
 	int trains = TransportDep->getTotalRailways();
@@ -198,14 +216,20 @@ void CityGrowthDepartment::increaseTransport()
 	}
 }
 
-
+/**
+ * @brief Retrieves the current population of the city.
+ * @return The current population as an integer.
+ */
 int CityGrowthDepartment::getPopulation()
 {
 	return population;
 }
 
 
-
+/**
+ * @brief Constructor for CityGrowthDepartment.
+ * @param gov Pointer to the Government instance.
+ */
 CityGrowthDepartment::CityGrowthDepartment(Government* gov) 
 {
 	this->resDepartment = gov->getResidentialDepartment();
@@ -217,6 +241,11 @@ CityGrowthDepartment::CityGrowthDepartment(Government* gov)
 	population = gov->getTotalCitizens();
 }
 
+/**
+ * @brief Singleton method to get or create the unique instance of CityGrowthDepartment.
+ * @param gov Pointer to the Government instance.
+ * @return Pointer to the unique CityGrowthDepartment instance.
+ */
 CityGrowthDepartment* CityGrowthDepartment::instance(Government* gov)
 {
 	if (uniqueInstance==NULL)
@@ -227,11 +256,17 @@ CityGrowthDepartment* CityGrowthDepartment::instance(Government* gov)
 	return uniqueInstance;
 }
 
+/**
+ * @brief destructor for CityGrowthDepartment
+ */
 CityGrowthDepartment::~CityGrowthDepartment()
 {
 	delete uniqueInstance;
 }
 
+/**
+ * @brief increases population by 1
+ */
 void CityGrowthDepartment::updatePopulation()
 {
 	population++;
