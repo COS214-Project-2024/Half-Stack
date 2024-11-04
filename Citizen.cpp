@@ -9,17 +9,6 @@ int Citizen::counter=0;
  * @param age The age of the citizen.
  */
 Citizen::Citizen(int age)
-{#include "Citizen.h"
-
-int Citizen::counter=0;
-/**
- * @brief Constructs a Citizen object with a given name and age.
- * 
- * The citizen is initialized as unemployed and with a neutral satisfaction level.
- * @param name The name of the citizen.
- * @param age The age of the citizen.
- */
-Citizen::Citizen(int age)
 {
     counter++;
     this->ID = counter;
