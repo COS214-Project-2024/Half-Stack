@@ -93,6 +93,12 @@ std::vector<Citizen*> Residential::getResidents()
 {
     return residents;
 }
+
+/**
+ * @brief Gets the number of residents in a building.
+ * 
+ * @return number of residents in building
+ */
 int Residential::getNumResidents()
 {
     int count=0;
@@ -103,6 +109,11 @@ int Residential::getNumResidents()
     return count;
 }
 
+/**
+ * @brief determines if the building is at max capacity with regards to the amount of residents
+ * 
+ * @return if builing can house more citizens or not
+ */
 bool Residential::isFull()
 {
     if (getCapacity()==getNumResidents())
@@ -113,11 +124,16 @@ bool Residential::isFull()
     return false;
 }
 
+/**
+ * @brief increaese water if amenity is added
+ */
 void Residential::increaseWaterConsumption(int num)
 {
     water += num;
 }
-
+/**
+ * @brief increaese power if amenity is added
+ */
 void Residential::increasePowerConsumption(int num)
 {
     energy +=num;
@@ -177,4 +193,19 @@ Building* Estate::build()
 	{
 		return nullptr;
 	}
+}
+
+/**
+* @brief destructor for estate
+*/
+Estate::~Estate()
+{
+    for (std::vector<Residential*>::iterator i = buildings.begin(); i != buildings.end(); i++)
+    {
+        if (*i !=NULL)
+        {
+            delete (*i);
+            (*i)=NULL;
+        }
+    }
 }
