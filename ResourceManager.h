@@ -105,6 +105,10 @@ public:
      */
     int getGeneralMaterials() const { return generalMaterials; }
 
+	/**
+     * @brief Gets the current budget amount.
+     * @return Current budget amount.
+     */
     double getBudget() const { return budget;}
 
 	/** 
