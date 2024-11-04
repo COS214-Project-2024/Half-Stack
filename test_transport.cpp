@@ -10,11 +10,10 @@ class TransportMockery : public Transportation
         bool isOpen = false;
         bool isClosed = false;
 
-        TransportMockery() : Transportation()
-        {};
+        TransportMockery() : Transportation("") {}
 
-        void open() override {this->isClosed = true;};
-        void close() override {this->isClosed = true;};
+        void open() override {this->isOpen = true;}
+        void close() override {this->isClosed = true;}
 };
 
 class OpenBusinessMockery : public TransportCommand
@@ -22,8 +21,8 @@ class OpenBusinessMockery : public TransportCommand
     public:
         bool didExecute = false;
 
-        void execute() override {this->didExecute = true;};
-        bool getStatus() override {return this->didExecute;};
+        void execute(Transportation* Transport) override {this->didExecute = true;}
+        bool getStatus() override {return this->didExecute;}
 };
 
 class CloseBusinessMockery : public TransportCommand
@@ -31,8 +30,8 @@ class CloseBusinessMockery : public TransportCommand
     public:
         bool didExecute = false;
 
-        void execute() override {this->didExecute = true;};
-        bool getStatus() override {return this->didExecute;};
+        void execute(Transportation* Transport) override {this->didExecute = true;}
+        bool getStatus() override {return this->didExecute;}
 };
 
 TEST_CASE("Only one singleton")

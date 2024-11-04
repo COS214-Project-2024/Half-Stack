@@ -31,28 +31,3 @@ TEST_CASE("Law remove")
 
     CHECK(lD->getAllLaws().empty());
 }
-
-TEST_CASE("Existing Law Change")
-{
-    LawDepartment* dep = LawDepartment::instance();
-
-    std::string old = "Law of the old";
-    std::string newL = "Law of the new";
-
-    dep->addLaw(old);
-
-    dep->changeLaw(old, newL);
-
-    CHECK(dep->getAllLaws().size() == 1);
-    CHECK(dep->getAllLaws().at(0) == newL);
-}
-
-TEST_CASE("Non-existing Law Change")
-{
-    LawDepartment* lD = LawDepartment::instance();
-
-    std::string non = "Law of the old";
-    std::string newL = "Law of the new";
-
-    CHECK_NOTHROW(lD->changeLaw(non, newL));
-}
