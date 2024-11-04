@@ -131,6 +131,7 @@ void TransportDepartment::addTransport(Transportation* newTransport)
 	TransportCommand* closeCom = new CloseBusiness();
 
 	this->transports.push_back(std::make_pair(newTransport, std::make_pair(openCom, closeCom)));
+	std::cout << newTransport->getType() << " successfully bulit." <<std::endl;
 }
 
 /**
