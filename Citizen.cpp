@@ -24,7 +24,7 @@ Citizen::Citizen(int age)
 /**
  * @brief Destructor for the Citizen class.
  * 
- * Cleans up dynamically allocated resources for employment and satisfaction.
+ * Cleans up dynamically allocated resources for employment, satisfaction and tax.
  */
 Citizen::~Citizen()
 {
