@@ -9,7 +9,7 @@
 #include "ResourceManager.h"
 
 class ResourceManager;
-//class Citizen;
+class Citizen;
 
 /**
  * @class Building
@@ -71,6 +71,8 @@ public:
      * @brief Destroys the Building object and cleans up resources.
      */
 	virtual ~Building();
+
+     virtual void addCitizen(Citizen* c)=0;
 
      virtual int getCapacity();
 
