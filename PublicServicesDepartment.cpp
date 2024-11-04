@@ -138,19 +138,18 @@ void PublicServicesDepartment::addBuilding(Building* b)
 
 void PublicServicesDepartment::employCitizens()
 {
-	 std::vector<Citizen*> citizens = Government::instance(" ")->getCitizens();
-    std::vector<Citizen*>::iterator it = citizens.begin();
-    for(; it != citizens.end(); ++it)
+	std::vector<Citizen*> citizens = Government::instance(" ")->getCitizens();
+    std::vector<Citizen*>::iterator it ;
+    for (std::vector<Building*>::iterator i = jobBuildings.begin(); i != jobBuildings.end(); i++)
     {
-        if((*it)->getEmployment()->getStatus()=="Unemployed")
+        if ((*i)->isFull()==false)
         {
-            for (std::vector<Building*>::iterator i = jobBuildings.begin(); i != jobBuildings.end(); i++)
+            for(it = citizens.begin(); it != citizens.end(); ++it)
             {
-                if ((*i)->isFull()==false)
+                if((*it)->getEmployment()->getStatus()=="Unemployed" && (*i)->isFull()==false)
                 {
                     (*it)->setJob(*i);
-                    //(*i)->addCitizen(*it);
-                    //attachCitizen(*it);
+                    (*i)->addCitizen(*it);
                 }
             }
         }
