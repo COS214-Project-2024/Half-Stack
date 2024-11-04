@@ -53,11 +53,21 @@ void Building::progress()
 	state = state->update();
 }
 
+/**
+* @brief gets total capacity of building
+* 
+* @return capacity of building
+*/
 int Building::getCapacity()
 {
 	return capacity;
 }
 
+/**
+* @brief return location
+* 
+* @return location
+*/
 std::string Building::getType()
 {
 	return location;
