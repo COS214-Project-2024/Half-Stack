@@ -8,11 +8,12 @@ UtilityCommand::UtilityCommand()
 /**
  * @brief Executes the command to supply water through the utilities department.
  * 
- * This function calls the `supplyWater` method on the `UtilitiesDepart` to initiate water supply.
+ * This function ensures that an instance of the `UtilitiesDepartment` exists and then calls 
+ * the `supplyWater` method on it to initiate water supply for the city.
  */
 void SupplyWater::execute()
 {
-    if (UtilitiesDepart==NULL)
+    if (UtilitiesDepart == NULL)
     {
         UtilitiesDepart = UtilitiesDepartment::instance();
     }
@@ -22,7 +23,9 @@ void SupplyWater::execute()
 /**
  * @brief Checks the current water supply status.
  * 
- * @return `true` if water is being supplied (i.e., `water` level is greater than 0), `false` otherwise.
+ * Determines if water supply is active by checking if the `water` level is greater than 0.
+ * 
+ * @return `true` if water is currently being supplied, `false` otherwise.
  */
 bool SupplyWater::getStatus()
 {
@@ -32,11 +35,12 @@ bool SupplyWater::getStatus()
 /**
  * @brief Executes the command to supply power through the utilities department.
  * 
- * This function calls the `supplyEnergy` method on the `UtilitiesDepart` to initiate energy supply.
+ * This function ensures that an instance of the `UtilitiesDepartment` exists and then calls 
+ * the `supplyEnergy` method on it to start supplying energy to the city.
  */
 void SupplyPower::execute()
 {
-    if (UtilitiesDepart==NULL)
+    if (UtilitiesDepart == NULL)
     {
         UtilitiesDepart = UtilitiesDepartment::instance();
     }
@@ -46,7 +50,9 @@ void SupplyPower::execute()
 /**
  * @brief Checks the current power supply status.
  * 
- * @return `true` if energy is being supplied (i.e., `energy` level is greater than 0), `false` otherwise.
+ * Determines if power supply is active by checking if the `energy` level is greater than 0.
+ * 
+ * @return `true` if energy is currently being supplied, `false` otherwise.
  */
 bool SupplyPower::getStatus()
 {
@@ -56,11 +62,12 @@ bool SupplyPower::getStatus()
 /**
  * @brief Executes the command to manage waste through the utilities department.
  * 
- * This function calls the `manageWaste` method on the `UtilitiesDepart` to initiate waste management operations.
+ * This function ensures that an instance of the `UtilitiesDepartment` exists and then calls 
+ * the `manageWaste` method on it to handle waste management operations for the city.
  */
 void ManageWaste::execute()
 {
-    if (UtilitiesDepart==NULL)
+    if (UtilitiesDepart == NULL)
     {
         UtilitiesDepart = UtilitiesDepartment::instance();
     }
@@ -70,7 +77,9 @@ void ManageWaste::execute()
 /**
  * @brief Checks the current waste management status.
  * 
- * @return `true` if waste management is operational (indicated by `open` being true), `false` otherwise.
+ * Determines if waste management is active by checking if `open` is set to `true`.
+ * 
+ * @return `true` if waste management is operational, `false` otherwise.
  */
 bool ManageWaste::getStatus()
 {
@@ -80,11 +89,12 @@ bool ManageWaste::getStatus()
 /**
  * @brief Executes the command to manage sewage through the utilities department.
  * 
- * This function calls the `manageSewage` method on the `UtilitiesDepart` to initiate sewage management operations.
+ * This function ensures that an instance of the `UtilitiesDepartment` exists and then calls 
+ * the `manageSewage` method on it to handle sewage management operations for the city.
  */
 void ManageSewage::execute()
 {
-    if (UtilitiesDepart==NULL)
+    if (UtilitiesDepart == NULL)
     {
         UtilitiesDepart = UtilitiesDepartment::instance();
     }
@@ -94,7 +104,9 @@ void ManageSewage::execute()
 /**
  * @brief Checks the current sewage management status.
  * 
- * @return `true` if sewage management is operational (indicated by `open` being true), `false` otherwise.
+ * Determines if sewage management is active by checking if `open` is set to `true`.
+ * 
+ * @return `true` if sewage management is operational, `false` otherwise.
  */
 bool ManageSewage::getStatus()
 {
