@@ -126,6 +126,7 @@ void PublicServicesDepartment::addBuilding(Building* b)
         {
             jobBuildings.push_back(b);
             employCitizens();
+            std::cout << "Job building successfully built." <<std::endl;
         }else {
             rm->increaseResourceLevels(10, 10, 20*num, 20*num, 5*num);
             delete b;
