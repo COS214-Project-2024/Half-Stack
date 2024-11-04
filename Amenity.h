@@ -34,6 +34,11 @@ public:
      */
     virtual bool consumeResources()=0;
 
+    /**
+     * @brief Prototype function not needed in amenity
+     * 
+     * This function returns null
+     */
     Building* build() {return NULL;}
 };
 
@@ -52,9 +57,14 @@ public:
 
     /**
      * @brief Consumes extra water resources for the Garden.
+     * 
+     * @return if amenity successfully consumed resources
      */
     bool consumeResources() override;
 
+    /**
+     * @brief Consumes extra water resources for the Garden.
+     */
     void consumeWater();
 
 };
@@ -73,10 +83,15 @@ public:
     Internet(Residential* amen);
 
     /**
-     * @brief Consumes extra power resources for the Internet service.
+     * @brief Consumes extra power resources for the Garden.
+     * 
+     * @return if amenity successfully consumed resources
      */
     bool consumeResources() override;
 
+    /**
+     * @brief Consumes extra power resources for the Garden.
+     */
     void consumePower();
 
 };
@@ -95,10 +110,15 @@ public:
     Gym(Residential* amen);
 
     /**
-     * @brief Consumes extra electricity resources for the Gym.
+     * @brief Consumes extra power resources for the Garden.
+     * 
+     * @return if amenity successfully consumed resources
      */
     bool consumeResources() override;
 
+    /**
+     * @brief Consumes extra power resources for the Garden.
+     */
     void consumePower();
 
 };
@@ -117,10 +137,15 @@ public:
     Pool(Residential* amen);
 
     /**
-     * @brief Consumes extra water resources for the Pool.
+     * @brief Consumes extra water resources for the Garden.
+     * 
+     * @return if amenity successfully consumed resources
      */
     bool consumeResources() override;
 
+    /**
+     * @brief Consumes extra water resources for the Garden.
+     */
     void consumeWater();
 
 };
