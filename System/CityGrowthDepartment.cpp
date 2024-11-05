@@ -37,11 +37,15 @@ bool CityGrowthDepartment::increaseHousing(char b)
 				if (homeless>4)
 				{
 					int numBuildings = ceil(homeless/4.0);
+					Estate* estate = new Estate(numBuildings*4,"estate");
 					for (int i=0;i<numBuildings;i++)
 					{
-						if (resDepartment->addBuilding(new House(4,"House"))==false)
-							return false; 
+						estate->addBuilding(new House(4,"House"));
+						/*if (resDepartment->addBuilding(new House(4,"House"))==false)
+							return false; */
 					}
+					if (resDepartment->addBuilding(estate)==false)
+							return false;
 				}else{
 					if (resDepartment->addBuilding(new House(homeless,"House"))==false)
 						return false;
@@ -145,7 +149,6 @@ void CityGrowthDepartment::increasePopulation()
 void CityGrowthDepartment::increaseJobs() 
 {
 	int unemployed = gov->getTotalUnemployed();
-
 	while (unemployed > 100)
 	{
 		psDep->addBuilding(new Office(40,"office"));
@@ -177,7 +180,6 @@ void CityGrowthDepartment::increaseJobs()
 		psDep->addBuilding(new Office(10,"office"));
 		unemployed -=20;
 	}
-		
 }
 
 /**
@@ -208,6 +210,7 @@ void CityGrowthDepartment::increaseTransport()
 		roads = TransportDep->getTotalRoads();
 	}
 	
+	TransportDep->addTransport(new Trail());
 
 	int t = ceil(population/50.0); //should be a road for every building
 	if (trains<t && t!=0)
